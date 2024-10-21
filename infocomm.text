@@ -1,0 +1,727 @@
+eas build -p android --profile preview
+eas build -p android --profile production
+eas build -p ios --profile preview
+eas build:run -p android --latest
+eas build --platform android
+eas build --platform ios
+eas build --profile development --platform android
+eas submit --platform android 
+eas build -p ios --auto-submit
+eas update --branch master
+eas credentials
+eas build:list
+
+@notifee/react-native
+ios
+"config": {
+  "googleMaps": {
+    "apiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
+  }
+}
+
+ // "bundleIdentifier": "com.mtest",
+expo push:android:upload --api-key AAAAk_6qcoo:APA91bFcy5X74ZmCyOvauoOxZS81S5hPxEuPrwTZkULEZoeIMey0mfJJSefDw5Gw-MfJ7sTigPCvIN6-Ep9JcqeCGnVkZWQFh395fd5524c5tBeH4saQ-VyiKfZeKaLrSzBvGVjFNSP9
+expo start --localhost --android
+emulator -avd Pixel_4_XL_API_33
+
+APPLE ID DEVELLOPER
+Email: admin@moncongo.com 
+Pass: MC0ng0786*
+
+<FormBuilder
+    control={control}
+    setFocus={setFocus}
+    formConfigArray={[
+        {
+            type: 'text',
+            name: 'name',
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Nom is required',
+                },
+            },
+            textInputProps: {
+                label: 'Nom',
+            },
+        },
+        {
+            type: 'email',
+            name: 'email',
+            rules: {
+                required: {
+                    value: true,
+                    message: "L'e-mail est requis",
+                },
+                pattern: {
+                    value:
+                        /[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/,
+                    message: 'Le courriel est invalide',
+                },
+            },
+            textInputProps: {
+                label: 'Email',
+            },
+        },
+        {
+            type: 'password',
+            name: 'conpassword',
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Mot de passe requis',
+                },
+                minLength: {
+                    value: 8,
+                    message: 'Le mot de passe doit contenir au moins 8 caractères',
+                },
+                maxLength: {
+                    value: 30,
+                    message: 'Le mot de passe doit contenir entre 8 et 30 caractères',
+                },
+
+            },
+            textInputProps: {
+                label: 'Mot de passe',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'country',
+            options: COUNTRIES,
+            textInputProps: {
+                label: 'Pays',
+            },
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Pays is required',
+                },
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'city',
+            options: CITY,
+            textInputProps: {
+                label: 'Ville',
+            },
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Ville is required',
+                },
+            },
+        },
+        [
+            {
+                type: 'autocomplete',
+                name: 'phoneCode',
+                options: COUNTRIESCODE,
+                rules: {
+                    required: {
+                        value: true,
+                        message: 'Numéro de code'
+                    },
+                },
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'phone',
+                rules: {
+                    required: {
+                        value: true,
+                        message: 'Telephone Numéro is required',
+                    },
+                },
+                textInputProps: {
+                    label: 'Numéro Telephone',
+                },
+                flex: 1.5,
+            },
+        ],
+        [
+            {
+                type: 'autocomplete',
+                name: 'whatsappCode',
+                options: COUNTRIESCODE,
+                rules: {
+                    required: {
+                        value: true,
+                        message: 'Code No',
+                    },
+                },
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'whatsapp',
+                rules: {
+                    required: {
+                        value: true,
+                        message: 'Numéro Whatsapp is required',
+                    },
+                },
+                textInputProps: {
+                    label: 'Numéro Whatsapp',
+                },
+                flex: 1.5,
+            }
+        ],
+        {
+            type: 'text',
+            name: 'company',
+            defaultValue: "",
+            textInputProps: {
+                label: 'Nom de l’entreprise (optionnel)',
+            },
+        },
+        {
+            type: 'text',
+            name: 'address',
+            defaultValue: "",
+            textInputProps: {
+                label: 'Adresse (optionnel)',
+            },
+        },
+
+    ]}
+/>
+// profile
+<FormBuilder
+    control={control}
+    setFocus={setFocus}
+    formConfigArray={[
+        {
+            type: 'text',
+            name: 'name',
+            textInputProps: {
+                label: 'Nom',
+            },
+        },
+        {
+            type: 'email',
+            name: 'email',
+            textInputProps: {
+                label: 'Email',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'country',
+            options: COUNTRIES,
+            textInputProps: {
+                label: 'Pays',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'city',
+            options: CITY,
+            textInputProps: {
+                label: 'Ville',
+            },
+        },
+        [
+            {
+                type: 'autocomplete',
+                name: 'phoneCode',
+                options: COUNTRIESCODE,
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'phone',
+                textInputProps: {
+                    label: 'Numéro Telephone',
+                },
+                flex: 1.5,
+            },
+        ],
+        [
+            {
+                type: 'autocomplete',
+                name: 'whatsappCode',
+                options: COUNTRIESCODE,
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'whatsapp',
+                textInputProps: {
+                    label: 'Numéro Whatsapp',
+                },
+                flex: 1.5,
+            }
+        ],
+        {
+            type: 'text',
+            name: 'company',
+            textInputProps: {
+                label: 'Nom de l’entreprise',
+            },
+        },
+        {
+            type: 'text',
+            name: 'address',
+            textInputProps: {
+                label: 'Adresse',
+            },
+        },
+    ]}
+/>
+// Propery
+<FormBuilder
+    control={control}
+    setFocus={setFocus}
+    formConfigArray={[
+        {
+            type: 'text',
+            name: 'name',
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Ce champ est obligatoire',
+                },
+            },
+            textInputProps: {
+                label: 'Nom',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'category',
+            options: PROPERTYCATEGORY,
+            rules: {
+                required: {
+                    value: true,
+                    message: 'champ de saisie vide',
+                },
+            },
+            textInputProps: {
+                label: 'Catégorie',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'type',
+            options: [{ label: 'Sell', value: 'sell' }, { label: 'Rent', value: 'rent' }],
+            textInputProps: {
+                label: 'Taper',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'listed',
+            options: [{ label: 'Owner', value: 'owner' }, { label: 'Agent', value: 'agent' }],
+            textInputProps: {
+                label: 'Répertorié par',
+            },
+        },
+        {
+            type: 'text',
+            name: 'price',
+            textInputProps: {
+                label: 'Prix',
+            },
+            rules: {
+                required: {
+                    value: true,
+                    message: 'champ de saisie vide',
+                },
+            }
+        },
+        {
+            type: 'autocomplete',
+            name: 'priceNegotiable',
+            options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+            textInputProps: {
+                label: 'Négociable',
+            },
+        },
+        {
+            type: 'text',
+            name: 'bedrooms',
+            textInputProps: {
+                label: 'Chambres',
+            },
+        },
+        {
+            type: 'text',
+            name: 'bathrooms',
+            textInputProps: {
+                label: 'S. de Bain',
+            },
+        },
+        {
+            type: 'text',
+            name: 'area',
+            textInputProps: {
+                label: 'Dimensions',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'furnished',
+            options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+            textInputProps: {
+                label: 'Meublé',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'lift',
+            options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+            textInputProps: {
+                label: 'Ascenseur',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'parking',
+            options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+            textInputProps: {
+                label: 'Parking',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'generator',
+            options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+            textInputProps: {
+                label: 'Groupe électrogène',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'security',
+            options: [{ label: 'Yes', value: 'yes' }, { label: 'No', value: 'no' }],
+            textInputProps: {
+                label: 'Sécurité',
+            },
+        },
+        {
+            type: 'text',
+            name: 'address',
+            textInputProps: {
+                label: 'Address',
+            },
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Ce champ est obligatoire',
+                },
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'country',
+            options: COUNTRIES,
+            rules: {
+                required: {
+                    value: true,
+                    message: 'le pays est requis',
+                },
+            },
+            textInputProps: {
+                label: 'Pays',
+            }
+        },
+        {
+            type: 'autocomplete',
+            name: 'city',
+            options: CITY,
+            rules: {
+                required: {
+                    value: true,
+                    message: 'La ville est obligatoire',
+                },
+            },
+            textInputProps: {
+                label: 'Ville',
+            },
+        },
+        [
+            {
+                type: 'autocomplete',
+                name: 'phoneCode',
+                options: COUNTRIESCODE,
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'phone',
+                textInputProps: {
+                    label: 'Numéro de téléphone',
+                },
+                flex: 1.5,
+            },
+        ],
+        [
+            {
+                type: 'autocomplete',
+                name: 'whatsappCode',
+                options: COUNTRIESCODE,
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'whatsapp',
+                textInputProps: {
+                    label: 'Numéro Whatsapp',
+                },
+                flex: 1.5,
+            }
+        ],
+        {
+            type: 'text',
+            name: 'description',
+            textInputProps: {
+                label: 'Description',
+            },
+        }
+    ]}
+/>
+// Auto
+<FormBuilder
+    control={control}
+    setFocus={setFocus}
+    formConfigArray={[
+        {
+            type: 'text',
+            name: 'name',
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Ce champ est obligatoire',
+                },
+            },
+            textInputProps: {
+                label: 'Nom',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'models',
+            options: MODELLIST,
+            textInputProps: {
+                label: 'Modèle',
+            },
+        },
+        {
+            type: 'text',
+            name: 'price',
+            textInputProps: {
+                label: 'Prix',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'priceNegotiable',
+            options: [{ label: 'Yes', value: 1 }, { label: 'No', value: 0 }],
+            textInputProps: {
+                label: 'Négociable',
+            },
+        },
+        {
+            type: 'text',
+            name: 'year',
+            textInputProps: {
+                label: 'Année',
+            },
+        },
+        {
+            type: 'text',
+            name: 'kilometers',
+            textInputProps: {
+                label: 'Kilométrage',
+            },
+        },
+        {
+            type: 'text',
+            name: 'color',
+            textInputProps: {
+                label: 'Couleur',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'doors',
+            options: [
+                { label: 'Doors 2', value: 2 },
+                { label: 'Doors 4', value: 4 },
+                { label: 'Doors 6', value: 6 },
+                { label: 'Doors 8', value: 8 },
+                { label: 'Doors 10', value: 10 }
+            ],
+            textInputProps: {
+                label: 'Nombre de portes',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'transmission',
+            options: [
+                { label: 'Automatic', value: 'automatic' },
+                { label: 'Manual', value: 'manual' },
+                { label: 'Dual clutch', value: 'dual_clutch' },
+                { label: 'Continuously variable', value: 'continuously_variable' }
+            ],
+            textInputProps: {
+                label: 'Boîte de vitesse',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'wheeldrive',
+            options: [
+                { label: 'All', value: 'all' },
+                { label: 'Four', value: 'four' },
+                { label: 'Front', value: 'front' },
+                { label: 'Rear', value: 'rear' }
+            ],
+            textInputProps: {
+                label: 'Roue motrice',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'airconditioner',
+            options: [{ label: 'Yes', value: 1 }, { label: 'No', value: 0 }],
+            textInputProps: {
+                label: 'Climatisation',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'steering',
+            options: [
+                { label: 'Left', value: 'left' },
+                { label: 'Right', value: 'right' }
+            ],
+            textInputProps: {
+                label: 'Volant',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'fuel',
+            options: [
+                { label: 'Diesel', value: 'diesel' },
+                { label: 'CNG', value: 'cng' },
+                { label: 'Battery', value: 'battery' },
+                { label: 'Gasoline', value: 'gasoline' },
+                { label: 'Petrol', value: 'petrol' },
+                { label: 'Others', value: 'others' }
+            ],
+            textInputProps: {
+                label: 'Carburant',
+            },
+        },
+        {
+            type: 'text',
+            name: 'address',
+            textInputProps: {
+                label: 'Adresse',
+            },
+            rules: {
+                required: {
+                    value: true,
+                    message: 'Ce champ est obligatoire',
+                },
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'country',
+            options: COUNTRIES,
+            // rules: {
+            //     required: {
+            //         value: true,
+            //         message: 'country is required',
+            //     },
+            // },
+            textInputProps: {
+                label: 'pays',
+            },
+        },
+        {
+            type: 'autocomplete',
+            name: 'city',
+            options: CITY,
+            // rules: {
+            //     required: {
+            //         value: true,
+            //         message: 'City is required',
+            //     },
+            // },
+            textInputProps: {
+                label: 'Ville',
+            },
+        },
+        [
+            {
+                type: 'autocomplete',
+                name: 'phoneCode',
+                options: COUNTRIESCODE,
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'phone',
+                textInputProps: {
+                    label: 'Numéro de téléphone',
+                },
+                flex: 1.5,
+            },
+        ],
+        [
+            {
+                type: 'autocomplete',
+                name: 'whatsappCode',
+                options: COUNTRIESCODE,
+                textInputProps: {
+                    label: 'Code',
+                },
+                flex: 0.5,
+            },
+            {
+                type: 'text',
+                name: 'whatsapp',
+                textInputProps: {
+                    label: 'Numéro Whatsapp',
+                },
+                flex: 1.5,
+            }
+        ],
+        {
+            type: 'text',
+            name: 'description',
+            textInputProps: {
+                label: 'Description',
+            },
+        },
+    ]}
+/>
