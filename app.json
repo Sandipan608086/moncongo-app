@@ -16,9 +16,9 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.app.moncongo",
+      "bundleIdentifier": "com.moncongo.app",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "43",
+      "buildNumber": "44",
       "enterpriseProvisioning": "universal",
       "config": {
         "googleMapsApiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
