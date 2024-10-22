@@ -27,11 +27,6 @@
       "ios": {
         "image": "latest"
       }
-    },
-    "simulator": {
-      "ios": {
-        "simulator": true
-      }
     }
   },
   "submit": {
