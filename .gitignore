@@ -6,7 +6,7 @@
 # Node artifact files
 node_modules/
 dist/
-
+*.expo
 # Compiled Java class files
 *.class
 
@@ -48,3 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build

@@ -94,8 +94,7 @@
         {
           "calendarPermission": "The app needs to access your calendar."
         }
-      ],
-      "expo-build-properties"
+      ]
     ]
   }
 }

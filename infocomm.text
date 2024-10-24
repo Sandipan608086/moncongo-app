@@ -11,6 +11,7 @@ eas update --branch master
 eas credentials
 eas build:list
 npx expo prebuild --clean
+npx expo run:android --variant release
 
 @notifee/react-native
 ios
