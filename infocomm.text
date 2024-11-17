@@ -12,6 +12,9 @@ eas credentials
 eas build:list
 npx expo prebuild --clean
 npx expo run:android --variant release
+npx expo run:ios
+
+react-native-google-maps
 
 @notifee/react-native
 ios

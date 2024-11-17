@@ -15,7 +15,7 @@ import {
 import { useSelector } from "react-redux";
 import APIURL from "../../store/Api";
 import { FAB } from "react-native-paper";
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+// import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import * as Linking from "expo-linking";
 const BusinessLocationRoute = () => {
   const BUSINESSHOME = useSelector(
@@ -31,7 +31,7 @@ const BusinessLocationRoute = () => {
       : "";
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
+      {/* <View style={{ flex: 1, width: "100%", alignItems: "center" }}>
         {latitude !== "" ? (
           <MapView
             style={styles.map}
@@ -69,7 +69,7 @@ const BusinessLocationRoute = () => {
             }}
           />
         )}
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
