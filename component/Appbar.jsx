@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { StyleSheet, Text, Alert, Image } from "react-native";
+import { StyleSheet, Text, Alert, Image, Platform } from "react-native";
 import { Appbar, Avatar, Button, Card } from "react-native-paper";
 
 const AppbarHeader = (props) => {

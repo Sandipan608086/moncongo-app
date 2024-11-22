@@ -106,16 +106,6 @@ const BusinessDetailsScreen = ({ navigation, route }) => {
                 source={BUSINESSHOME.logo ? { uri: BUSINESSHOME.logo } : require("../../assets/noImage.png")}
               />
             )}
-            // right={(props) =>
-            //   // <ToggleButton.Row {...props}>
-            //   //   {BUSINESSHOME.directory_facebook !== "" && <IconButton icon="facebook" style={stylesList.ToggleButton} iconColor='#4267B2' size={26} onPress={() => Linking.openURL(BUSINESSHOME.directory_facebook)} />}
-            //   //   {BUSINESSHOME.directory_twitter !== "" && <IconButton icon={{ uri: 'https://api.moncongo.com/upload/sites/twitter.png'}} style={stylesList.ToggleButton} size={26} onPress={() => Linking.openURL(BUSINESSHOME.directory_twitter)} />}
-            //   //   {BUSINESSHOME.directory_instagram !== "" && <IconButton icon="instagram" style={stylesList.ToggleButton} iconColor='#E1306C' size={26} onPress={() => Linking.openURL(BUSINESSHOME.directory_instagram)} />}
-            //   //   {BUSINESSHOME.directory_linkdin !== "" && <IconButton icon="linkedin" style={stylesList.ToggleButton} iconColor='#0A66C2' size={26} onPress={() => Linking.openURL(BUSINESSHOME.directory_linkdin)} />}
-            //   //   {BUSINESSHOME.directory_youtube !== "" && <IconButton icon="youtube" style={stylesList.ToggleButton} iconColor='#E1306C' size={26} onPress={() => Linking.openURL(BUSINESSHOME.directory_youtube)} />}
-            //   // </ToggleButton.Row>
-              
-            // }
           />
         </Card>
       }
