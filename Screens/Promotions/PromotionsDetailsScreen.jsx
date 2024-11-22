@@ -1,0 +1,223 @@
+import { View, SafeAreaView, ScrollView, StyleSheet, Alert, FlatList, RefreshControl, Image, useWindowDimensions, Share, Platform, Pressable, Dimensions } from "react-native";
+import * as Linking from 'expo-linking';
+import React, { useEffect, useState, useRef } from "react";
+import { Avatar, Card, Text, IconButton, Button, FAB, Modal, MD2Colors } from "react-native-paper";
+import Swiper from 'react-native-swiper';
+import WebView from 'react-native-webview';
+import { useSelector, useDispatch } from "react-redux";
+import AppbarHeader from "../../component/Appbar";
+import { promotionsDetailApi, promotionsOther } from "../../store/PromotionsSlices";
+import RenderHtml, { defaultSystemFonts } from 'react-native-render-html';
+import { useIsFocused } from "@react-navigation/native";
+import CardListCom from "../../component/CardListCom"
+import CardBusiness from "../../component/CardBusiness";
+import { mixedStyle } from "./../../Navigation/htmlStyle";
+const PromotionsDetailsScreen = ({ navigation, route }) => {
+    const systemFonts = [...defaultSystemFonts, 'Poppins_400Regular', 'Poppins_700Bold'];
+    //Model Start
+    const [visible, setVisible] = useState(false);
+    const isFocused = useIsFocused();
+    const showModal = () => setVisible(true);
+    const hideModal = () => setVisible(false);
+    const containerStyle = { height: Dimensions.get('window').height };
+    //Model End
+    const dispatch = useDispatch();
+    const routeData = JSON.parse(route.params);
+    // const PROMOTIONDATA = useSelector(state => state.promotion.promotionsDetail);
+    const [PROMOTIONDATA, setPROMOTIONDATA] = useState("");
+    const BUSINESS = useSelector(state => state.promotion.business);
+    const POTHERLIST = useSelector(state => state.promotion.promotionsList);
+    const LODING = useSelector(state => state.promotion.loading);
+    const onRefresh = () => {
+        dispatch(promotionsDetailApi({ slug: routeData.slug })).then((req) => {
+            setPROMOTIONDATA(req.payload)
+            dispatch(promotionsOther({ slug: routeData.slug }))
+        })
+    }
+    useEffect(() => {
+        if (isFocused === true) {
+            onRefresh()
+        }
+        // return () => { }
+    }, []);
+    const [state, setState] = useState({ open: false });
+    const onStateChange = ({ open }) => setState({ open });
+    const { open } = state;
+    _renderItem = ({ item }) => (
+        <View style={{ flex: 1, width: "100%" }}>
+            <CardListCom item={item} slug={'PromotionsDetails'} navigation={navigation} />
+        </View>
+    )
+    const { width } = useWindowDimensions();
+
+    return (
+        <SafeAreaView style={styles.container}>
+            <AppbarHeader title="Promotion" back={true} home={true} navigation={navigation} />
+            <ScrollView
+                style={styles.ScrollView}
+                showsVerticalScrollIndicator={true}
+                showsHorizontalScrollIndicator={false}
+                horizontal={false}
+                refreshControl={
+                    <RefreshControl refreshing={LODING} onRefresh={onRefresh} />
+                }
+            >
+                {PROMOTIONDATA && <>
+                    <Text style={styles.Title}>{PROMOTIONDATA.prom_title}</Text>
+                    <Card style={{ marginTop: 20 }}>
+                        {
+                            PROMOTIONDATA.prom_main_img ?
+                                <Pressable onPress={showModal}>
+                                    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                                        <Image style={{ height: 200, width: '100%' }} source={{ uri: `https://i.ytimg.com/vi/${PROMOTIONDATA.prom_main_img}/hqdefault.jpg` }} />
+                                        <Avatar.Icon style={{ position: 'absolute', backgroundColor: 'rgba(0,0,0,0)' }} size={130} icon="play-circle" color={MD2Colors.red800} />
+                                    </View>
+                                </Pressable>
+                                : PROMOTIONDATA.prom_img && <Swiper style={styles.wrapper} height={340} showsButtons={true} autoplay>
+                                    {
+                                        PROMOTIONDATA.prom_img.map((value, i) => {
+                                            return <View style={styles.slide} key={i} >
+                                                <Image
+                                                    resizeMode="cover"
+                                                    style={styles.image}
+                                                    source={{ uri: value.img }}
+                                                />
+                                            </View>
+                                        })
+                                    }
+                                </Swiper>
+                        }
+                        <Text style={styles.date}>Date de la promotion: {PROMOTIONDATA.prom_start_date} {PROMOTIONDATA.prom_end_date && `to ${PROMOTIONDATA.prom_end_date}`}</Text>
+                    </Card>
+
+                    <Text style={{ fontSize: 20, fontFamily: 'Poppins_700Bold', marginTop: 20 }}>Promotion</Text>
+                    <View style={{ backgroundColor: 'white', marginTop: 20, backgroundColor: '#ebf8ff' }}>
+                        {
+                            PROMOTIONDATA.clean_description != '' && (
+                                <RenderHtml
+                                    contentWidth={width}
+                                    source={{ html: PROMOTIONDATA.clean_description ? PROMOTIONDATA.clean_description : '' }}
+                                    tagsStyles={mixedStyle}
+                                    systemFonts={systemFonts}
+                                />
+
+                            )
+                        }
+                    </View>
+                    <CardBusiness BUSINESS={BUSINESS} title={'Société'} navigation={navigation} />
+                    <Text style={{ fontSize: 16, fontFamily: 'Poppins_700Bold', marginTop: 20 }}>VOUS SEREZ ÉGALEMENT INTÉRESSÉ PAR</Text>
+                    <View>
+                        <FlatList
+                            horizontal={true}
+                            showsVerticalScrollIndicator={true}
+                            showsHorizontalScrollIndicator={false}
+                            data={POTHERLIST}
+                            renderItem={this._renderItem}
+                            keyExtractor={(item) => item.prom_id}
+                            style={{ flex: 1 }}
+                            contentContainerStyle={{ padding: 10 }}
+                        />
+                    </View>
+                </>}
+            </ScrollView>
+            <FAB.Group
+                open={open}
+                visible
+                icon={open ? 'close' : 'contacts-outline'}
+                backdropColor="rgba(0,0,0,0)"
+                color="#ffffff"
+                fabStyle={{ backgroundColor: '#0298d3' }}
+                actions={[
+                    {
+                        icon: 'email',
+                        label: 'Email',
+                        color: '#ffffff',
+                        style: { backgroundColor: '#0298d3' },
+                        onPress: () => BUSINESS.directory_email[0].email !== "" ? Linking.openURL(`mailto:${BUSINESS.directory_email[0].email}`) : Alert.alert('Désolé! Aucune adresse e-mail trouvée'),
+                        labelStyle: styles.fabLabelStyle
+                    },
+                    {
+                        icon: 'phone',
+                        label: 'Appel',
+                        color: '#ffffff',
+                        style: { backgroundColor: '#0298d3' },
+                        onPress: () => BUSINESS.directory_contact.length > 0 ? Linking.openURL(`tel:${BUSINESS.directory_contact[0].contact}`) : Alert.alert('Désolé! Aucun numéro de contact trouvé'),
+                        labelStyle: styles.fabLabelStyle
+                    },
+                    {
+                        icon: 'whatsapp',
+                        label: 'WhatsApp',
+                        onPress: () => BUSINESS.directory_whatsapp !== "" ? Linking.openURL(`https://wa.me/${BUSINESS.directory_whatsapp}`) : Alert.alert('Désolé! Aucun contact WhatsApp trouvé'),
+                        color: '#ffffff',
+                        style: { backgroundColor: '#64B161' },
+                        labelStyle: styles.fabLabelStyle
+                    },
+                ]}
+                onStateChange={onStateChange}
+                onPress={() => {
+                    if (open) {
+                        // do something if the speed dial is open
+                    }
+                }}
+            />
+            <Modal visible={visible} style={{ backgroundColor: "rgba(0,0,0,0.5)" }} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                <IconButton style={{ backgroundColor: 'white', position: 'absolute', top: 10, right: 0 }} icon="close-circle" size={30} iconColor="#0287BC" onPress={() => setVisible(false)} />
+
+                <View style={{ height: 280 }}>
+                    <WebView
+                        style={{ height: 280 }}
+                        source={{ uri: `https://www.youtube.com/embed/${PROMOTIONDATA.prom_main_img}` }}
+                        androidHardwareAccelerationDisabled={true}
+                    />
+                </View>
+            </Modal>
+        </SafeAreaView>
+    )
+}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "rgba(248, 248, 248, 1)",
+    },
+    ScrollView: {
+        flex: 1,
+        padding: 10,
+    },
+    Title: {
+        fontSize: 22,
+        fontFamily: 'Poppins_700Bold',
+        textTransform: 'uppercase'
+    },
+    CardCover: {
+        borderRadius: 0,
+        height: 300,
+    },
+    fabLabelStyle: {
+        backgroundColor: '#ffffff',
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        borderRadius: 20
+    },
+    date: {
+        display: 'flex',
+        backgroundColor: '#0298d3',
+        color: '#ffffff',
+        padding: 10
+    },
+    wrapper: {},
+    slide: {
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        backgroundColor: '#9DD6EB'
+    },
+    image: {
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        alignItems: 'flex-start'
+    },
+});
+
+export default PromotionsDetailsScreen;

@@ -1,0 +1,42 @@
+eas build -p android --profile preview
+eas build -p android --profile production
+eas build -p ios --profile preview
+eas build:run -p android --latest
+eas build --platform android
+eas build --platform ios
+eas build --profile development --platform android
+eas submit --platform android 
+eas build -p ios --auto-submit
+eas update --branch master
+eas credentials
+eas build:list
+
+npx expo prebuild --clean
+npx expo run:android --variant release
+npx expo install --fix
+
+expo-dev-client
+expo-dev-launcher
+
+"android": {
+  "compileSdkVersion": 34,
+  "targetSdkVersion": 34,
+  "buildToolsVersion": "34.0.0"
+},
+
+@notifee/react-native
+ios
+"config": {
+  "googleMaps": {
+    "apiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
+  }
+}
+
+ // "bundleIdentifier": "com.mtest",
+expo push:android:upload --api-key AAAAk_6qcoo:APA91bFcy5X74ZmCyOvauoOxZS81S5hPxEuPrwTZkULEZoeIMey0mfJJSefDw5Gw-MfJ7sTigPCvIN6-Ep9JcqeCGnVkZWQFh395fd5524c5tBeH4saQ-VyiKfZeKaLrSzBvGVjFNSP9
+expo start --localhost --android
+emulator -avd Pixel_4_XL_API_33
+
+APPLE ID DEVELLOPER
+Email: admin@moncongo.com 
+Pass: MC0ng0786*
