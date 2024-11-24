@@ -16,7 +16,7 @@ const ConfirmationScreen = ({ navigation }) => {
                 contentContainerStyle={{ flexGrow: 1 }}
             >
                 <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
-                    <Image style={{width: '35%', height: '20%'}} source={require('./../../assets/emailImg.png')} />
+                    <Image alt="image" style={{width: '35%', height: '20%'}} source={require('./../../assets/emailImg.png')} />
                     <Text style={g.Subtitle}>Confirmation de l'émail</Text>
                     <Text style={{textAlign: 'center', paddingHorizontal: 10}}>Merci. Vous pouvez maintenant vous connecter avec votre e-mail et le mot de passe choisi</Text>
                     <Button

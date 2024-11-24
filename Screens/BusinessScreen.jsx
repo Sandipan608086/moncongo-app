@@ -89,7 +89,7 @@ const BusinessScreen = ({ navigation }) => {
               { aspectRatio: 300 / 300, height: undefined, width: "100%" },
             ]}
           />
-          {/* <ImageBackground
+          {/* <Image alt="image"Background
             source={
               item.directory_category_icon
                 ? { uri: item.directory_category_icon }

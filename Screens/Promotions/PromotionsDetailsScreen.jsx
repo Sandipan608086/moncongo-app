@@ -69,7 +69,7 @@ const PromotionsDetailsScreen = ({ navigation, route }) => {
                             PROMOTIONDATA.prom_main_img ?
                                 <Pressable onPress={showModal}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                                        <Image style={{ height: 200, width: '100%' }} source={{ uri: `https://i.ytimg.com/vi/${PROMOTIONDATA.prom_main_img}/hqdefault.jpg` }} />
+                                        <Image alt="image" style={{ height: 200, width: '100%' }} source={{ uri: `https://i.ytimg.com/vi/${PROMOTIONDATA.prom_main_img}/hqdefault.jpg` }} />
                                         <Avatar.Icon style={{ position: 'absolute', backgroundColor: 'rgba(0,0,0,0)' }} size={130} icon="play-circle" color={MD2Colors.red800} />
                                     </View>
                                 </Pressable>
@@ -77,7 +77,7 @@ const PromotionsDetailsScreen = ({ navigation, route }) => {
                                     {
                                         PROMOTIONDATA.prom_img.map((value, i) => {
                                             return <View style={styles.slide} key={i} >
-                                                <Image
+                                                <Image alt="image"
                                                     resizeMode="cover"
                                                     style={styles.image}
                                                     source={{ uri: value.img }}

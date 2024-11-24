@@ -52,7 +52,7 @@ const BusinessHomeRoute = () => {
             {BUSINESSHOME.left_banner.map((value, i) => {
               return (
                 <View style={styles.slide} key={i}>
-                  <Image style={styles.image} source={{ uri: value }} />
+                  <Image alt="image" style={styles.image} source={{ uri: value }} />
                 </View>
               );
             })}
@@ -114,7 +114,7 @@ const BusinessHomeRoute = () => {
               <IconButton
                 size={16}
                 icon={() => (
-                  <Image
+                  <Image alt="image"
                     source={{ uri: BUSINESSHOME.icon.facebook }}
                     style={{ width: 25, height: 25 }}
                   />
@@ -126,7 +126,7 @@ const BusinessHomeRoute = () => {
               <IconButton
                 size={16}
                 icon={() => (
-                  <Image
+                  <Image alt="image"
                     source={{ uri: BUSINESSHOME.icon.twitter }}
                     style={{ width: 25, height: 25 }}
                   />
@@ -138,7 +138,7 @@ const BusinessHomeRoute = () => {
               <IconButton
                 size={16}
                 icon={() => (
-                  <Image
+                  <Image alt="image"
                     source={{ uri: BUSINESSHOME.icon.instagram }}
                     style={{ width: 25, height: 25 }}
                   />
@@ -152,7 +152,7 @@ const BusinessHomeRoute = () => {
               <IconButton
                 size={16}
                 icon={() => (
-                  <Image
+                  <Image alt="image"
                     source={{ uri: BUSINESSHOME.icon.linkdin }}
                     style={{ width: 25, height: 25 }}
                   />
@@ -164,7 +164,7 @@ const BusinessHomeRoute = () => {
               <IconButton
                 size={16}
                 icon={() => (
-                  <Image
+                  <Image alt="image"
                     source={{ uri: BUSINESSHOME.icon.youtube }}
                     style={{ width: 25, height: 25 }}
                   />
@@ -182,7 +182,7 @@ const BusinessHomeRoute = () => {
             {BUSINESSHOME.flier_banner.map((value, i) => {
               return (
                 <View style={styles.slide} key={i}>
-                  <Image
+                  <Image alt="image"
                     resizeMode="contain"
                     style={styles.image}
                     source={{ uri: value }}
@@ -194,7 +194,7 @@ const BusinessHomeRoute = () => {
         )}
         {BUSINESSHOME.bottom_banner && (
           <Surface style={{ height: 80, marginBottom: 50 }}>
-            <Image
+            <Image alt="image"
               style={{
                 display: "flex",
                 height: "100%",

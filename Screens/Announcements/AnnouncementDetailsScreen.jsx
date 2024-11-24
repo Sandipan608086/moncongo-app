@@ -118,7 +118,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Image
+                    <Image alt="image"
                       style={{ height: 200, width: "100%" }}
                       source={{
                         uri: `https://i.ytimg.com/vi/${ANNOUNCDATA.ann_main_img}/hqdefault.jpg`,
@@ -146,7 +146,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                     {ANNOUNCDATA.ann_img.map((value, i) => {
                       return (
                         <View style={styles.slide} key={i}>
-                          <Image
+                          <Image alt="image"
                             resizeMode="cover"
                             style={styles.image}
                             source={{ uri: value.img }}

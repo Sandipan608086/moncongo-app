@@ -37,7 +37,7 @@ const BusinessOthersRoute = () => {
             tagsStyles={mixedStyle}
             systemFonts={systemFonts}
           />
-        </View> : <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>}
+        </View> : <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image alt="image" style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>}
     </SafeAreaView>
   );
 };

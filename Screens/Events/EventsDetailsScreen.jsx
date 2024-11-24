@@ -250,7 +250,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                         alignItems: "center",
                       }}
                     >
-                      <Image
+                      <Image alt="image"
                         style={{ height: 200, width: "100%" }}
                         source={{
                           uri: `https://i.ytimg.com/vi/${EVENTDATA.event_main_img}/hqdefault.jpg`,
@@ -278,7 +278,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                       {EVENTDATA.event_img.map((value, i) => {
                         return (
                           <View style={styles.slide} key={i}>
-                            <Image
+                            <Image alt="image"
                               resizeMode="cover"
                               style={styles.image}
                               source={{ uri: value.img }}

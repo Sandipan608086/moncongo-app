@@ -61,7 +61,7 @@ const PromotionsScreen = ({ navigation, threshold = 100 }) => {
     }
     noItemDisplay = () => {
         return (
-            PROMOTIONCLIST && (<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>)
+            PROMOTIONCLIST && (<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image alt="image" style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>)
         )
     }
     return (

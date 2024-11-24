@@ -52,7 +52,7 @@ const BusinessPhotoRoute = (props) => {
                 flex: 1,
               }}
             >
-              <Image
+              <Image alt="image"
                 style={{ width: 500, height: 500 }}
                 source={require("./../../assets/noData.png")}                
               />
@@ -68,7 +68,7 @@ const BusinessPhotoRoute = (props) => {
         <View style={{ flexDirection: 'row', position: 'absolute', top: 0, right: 20, zIndex: 999999 }}>
           <IconButton style={{ backgroundColor: 'white' }} icon="close-circle" size={30} iconColor="#0287BC" onPress={() => setVisible(false)} />
         </View>
-        <Image
+        <Image alt="image"
           style={styles.image}
           source={{ uri: imgShow }}
         />

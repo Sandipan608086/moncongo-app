@@ -51,7 +51,7 @@ const BusinessSubCategoryScreen = ({ navigation, route }) => {
             source={item.directory_subcategory_icon !== null ? { uri: item.directory_subcategory_icon } : require('../../assets/noImage.png')}
             style={[styles.Cover, { aspectRatio: 300 / 300, height: undefined, width: '100%' }]}
           />
-          {/* <ImageBackground
+          {/* <Image alt="image"Background
             source={
               item.directory_subcategory_icon !== null
                 ? { uri: item.directory_subcategory_icon }

@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
-          <Image style={g.logo} source={require("./../../assets/logo.png")} />
+          <Image alt="image" style={g.logo} source={require("./../../assets/logo.png")} />
           <Text style={g.Subtitle}>SE CONNECTER</Text>
           <View style={g.Form}>
             {/* <FormBuilder

@@ -130,7 +130,7 @@ const CardBusiness = (props) => {
             <IconButton
               size={16}
               icon={() => (
-                <Image
+                <Image alt="image"
                   source={{ uri: icon.facebook }}
                   style={{ width: 25, height: 25 }}
                 />
@@ -142,7 +142,7 @@ const CardBusiness = (props) => {
             <IconButton
               size={16}
               icon={() => (
-                <Image
+                <Image alt="image"
                   source={{ uri: icon.twitter }}
                   style={{ width: 25, height: 25 }}
                 />
@@ -154,7 +154,7 @@ const CardBusiness = (props) => {
             <IconButton
               size={16}
               icon={() => (
-                <Image
+                <Image alt="image"
                   source={{ uri: icon.instagram }}
                   style={{ width: 25, height: 25 }}
                 />
@@ -168,7 +168,7 @@ const CardBusiness = (props) => {
             <IconButton
               size={16}
               icon={() => (
-                <Image
+                <Image alt="image"
                   source={{ uri: icon.linkdin }}
                   style={{ width: 25, height: 25 }}
                 />
@@ -180,7 +180,7 @@ const CardBusiness = (props) => {
             <IconButton
               size={16}
               icon={() => (
-                <Image
+                <Image alt="image"
                   source={{ uri: icon.youtube }}
                   style={{ width: 25, height: 25 }}
                 />

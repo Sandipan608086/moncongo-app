@@ -51,7 +51,7 @@ const OtpScreen = ({ navigation, route }) => {
                 contentContainerStyle={{ flexGrow: 1 }}
             >
                 <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
-                    <Image style={g.logo} source={require('./../../assets/logo.png')} />
+                    <Image alt="image" style={g.logo} source={require('./../../assets/logo.png')} />
                     <Text style={g.Subtitle}>Entrez OTP</Text>
                     <Text>Votre code unique a été envoyé sur l'adresse email que vous aviez insérez lors de l'inscription</Text>
                     <View style={g.Form}>

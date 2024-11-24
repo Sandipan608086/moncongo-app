@@ -115,7 +115,7 @@ const RegisterScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
-          <Image
+          <Image alt="image"
             style={[g.logo, { marginTop: 20 }]}
             source={require("./../../assets/logo.png")}
           />

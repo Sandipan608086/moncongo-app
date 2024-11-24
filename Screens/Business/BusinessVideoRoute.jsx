@@ -24,7 +24,7 @@ const BusinessVideoRoute = () => {
         numColumns={1}
         style={{ flex: 1 }}
         contentContainerStyle={{ padding: 0 }}
-      /> : <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>}
+      /> : <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image alt="image" style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>}
     </SafeAreaView>
   )
 }

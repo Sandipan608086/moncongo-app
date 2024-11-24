@@ -128,7 +128,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
             //     icon="camera"
             //     onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('list_image') }}
             // >Camera</Button>
-            <ImagePickerLoad
+            <Image alt="image"PickerLoad
               imgApi={autoImgApi}
               imgType={"list_image"}
               id={AUTODETAILDATA.car_id}
@@ -190,7 +190,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
                             icon="camera"
                             onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('flier_image') }}
                         >Camera</Button> */}
-          <ImagePickerLoad
+          <Image alt="image"PickerLoad
             imgApi={autoImgApi}
             imgType={"flier_image"}
             id={AUTODETAILDATA.car_id}

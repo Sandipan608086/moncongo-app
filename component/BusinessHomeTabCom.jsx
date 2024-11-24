@@ -20,21 +20,21 @@ const BusinessHomeTabCom = (props) => {
             <ScrollView style={styles.ScrollView}>
                 <Swiper style={styles.wrapper} height={250} showsButtons={true} autoplay>
                     <View style={styles.slide1}>
-                        <Image
+                        <Image alt="image"
                             resizeMode="stretch"
                             style={styles.image}
                             source={require('./../assets/banner01.png')}
                         />
                     </View>
                     <View style={styles.slide2}>
-                        <Image
+                        <Image alt="image"
                             resizeMode="stretch"
                             style={styles.image}
                             source={require('./../assets/banner01.png')}
                         />
                     </View>
                     <View style={styles.slide3}>
-                        <Image
+                        <Image alt="image"
                             resizeMode="stretch"
                             style={styles.image}
                             source={require('./../assets/banner01.png')}

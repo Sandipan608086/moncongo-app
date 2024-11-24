@@ -109,7 +109,7 @@ const TendersScreen = ({ navigation, threshold = 100 }) => {
         <View
           style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
         >
-          <Image
+          <Image alt="image"
             style={{ width: 500, height: 500 }}
             source={require("../../assets/noData.png")}
           />

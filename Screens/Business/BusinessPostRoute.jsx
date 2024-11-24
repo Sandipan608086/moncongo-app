@@ -48,7 +48,7 @@ const BusinessPostRoute = (props) => {
           titleStyle={{ fontFamily: 'Poppins_700Bold' }}
           subtitle={item.description}
           left={({ size, color }) => (
-            <Image style={{ width: size, height: size, tintColor: color }} source={item.list_img ? { uri: item.list_img } : require("../../assets/noImage.png")} />
+            <Image alt="image" style={{ width: size, height: size, tintColor: color }} source={item.list_img ? { uri: item.list_img } : require("../../assets/noImage.png")} />
           )}
         />
       </Card>
@@ -103,7 +103,7 @@ const BusinessPostRoute = (props) => {
           setRefreshing(true)
           setCurrantPage(1)
         }}
-      /> : <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>}
+      /> : <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}><Image alt="image" style={{ width: 500, height: 500 }} source={require('../../assets/noData.png')} /></View>}
     </View>
   )
 }

@@ -54,7 +54,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
-          <Image style={g.logo} source={require("./../../assets/logo.png")} />
+          <Image alt="image" style={g.logo} source={require("./../../assets/logo.png")} />
           <Text style={g.Subtitle}>Changer le mot de passe?</Text>
           <View style={g.Form}>
             <Controller

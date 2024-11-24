@@ -51,7 +51,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
-          <Image style={g.logo} source={require("./../../assets/logo.png")} />
+          <Image alt="image" style={g.logo} source={require("./../../assets/logo.png")} />
           <Text style={g.Subtitle}>Mot de passe oublié?</Text>
           <View style={g.Form}>
             {/* <FormBuilder

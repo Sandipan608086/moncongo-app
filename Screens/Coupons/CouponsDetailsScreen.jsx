@@ -107,7 +107,7 @@ const CouponsDetails = ({ navigation, route }) => {
                             {
                                 COUPONSDATA.coupons_banner_img.map((value, i) => {
                                     return <View style={styles.slide} key={i} >
-                                        <Image
+                                        <Image alt="image"
                                             resizeMode="stretch"
                                             style={styles.image}
                                             source={{ uri: value.img }}

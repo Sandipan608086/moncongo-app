@@ -23,7 +23,7 @@ const AppbarHeader = (props) => {
       {props.logo == true && (
         <Appbar.Action
           icon={({ size }) => (
-            <Image
+            <Image alt="image"
               source={require("./../assets/logo-top.png")}
               style={{ width: size, height: size }}
             />
@@ -40,7 +40,7 @@ const AppbarHeader = (props) => {
       {props.logo == true && (
         <Appbar.Action
           icon={({ size }) => (
-            <Image
+            <Image alt="image"
               source={require("./../assets/logo-top-w.png")}
               style={{ width: size, height: size }}
             />

@@ -129,7 +129,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
             //     icon="camera"
             //     onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('list_image') }}
             // >Camera</Button>
-            <ImagePickerLoad
+            <Image alt="image"PickerLoad
               imgApi={propertyImgApi}
               imgType={"list_image"}
               id={PROPERTYDATA.property_id}
@@ -191,7 +191,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               icon="camera"
               onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('flier_image') }}
           >Camera</Button> */}
-          <ImagePickerLoad
+          <Image alt="image"PickerLoad
             imgApi={propertyImgApi}
             imgType={"flier_image"}
             id={PROPERTYDATA.property_id}

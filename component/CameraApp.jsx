@@ -90,7 +90,7 @@ export default function CameraApp(props) {
           color={MD2Colors.blue200}
           size="large"
         />
-        <Image
+        <Image alt="image"
           style={styles.preview}
           source={{ uri: "data:image/png;base64," + props.photo.base64 }}
         />
