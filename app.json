@@ -30,7 +30,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.app.moncongo",
-      "versionCode": 8,
+      "versionCode": 9,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"

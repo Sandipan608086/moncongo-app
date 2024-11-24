@@ -40,7 +40,7 @@ const BusinessPhotoRoute = (props) => {
                   style={{ backgroundColor: "#fff", marginBottom: 10 }}
                   onPress={() => openImg(value)}
                 >
-                  <Card.Cover source={{ uri: value }} style={styles.Cover}/>
+                  <Card.Cover source={{ uri: value }} style={styles.Cover} />
                 </Card>
               );
             })
@@ -54,7 +54,7 @@ const BusinessPhotoRoute = (props) => {
             >
               <Image
                 style={{ width: 500, height: 500 }}
-                source={require("../../assets/noData.png")}
+                source={require("./../../assets/noData.png")}                
               />
             </View>
           )}
@@ -65,8 +65,8 @@ const BusinessPhotoRoute = (props) => {
         onDismiss={hideModal}
         contentContainerStyle={containerStyle}
       >
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-            <IconButton style={{backgroundColor: 'white'}} icon="close-circle" size={30} iconColor="#0287BC" onPress={() => setVisible(false)} />
+        <View style={{ flexDirection: 'row', position: 'absolute', top: 0, right: 20, zIndex: 999999 }}>
+          <IconButton style={{ backgroundColor: 'white' }} icon="close-circle" size={30} iconColor="#0287BC" onPress={() => setVisible(false)} />
         </View>
         <Image
           style={styles.image}

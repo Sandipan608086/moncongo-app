@@ -74,7 +74,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
       onRefresh();
     }
     // return () => {};
-  }, []);
+  }, [isFocused]);
   const [state, setState] = useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
