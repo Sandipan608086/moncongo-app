@@ -42,19 +42,19 @@ const BusinessHomeRoute = () => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={true}
       >
-        {BUSINESSHOME.left_banner && (
+        {BUSINESSHOME.left_banner_data && (
           <Swiper
             style={styles.wrapper}
             height={300}
             showsButtons={true}
             autoplay
           >
-            {BUSINESSHOME.left_banner.map((value, i) => {
+            {BUSINESSHOME.left_banner_data.map((data, i) => {
               return (
-                <View style={styles.slide} key={i}>
-                  <Image alt="image" style={styles.image} source={{ uri: value }} />
-                </View>
-              );
+                <Pressable style={styles.slide} key={i} onPress={() => Linking.openURL(data?.app_url)}>
+                  <Image alt="image" style={styles.image} source={{ uri: data?.image }} />
+                </Pressable>
+              )
             })}
           </Swiper>
         )}
@@ -89,7 +89,7 @@ const BusinessHomeRoute = () => {
                       style={{ paddingVertical: 10, flexDirection: "row" }}
                     >
                       <Email size={21} color="white" />
-                      <Text style={[styles.text,{marginLeft: 4}]}>{value}</Text>
+                      <Text style={[styles.text, { marginLeft: 4 }]}>{value}</Text>
                     </Pressable>
                   )
                 );
@@ -109,69 +109,69 @@ const BusinessHomeRoute = () => {
             </Pressable>
           )}
         </View>
-        <View style={{ flexDirection: "row", backgroundColor: "#56b5db33", marginBottom: 10}}>
-            {BUSINESSHOME.directory_facebook !== "" && (
-              <IconButton
-                size={16}
-                icon={() => (
-                  <Image alt="image"
-                    source={{ uri: BUSINESSHOME.icon.facebook }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                )}
-                onPress={() => Linking.openURL(BUSINESSHOME.directory_facebook)}
-              />
-            )}
-            {BUSINESSHOME.directory_twitter !== "" && (
-              <IconButton
-                size={16}
-                icon={() => (
-                  <Image alt="image"
-                    source={{ uri: BUSINESSHOME.icon.twitter }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                )}
-                onPress={() => Linking.openURL(BUSINESSHOME.directory_twitter)}
-              />
-            )}
-            {BUSINESSHOME.directory_instagram !== "" && (
-              <IconButton
-                size={16}
-                icon={() => (
-                  <Image alt="image"
-                    source={{ uri: BUSINESSHOME.icon.instagram }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                )}
-                onPress={() =>
-                  Linking.openURL(BUSINESSHOME.directory_instagram)
-                }
-              />
-            )}
-            {BUSINESSHOME.directory_linkdin !== "" && (
-              <IconButton
-                size={16}
-                icon={() => (
-                  <Image alt="image"
-                    source={{ uri: BUSINESSHOME.icon.linkdin }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                )}
-                onPress={() => Linking.openURL(BUSINESSHOME.directory_linkdin)}
-              />
-            )}
-            {BUSINESSHOME.directory_youtube !== "" && (
-              <IconButton
-                size={16}
-                icon={() => (
-                  <Image alt="image"
-                    source={{ uri: BUSINESSHOME.icon.youtube }}
-                    style={{ width: 25, height: 25 }}
-                  />
-                )}
-                onPress={() => Linking.openURL(BUSINESSHOME.directory_youtube)}
-              />
-            )}
+        <View style={{ flexDirection: "row", backgroundColor: "#56b5db33", marginBottom: 10 }}>
+          {BUSINESSHOME.directory_facebook !== "" && (
+            <IconButton
+              size={16}
+              icon={() => (
+                <Image alt="image"
+                  source={{ uri: BUSINESSHOME.icon.facebook }}
+                  style={{ width: 25, height: 25 }}
+                />
+              )}
+              onPress={() => Linking.openURL(BUSINESSHOME.directory_facebook)}
+            />
+          )}
+          {BUSINESSHOME.directory_twitter !== "" && (
+            <IconButton
+              size={16}
+              icon={() => (
+                <Image alt="image"
+                  source={{ uri: BUSINESSHOME.icon.twitter }}
+                  style={{ width: 25, height: 25 }}
+                />
+              )}
+              onPress={() => Linking.openURL(BUSINESSHOME.directory_twitter)}
+            />
+          )}
+          {BUSINESSHOME.directory_instagram !== "" && (
+            <IconButton
+              size={16}
+              icon={() => (
+                <Image alt="image"
+                  source={{ uri: BUSINESSHOME.icon.instagram }}
+                  style={{ width: 25, height: 25 }}
+                />
+              )}
+              onPress={() =>
+                Linking.openURL(BUSINESSHOME.directory_instagram)
+              }
+            />
+          )}
+          {BUSINESSHOME.directory_linkdin !== "" && (
+            <IconButton
+              size={16}
+              icon={() => (
+                <Image alt="image"
+                  source={{ uri: BUSINESSHOME.icon.linkdin }}
+                  style={{ width: 25, height: 25 }}
+                />
+              )}
+              onPress={() => Linking.openURL(BUSINESSHOME.directory_linkdin)}
+            />
+          )}
+          {BUSINESSHOME.directory_youtube !== "" && (
+            <IconButton
+              size={16}
+              icon={() => (
+                <Image alt="image"
+                  source={{ uri: BUSINESSHOME.icon.youtube }}
+                  style={{ width: 25, height: 25 }}
+                />
+              )}
+              onPress={() => Linking.openURL(BUSINESSHOME.directory_youtube)}
+            />
+          )}
         </View>
         {BUSINESSHOME.flier_banner && (
           <Swiper

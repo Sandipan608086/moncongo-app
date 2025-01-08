@@ -18,7 +18,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.moncongo.app",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "2",
+      "buildNumber": "3",
       "enterpriseProvisioning": "universal",
       "config": {
         "googleMapsApiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
@@ -30,7 +30,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.app.moncongo",
-      "versionCode": 9,
+      "versionCode": 10,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
