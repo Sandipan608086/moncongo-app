@@ -19,7 +19,6 @@ import {
   Location,
 } from "../Navigation/Icon";
 const CardBusiness = (props) => {
-  const [icon] = useState(props.BUSINESS.iconApp);
   const [geocode] = useState(props.BUSINESS.geocode);
   return (
     <View>
@@ -126,68 +125,20 @@ const CardBusiness = (props) => {
           )}
         </View>
         <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
-          {props.BUSINESS.directory_facebook !== "" && (
+          {props.BUSINESS.smo && props.BUSINESS.smo.map((item, i) => (
             <IconButton
+              key={i}
               size={16}
               icon={() => (
-                <Image alt="image"
-                  source={{ uri: icon.facebook }}
+                <Image
+                  alt="image"
+                  source={{ uri: item.icon }}
                   style={{ width: 25, height: 25 }}
                 />
               )}
-              onPress={() => Linking.openURL(props.BUSINESS.directory_facebook)}
+              onPress={() => item.url && Linking.openURL(item.url)}
             />
-          )}
-          {props.BUSINESS.directory_twitter !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: icon.twitter }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(props.BUSINESS.directory_twitter)}
-            />
-          )}
-          {props.BUSINESS.directory_instagram !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: icon.instagram }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() =>
-                Linking.openURL(props.BUSINESS.directory_instagram)
-              }
-            />
-          )}
-          {props.BUSINESS.directory_linkdin !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: icon.linkdin }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(props.BUSINESS.directory_linkdin)}
-            />
-          )}
-          {props.BUSINESS.directory_youtube !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: icon.youtube }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(props.BUSINESS.directory_youtube)}
-            />
-          )}
+          ))}
         </View>
       </Card>
     </View>

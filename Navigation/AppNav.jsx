@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { AppStack } from "./AppStack";
+import { navigationRef, navigate } from "./RootNavigation";
+import messaging from "@react-native-firebase/messaging";
+import * as SplashScreen from "expo-splash-screen";
 
 import {
   configureFonts,
@@ -20,6 +23,13 @@ const AppNav = () => {
     Poppins_400Regular,
     Poppins_700Bold,
   });
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
   if (!fontsLoaded && !fontError) {
     return null;
   }
@@ -40,7 +50,20 @@ const AppNav = () => {
 
   return (
     <PaperProvider theme={theme}>
-      <NavigationContainer>
+      <NavigationContainer
+        ref={navigationRef}
+        onReady={async () => {
+          try {
+            const remoteMessage = await messaging().getInitialNotification();
+            if (remoteMessage?.data?.type) {
+              navigate(
+                remoteMessage.data.type,
+                JSON.stringify({ slug: remoteMessage.data.slug ?? null })
+              );
+            }
+          } catch (e) {}
+        }}
+      >
         <AppStack />
       </NavigationContainer>
     </PaperProvider>

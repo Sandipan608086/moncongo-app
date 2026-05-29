@@ -27,7 +27,7 @@ const BusinessSubCategoryScreen = ({ navigation, route }) => {
   useEffect(() => {
     dispatch(businessSubCategoryApi({ page: currantPage, id: routeData.directory_category_id }));
   }, [currantPage])
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true
@@ -42,7 +42,7 @@ const BusinessSubCategoryScreen = ({ navigation, route }) => {
       )
     )
   }
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 0.5, margin: 10, width: "100%" }}>
       <Pressable style={styles.card} onPress={() => { item.subcategory_count > 0 && navigation.navigate('BusinessList', JSON.stringify(item)) }}>
         {/* { item.subcategory_count > 0 && <Badge style={{ position: 'absolute', top: -4, right: -4, zIndex: 5 }}>{item.subcategory_count}</Badge>} */}
@@ -76,11 +76,11 @@ const BusinessSubCategoryScreen = ({ navigation, route }) => {
       <FlatList
         showsVerticalScrollIndicator={true}
         onEndReachedThreshold={0}
-        onEndReached={this.onEndReachedHandler}
+        onEndReached={onEndReachedHandler}
         onMomentumScrollBegin={() => { onEndReachedCalledDuringMomentum.current = false }}
         ListFooterComponent={renderLoder}
         data={SUBCATEGORY}
-        renderItem={this._renderItem}
+        renderItem={_renderItem}
         keyExtractor={(item) => item.directory_subcategory_id}
         numColumns={2}
         style={{ flex: 1 }}

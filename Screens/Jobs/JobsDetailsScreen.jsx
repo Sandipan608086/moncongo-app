@@ -44,7 +44,7 @@ const JobsDetailScreen = ({ navigation, route }) => {
       dispatch(jobsOther({ slug: routeData.slug }));
     });
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardListCom item={item} slug={"JobDetails"} navigation={navigation} />
     </View>
@@ -168,7 +168,7 @@ const JobsDetailScreen = ({ navigation, route }) => {
                 showsVerticalScrollIndicator={true}
                 showsHorizontalScrollIndicator={false}
                 data={JOTHERLIST}
-                renderItem={this._renderItem}
+                renderItem={_renderItem}
                 keyExtractor={(item) => item.job_id}
                 style={{ flex: 1 }}
                 contentContainerStyle={{ padding: 10 }}

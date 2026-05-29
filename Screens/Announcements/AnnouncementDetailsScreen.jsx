@@ -29,6 +29,18 @@ import {
 import Swiper from "react-native-swiper";
 import { WebView } from "react-native-webview";
 import { useSelector, useDispatch } from "react-redux";
+
+const getYouTubeVideoId = (urlOrId) => {
+  if (!urlOrId) return '';
+  if (/^[a-zA-Z0-9_-]{11}$/.test(String(urlOrId).trim())) return String(urlOrId).trim();
+  const match = String(urlOrId).match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : String(urlOrId).trim();
+};
+
+const getYouTubeHTML = (videoIdOrUrl) => {
+  const id = getYouTubeVideoId(videoIdOrUrl);
+  return `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;width:100%;height:100%}html,body{height:100%}iframe{display:block;width:100%;height:100%;border:none}</style></head><body><iframe src="https://www.youtube-nocookie.com/embed/${id}?playsinline=1&rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></body></html>`;
+};
 import { useIsFocused } from "@react-navigation/native";
 import AppbarHeader from "../../component/Appbar";
 import {
@@ -78,7 +90,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
   const [state, setState] = useState({ open: false });
   const onStateChange = ({ open }) => setState({ open });
   const { open } = state;
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardListCom
         item={item}
@@ -202,7 +214,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                 showsVerticalScrollIndicator={true}
                 showsHorizontalScrollIndicator={false}
                 data={AOTHERLIST}
-                renderItem={this._renderItem}
+                renderItem={_renderItem}
                 keyExtractor={(item) => item.ann_id}
                 style={{ flex: 1 }}
                 contentContainerStyle={{ padding: 10 }}
@@ -270,8 +282,14 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
         <View style={{ height: 280 }}>
           <WebView
             style={{ height: 280 }}
-            source={{ uri: `https://www.youtube.com/embed/${ANNOUNCDATA.ann_main_img}` }}
-            androidHardwareAccelerationDisabled={true}
+            source={{ html: getYouTubeHTML(ANNOUNCDATA.ann_main_img), baseUrl: 'https://www.youtube-nocookie.com' }}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            allowsInlineMediaPlayback={true}
+            allowsFullscreenVideo={true}
+            mediaPlaybackRequiresUserAction={false}
+            originWhitelist={['*']}
+            mixedContentMode="compatibility"
           />
         </View>
       </Modal>

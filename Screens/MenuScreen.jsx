@@ -46,7 +46,7 @@ const MenuScreen = ({ navigation }) => {
       .padStart(6, "0");
     return `#${CHHAPOLA}`;
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 0.5, width: "100%" }}>
       <Pressable
         style={[styles.surface2, { paddingVertical: 20 }]}
@@ -102,15 +102,13 @@ const MenuScreen = ({ navigation }) => {
       >
         <View style={{ flexDirection: "row" }}>
           <Pressable
-            style={[styles.surface, { flex: 1 }]}
+            style={[styles.surface]}
             onPress={() => navigation.navigate("Business")}
             elevation={5}
           >
             <Directory />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Répértoire</Text>
           </Pressable>
-        </View>
-        <View style={{ flexDirection: "row" }}>
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Announcement")}
@@ -119,6 +117,8 @@ const MenuScreen = ({ navigation }) => {
             <Announcements />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Annonces</Text>
           </Pressable>
+        </View>
+        <View style={{ flexDirection: "row" }}>
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Promotion")}
@@ -127,8 +127,6 @@ const MenuScreen = ({ navigation }) => {
             <Promotions />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Promotions</Text>
           </Pressable>
-        </View>
-        <View style={{ flexDirection: "row" }}>
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Events")}
@@ -137,6 +135,9 @@ const MenuScreen = ({ navigation }) => {
             <Events />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Événements</Text>
           </Pressable>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Tender")}
@@ -145,8 +146,6 @@ const MenuScreen = ({ navigation }) => {
             <Tenders />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Appels d’offres</Text>
           </Pressable>
-        </View>
-        <View style={{ flexDirection: "row" }}>
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Autos")}
@@ -155,6 +154,9 @@ const MenuScreen = ({ navigation }) => {
             <Cars />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Auto</Text>
           </Pressable>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Property")}
@@ -163,8 +165,6 @@ const MenuScreen = ({ navigation }) => {
             <Property />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Immobilier</Text>
           </Pressable>
-        </View>
-        <View style={{ flexDirection: "row" }}>
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Job")}
@@ -173,6 +173,9 @@ const MenuScreen = ({ navigation }) => {
             <Jobs />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Offres d’emploi</Text>
           </Pressable>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          
           <Pressable
             style={styles.surface}
             onPress={() => navigation.navigate("Horoscope")}
@@ -181,21 +184,21 @@ const MenuScreen = ({ navigation }) => {
             <Horoscope />
             <Text style={{ marginTop: 25, fontSize: 14 }}>Horoscope</Text>
           </Pressable>
-          {/* <Pressable
+           <Pressable
             style={styles.surface}
-            onPress={() => navigation.navigate("News")}
+            onPress={() => navigation.navigate("SOS")}
             elevation={5}
           >
             <News />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Nouvelles</Text>
-          </Pressable> */}
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Urgences</Text>
+          </Pressable>
         </View>
         <View>
           <FlatList
             scrollEnabled={false}
             onEndReachedThreshold={0}
             data={OTHERMENU.data}
-            renderItem={this._renderItem}
+            renderItem={_renderItem}
             keyExtractor={(item) => item.others_pages_id}
             numColumns={2}
             style={{ flex: 1 }}

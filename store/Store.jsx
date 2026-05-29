@@ -18,6 +18,7 @@ import OtherSlices from "./OtherSlices";
 import UserSlices from "./UserSlices";
 import SettingSlices from "./SettingSlices";
 import NotificationSlices from "./NotificationSlices";
+import sosSlices from "./SosSlices";
 
 const store = configureStore({
     reducer: {
@@ -39,7 +40,8 @@ const store = configureStore({
         other: OtherSlices,
         user: UserSlices,
         setting: SettingSlices,
-        notification: NotificationSlices
+        notification: NotificationSlices,
+        sos: sosSlices
     }
 })
 

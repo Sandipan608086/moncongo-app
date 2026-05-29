@@ -102,14 +102,14 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
     });
   };
 
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       // currantPageLoad > 1 && setCurrantPageLoad(currantPageLoad + 1);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardAutoImmobilier
         item={item}
@@ -376,13 +376,13 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
             scrollEventThrottle={16}
             showsVerticalScrollIndicator={true}
             onEndReachedThreshold={0}
-            onEndReached={this.onEndReachedHandler}
+            onEndReached={onEndReachedHandler}
             onMomentumScrollBegin={() => {
               onEndReachedCalledDuringMomentum.current = false;
             }}
             ListFooterComponent={renderLoder}
             data={PROPERTYLIST}
-            renderItem={this._renderItem}
+            renderItem={_renderItem}
             ListEmptyComponent={this.noItemDisplay}
             keyExtractor={(item) => item.id}
             numColumns={1}

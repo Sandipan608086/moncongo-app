@@ -74,7 +74,13 @@ web-build/
 *.p8
 *.p12
 *.key
+*.keystore
 *.mobileprovision
+
+# Credentials & keystores
+credentials.json
+@*.bak.jks
+@*.bak_OLD*.jks
 
 # Metro
 .metro-health-check*

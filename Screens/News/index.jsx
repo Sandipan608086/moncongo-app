@@ -35,13 +35,13 @@ const NewsScreen = ({navigation, threshold = 100}) => {
         )
         setRefreshing(false);
     }, [currantPage, refreshing])
-    onEndReachedHandler = ({ distanceFromEnd }) => {
+    const onEndReachedHandler = ({ distanceFromEnd }) => {
         if (!onEndReachedCalledDuringMomentum.current) {
             setCurrantPage(currantPage + 1);
             onEndReachedCalledDuringMomentum.current = true
         }
     }
-    _renderItem = ({ item }) => (
+    const _renderItem = ({ item }) => (
         <View style={{ flex: 1, width: "100%" }}>
             <CardComponent item={item} navigation={navigation} button={true} details={'NewsDetails'} />
         </View>
@@ -64,11 +64,11 @@ const NewsScreen = ({navigation, threshold = 100}) => {
                 scrollEventThrottle={16}
                 showsVerticalScrollIndicator={true}
                 onEndReachedThreshold={0}
-                onEndReached={this.onEndReachedHandler}
+                onEndReached={onEndReachedHandler}
                 onMomentumScrollBegin={() => { onEndReachedCalledDuringMomentum.current = false }}
                 ListFooterComponent={renderLoder}
                 data={NEWSLIST}
-                renderItem={this._renderItem}
+                renderItem={_renderItem}
                 keyExtractor={(item) => item.id}
                 numColumns={1}
                 style={{ flex: 1 }}

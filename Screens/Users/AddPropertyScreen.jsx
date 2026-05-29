@@ -4,8 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
-  Content,
+  Pressable,
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";

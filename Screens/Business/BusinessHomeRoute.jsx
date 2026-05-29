@@ -109,70 +109,24 @@ const BusinessHomeRoute = () => {
             </Pressable>
           )}
         </View>
-        <View style={{ flexDirection: "row", backgroundColor: "#56b5db33", marginBottom: 10 }}>
-          {BUSINESSHOME.directory_facebook !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: BUSINESSHOME.icon.facebook }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(BUSINESSHOME.directory_facebook)}
-            />
-          )}
-          {BUSINESSHOME.directory_twitter !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: BUSINESSHOME.icon.twitter }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(BUSINESSHOME.directory_twitter)}
-            />
-          )}
-          {BUSINESSHOME.directory_instagram !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: BUSINESSHOME.icon.instagram }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() =>
-                Linking.openURL(BUSINESSHOME.directory_instagram)
-              }
-            />
-          )}
-          {BUSINESSHOME.directory_linkdin !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: BUSINESSHOME.icon.linkdin }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(BUSINESSHOME.directory_linkdin)}
-            />
-          )}
-          {BUSINESSHOME.directory_youtube !== "" && (
-            <IconButton
-              size={16}
-              icon={() => (
-                <Image alt="image"
-                  source={{ uri: BUSINESSHOME.icon.youtube }}
-                  style={{ width: 25, height: 25 }}
-                />
-              )}
-              onPress={() => Linking.openURL(BUSINESSHOME.directory_youtube)}
-            />
-          )}
-        </View>
+        {BUSINESSHOME.smo && BUSINESSHOME.smo.length > 0 && (
+          <View style={{ flexDirection: "row", backgroundColor: "#56b5db33", marginBottom: 10 }}>
+            {BUSINESSHOME.smo.map((item, i) => (
+              <IconButton
+                key={i}
+                size={16}
+                icon={() => (
+                  <Image
+                    alt="image"
+                    source={{ uri: item.icon }}
+                    style={{ width: 25, height: 25 }}
+                  />
+                )}
+                onPress={() => item.url && Linking.openURL(item.url)}
+              />
+            ))}
+          </View>
+        )}
         {BUSINESSHOME.flier_banner && (
           <Swiper
             showsButtons={true}

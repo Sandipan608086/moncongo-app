@@ -26,7 +26,7 @@ const NewsDetailsScreen = ({ navigation, route }) => {
             dispatch(newsOther({ slug: routeData.slug }))
         })
     }
-    _renderItem = ({ item }) => (
+    const _renderItem = ({ item }) => (
         <View style={{ flex: 1, width: "100%" }}>
             <CardListCom item={item} slug={'NewsDetails'} navigation={navigation} />
         </View>
@@ -70,7 +70,7 @@ const NewsDetailsScreen = ({ navigation, route }) => {
                             showsVerticalScrollIndicator={true}
                             showsHorizontalScrollIndicator={false}
                             data={NOTHERLIST}
-                            renderItem={this._renderItem}
+                            renderItem={_renderItem}
                             keyExtractor={(item) => item.news_id}
                             style={{ flex: 1 }}
                             contentContainerStyle={{ padding: 10 }}

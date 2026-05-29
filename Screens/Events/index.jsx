@@ -73,13 +73,13 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
       setLoadList(false)
     }
   };
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, flexDirection: "row", width: "100%" }}>
       <CardComponent
         item={item}
@@ -232,13 +232,13 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={true}
           onEndReachedThreshold={0}
-          onEndReached={this.onEndReachedHandler}
+          onEndReached={onEndReachedHandler}
           onMomentumScrollBegin={() => {
             onEndReachedCalledDuringMomentum.current = false;
           }}
           ListFooterComponent={renderLoderFooter}
           data={EVENTSLIST}
-          renderItem={this._renderItem}
+          renderItem={_renderItem}
           ListEmptyComponent={this.noItemDisplay}
           keyExtractor={(item) => item.id}
           numColumns={1}

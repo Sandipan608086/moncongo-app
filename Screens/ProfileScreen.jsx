@@ -67,7 +67,7 @@ const ProfileScreen = ({ navigation }) => {
           <Avatar.Text
             elevation={4}
             size={100}
-            label={PROFILE.name}
+            label={PROFILE?.name ? PROFILE.name.slice(0, 2) : "??"}
             labelStyle={{ textTransform: "uppercase", marginTop: 5 }}
             style={{ backgroundColor: "#0298d3" }}
           />

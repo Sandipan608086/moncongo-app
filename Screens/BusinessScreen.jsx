@@ -44,7 +44,7 @@ const BusinessScreen = ({ navigation }) => {
     // return () => {}
   }, [currantPage]);
 
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true;
@@ -64,7 +64,7 @@ const BusinessScreen = ({ navigation }) => {
       )
     );
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 0.5, margin: 10, width: "100%" }}>
       <Pressable
         style={styles.card}
@@ -118,13 +118,13 @@ const BusinessScreen = ({ navigation }) => {
       <FlatList
         showsVerticalScrollIndicator={true}
         onEndReachedThreshold={0}
-        onEndReached={this.onEndReachedHandler}
+        onEndReached={onEndReachedHandler}
         onMomentumScrollBegin={() => {
           onEndReachedCalledDuringMomentum.current = false;
         }}
         ListFooterComponent={renderLoder}
         data={CATEGORY}
-        renderItem={this._renderItem}
+        renderItem={_renderItem}
         keyExtractor={(item) => item.directory_category_id}
         numColumns={2}
         style={{ flex: 1 }}

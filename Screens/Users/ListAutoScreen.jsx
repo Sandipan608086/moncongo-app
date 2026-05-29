@@ -61,13 +61,13 @@ const ListAutoScreen = ({ navigation }) => {
       setRefreshing(false);
     };
   }, [currantPage, refreshing, userKey, AUTOLIST]);
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardAutoImmobilier
         item={item}
@@ -224,13 +224,13 @@ const ListAutoScreen = ({ navigation }) => {
         <FlatList
           showsVerticalScrollIndicator={true}
           onEndReachedThreshold={0}
-          onEndReached={this.onEndReachedHandler}
+          onEndReached={onEndReachedHandler}
           onMomentumScrollBegin={() => {
             onEndReachedCalledDuringMomentum.current = false;
           }}
           ListFooterComponent={renderLoder}
           data={AUTOLIST.data}
-          renderItem={this._renderItem}
+          renderItem={_renderItem}
           keyExtractor={(item) => item.id}
           numColumns={1}
           style={{ flex: 1 }}

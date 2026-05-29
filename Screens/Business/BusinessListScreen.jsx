@@ -82,14 +82,14 @@ const BusinessListScreen = ({ navigation, route, threshold = 100 }) => {
     )
   }, [currantPage]);
 
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       setLoadList(true);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <BusinessListCom data={item} navigation={navigation} />
     </View>
@@ -214,13 +214,13 @@ const BusinessListScreen = ({ navigation, route, threshold = 100 }) => {
           scrollEventThrottle={16}
           showsVerticalScrollIndicator={true}
           onEndReachedThreshold={0}
-          onEndReached={this.onEndReachedHandler}
+          onEndReached={onEndReachedHandler}
           onMomentumScrollBegin={() => {
             onEndReachedCalledDuringMomentum.current = false;
           }}
           ListFooterComponent={renderLoder}
           data={BUSINESSLIST}
-          renderItem={this._renderItem}
+          renderItem={_renderItem}
           keyExtractor={(item) => item.directory_id}
           numColumns={1}
           style={{ flex: 1 }}

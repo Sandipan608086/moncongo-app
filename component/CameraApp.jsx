@@ -8,13 +8,7 @@ import {
 } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, MD2Colors, Button } from "react-native-paper";
-import { Camera } from "expo-camera";
-// [
-//   "expo-camera",
-//   {
-//     "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-//   }
-// ],
+import { CameraView, useCameraPermissions } from "expo-camera";
 // import { shareAsync } from 'expo-sharing';
 import * as MediaLibrary from "expo-media-library";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,23 +17,22 @@ export default function CameraApp(props) {
   const g = require("../Navigation/Style");
   const dispatch = useDispatch();
   let cameraRef = useRef();
-  const [hasCameraPermission, setHasCameraPermission] = useState();
+  const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [isloading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
-      const cameraPermission = await Camera.requestCameraPermissionsAsync();
+      await requestCameraPermission();
       const mediaLibraryPermission =
         await MediaLibrary.requestPermissionsAsync();
-      setHasCameraPermission(cameraPermission.status === "granted");
       setHasMediaLibraryPermission(mediaLibraryPermission.status === "granted");
     })();
   }, []);
 
-  if (hasCameraPermission === undefined) {
+  if (!cameraPermission) {
     return <Text>Requesting permissions...</Text>;
-  } else if (!hasCameraPermission) {
+  } else if (!cameraPermission.granted) {
     return (
       <Text>
         Permission for camera not granted. Please change this in settings.
@@ -123,12 +116,12 @@ export default function CameraApp(props) {
   }
 
   return (
-    <Camera style={styles.container} ref={cameraRef}>
+    <CameraView style={styles.container} ref={cameraRef}>
       <View style={styles.buttonContainer}>
         <Button style={{paddingTop: 10, paddingBottom: 10, margin: 0, borderRadius: 0}} buttonColor={'#0298d3'} textColor={'#ffffff'} onPress={takePic}>Prendre une photo</Button>
       </View>
       <StatusBar style="auto" />
-    </Camera>
+    </CameraView>
   );
 }
 

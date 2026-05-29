@@ -34,13 +34,13 @@ const BusinessPostRoute = (props) => {
     )
     setRefreshing(false);
   }, [value, currantPage, refreshing])
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true
     }
   }
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%", marginBottom: 15 }}>
       <Card onPress={() => props.navigation.navigate(slugValue, JSON.stringify({ slug: item.slug }))}>
         <Card.Title
@@ -89,11 +89,11 @@ const BusinessPostRoute = (props) => {
       {BUSINESSPOSTLIST.length > 0 ? <FlatList
         showsVerticalScrollIndicator={true}
         onEndReachedThreshold={0}
-        onEndReached={this.onEndReachedHandler}
+        onEndReached={onEndReachedHandler}
         onMomentumScrollBegin={() => { onEndReachedCalledDuringMomentum.current = false }}
         ListFooterComponent={renderLoder}
         data={BUSINESSPOSTLIST}
-        renderItem={this._renderItem}
+        renderItem={_renderItem}
         keyExtractor={(item) => item.id_key}
         numColumns={1}
         style={{ flex: 1 }}

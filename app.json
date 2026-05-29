@@ -2,7 +2,7 @@
   "expo": {
     "name": "MonCongo",
     "slug": "moncongo",
-    "version": "4.8.0",
+    "version": "5.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,11 +19,11 @@
       "bundleIdentifier": "com.moncongo.app",
       "googleServicesFile": "./GoogleService-Info.plist",
       "buildNumber": "3",
-      "enterpriseProvisioning": "universal",
       "config": {
         "googleMapsApiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
       }
     },
+    "newArchEnabled": false,
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -36,25 +36,53 @@
           "apiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
         }
       },
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "6ad7814b-debd-43d4-8b06-35070290620b"
+        "projectId": "0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/6ad7814b-debd-43d4-8b06-35070290620b"
+      "url": "https://u.expo.dev/0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
     },
     "plugins": [
       "@react-native-firebase/app",
       "@react-native-firebase/messaging",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#94cafc",
+          "image": "./assets/adaptive-icon.png",
+          "imageWidth": 100,
+          "resizeMode": "contain",
+          "android": {
+            "backgroundColor": "#94cafc",
+            "image": "./assets/adaptive-icon.png",
+            "imageWidth": 100,
+            "resizeMode": "contain"
+          },
+          "ios": {
+            "backgroundColor": "#0287BC",
+            "image": "./assets/splash.png",
+            "resizeMode": "contain"
+          }
+        }
+      ],
       [
         "expo-image-picker",
         {
@@ -66,9 +94,10 @@
         "expo-build-properties",
         {
           "android": {
-            "compileSdkVersion": 34,
-            "targetSdkVersion": 34,
-            "buildToolsVersion": "34.0.0"
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "buildToolsVersion": "36.0.0",
+            "minSdkVersion": 24
           },
           "ios": {
             "useFrameworks": "static"
@@ -95,6 +124,7 @@
           "calendarPermission": "The app needs to access your calendar."
         }
       ]
-    ]
+    ],
+    "owner": "sandipan.rcciit"
   }
 }

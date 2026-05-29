@@ -26,7 +26,7 @@ const HoroscopeDetaIlsScreen = ({ navigation, route }, props) => {
             dispatch(horoscopeOther({ slug: routeData.slug }))
         })
     }
-    _renderItem = ({ item }) => (
+    const _renderItem = ({ item }) => (
         <View style={{ flex: 1, width: "100%" }}>
             <CardListCom item={item} slug={'HoroscopeDetails'} navigation={navigation} />
         </View>
@@ -88,7 +88,7 @@ const HoroscopeDetaIlsScreen = ({ navigation, route }, props) => {
                             showsVerticalScrollIndicator={true}
                             showsHorizontalScrollIndicator={false}
                             data={HOTHERLIST}
-                            renderItem={this._renderItem}
+                            renderItem={_renderItem}
                             keyExtractor={(item) => item.horo_id}
                             style={{ flex: 1 }}
                             contentContainerStyle={{ padding: 10 }}

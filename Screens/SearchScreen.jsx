@@ -108,13 +108,13 @@ const SearchScreen = ({ navigation }) => {
     // onLoadSearch(searchQuery);
     // return () => { }
   }, [currantPage]);
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <BusinessListCom data={item} navigation={navigation} />
     </View>
@@ -279,14 +279,14 @@ const SearchScreen = ({ navigation }) => {
           <FlatList
             showsVerticalScrollIndicator={true}
             onEndReachedThreshold={0}
-            onEndReached={this.onEndReachedHandler}
+            onEndReached={onEndReachedHandler}
             onMomentumScrollBegin={() => {
               onEndReachedCalledDuringMomentum.current = false;
             }}
             ListFooterComponent={this.renderLoder}
             ListEmptyComponent={this.noItemDisplay}
             data={listData}
-            renderItem={this._renderItem}
+            renderItem={_renderItem}
             keyExtractor={(item) => item.directory_id}
             numColumns={1}
             style={{ flex: 1 }}

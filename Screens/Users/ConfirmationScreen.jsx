@@ -1,4 +1,4 @@
-import { View, SafeAreaView, ScrollView, StyleSheet, Image, Pressable, Content, Alert } from "react-native";
+import { View, SafeAreaView, ScrollView, StyleSheet, Image, Pressable, Alert } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { Appbar, Surface, Text, TextInput, List, HelperText, Provider, Button } from "react-native-paper";
 import AppbarHeader from "../../component/Appbar";

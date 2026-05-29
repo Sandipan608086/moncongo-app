@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Platform, Alert } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { useNavigation } from "@react-navigation/native";
-
 import { useSelector, useDispatch } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { navigate } from "./RootNavigation";
 
 import * as Notifications from "expo-notifications";
 import {
@@ -35,6 +34,7 @@ import HoroscopeScreen from "../Screens/Horoscope";
 import HoroscopeDetaIlsScreen from "../Screens/Horoscope/HoroscopeDetaIlsScreen";
 import NewsScreen from "../Screens/News";
 import NewsDetailsScreen from "../Screens/News/NewsDetailsScreen";
+import SosScreen from "../Screens/SOS";
 import TendersScreen from "./../Screens/Tenders";
 import TendersDetailScreen from "./../Screens/Tenders/TendersDetailsScreen";
 import JobsScreen from "./../Screens/Jobs";
@@ -133,8 +133,6 @@ export const TabRoutes = () => {
 
 export const AppStack = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
-  const [initialRoute, setInitialRoute] = useState("Dashboard");
   const tokenLoad = () => {
     // Get the device token
     if (Platform.OS == "android") {
@@ -165,6 +163,14 @@ export const AppStack = () => {
   //   }
   // }
   async function requestUserPermission() {
+    if (Platform.OS === "android") {
+      const { status } = await Notifications.requestPermissionsAsync();
+      if (status === "granted") {
+        tokenLoad();
+      }
+      return;
+    }
+    // iOS — Firebase handles APNs registration + shows the system dialog
     const authStatus = await messaging().requestPermission();
     const enabled =
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
@@ -172,31 +178,28 @@ export const AppStack = () => {
 
     if (enabled) {
       console.log("Authorization status:", authStatus);
-      tokenLoad()
+      tokenLoad();
     }
   }
   useEffect(() => {
     tokenLoad();
-    if (Platform.OS == "ios") {
-      requestUserPermission();
-    }
+    requestUserPermission();
     // Set up the notification handler for the app
     Notifications.setNotificationHandler({
       handleNotification: async () => ({
-        shouldShowAlert: true,
+        shouldShowBanner: true,
+        shouldShowList: true,
         shouldPlaySound: true,
         shouldSetBadge: true,
       }),
     });
     // Handle user clicking on a notification and open the screen
     const handleNotificationClick = async (response) => {
-      const screen = response.notification.request.content.data;
-      if (screen !== null) {
-        navigation.navigate(
-          response.notification.request.content.data.type,
-          JSON.stringify({
-            slug: response.notification.request.content.data.slug,
-          })
+      const data = response?.notification?.request?.content?.data;
+      if (data?.type) {
+        navigate(
+          data.type,
+          JSON.stringify({ slug: data.slug ?? null })
         );
       }
     };
@@ -205,72 +208,37 @@ export const AppStack = () => {
       Notifications.addNotificationResponseReceivedListener(
         handleNotificationClick
       );
-    // Handle user opening the app from a notification (when the app is in the background)
+    // Handle user opening the app from a notification (background state)
     messaging().onNotificationOpenedApp((remoteMessage) => {
-      // console.log(
-      //   "Notification caused app to open from background state:",
-      //   remoteMessage.data.screen,
-      //   navigation
-      // );
-      if (remoteMessage != null) {
-        navigation.navigate(
-          remoteMessage.data.type,
-          JSON.stringify({ slug: remoteMessage.data.slug })
-        );
-      }
-      // dispatch(notificationTestApi({type: remoteMessage.data.type, slug: remoteMessage.data.slug, remoteMessage})).then((res) => {
-      //   console.log(remoteMessage.data.type);
-      // });
-    });
-    // Check if the app was opened from a notification (when the app was completely quit)
-    messaging()
-      .getInitialNotification()
-      .then((remoteMessage) => {
-        // dispatch(notificationTestApi({type: remoteMessage.data.type, slug: remoteMessage.data.slug, remoteMessage})).then((res) => {
-        //   console.log(remoteMessage.data.type);
-        // });
-        if (remoteMessage != null) {
-          navigation.navigate(
-            remoteMessage.data.type,
-            JSON.stringify({ slug: remoteMessage.data.slug })
-          );
+      try {
+        if (remoteMessage?.data?.type) {
+          setTimeout(() => {
+            navigate(
+              remoteMessage.data.type,
+              JSON.stringify({ slug: remoteMessage.data.slug ?? null })
+            );
+          }, 1000);
         }
-      });
-    // Handle push notifications when the app is in the background
-    messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-      // dispatch(notificationTestApi({type: remoteMessage.data.type, slug: remoteMessage.data.slug, remoteMessage})).then((res) => {
-      //   console.log(remoteMessage.data.type);
-      // });
-      if (remoteMessage != null) {
-        navigation.navigate(
-          remoteMessage.data.type,
-          JSON.stringify({ slug: remoteMessage.data.slug })
-        );
-        const notification = {
-          title: remoteMessage.data.title,
-          body: remoteMessage.data.body,
-          imageUrl: remoteMessage.data.icon,
-        };
-        // Schedule the notification with a null trigger to show immediately
-        await Notifications.scheduleNotificationAsync({
-          content: notification,
-          trigger: null,
-        });
-      }
+      } catch (e) {}
     });
+    // Check if the app was opened from a notification (killed state)
+    // Handled in NavigationContainer onReady in AppNav.jsx
     // Handle push notifications when the app is in the foreground
     const handlePushNotification = async (remoteMessage) => {
-      const notification = {
-        title: remoteMessage.data.title,
-        body: remoteMessage.data.body,
-        imageUrl: remoteMessage.data.icon,
-      };
-
-      // Schedule the notification with a null trigger to show immediately
-      await Notifications.scheduleNotificationAsync({
-        content: notification,
-        trigger: null,
-      });
+      try {
+        const title =
+          remoteMessage?.notification?.title ??
+          remoteMessage?.data?.title ??
+          "Notification";
+        const body =
+          remoteMessage?.notification?.body ??
+          remoteMessage?.data?.body ??
+          "";
+        await Notifications.scheduleNotificationAsync({
+          content: { title, body, data: remoteMessage?.data ?? {} },
+          trigger: null,
+        });
+      } catch (e) {}
     };
     // Listen for push notifications when the app is in the foreground
     const unsubscribe = messaging().onMessage(handlePushNotification);
@@ -283,7 +251,7 @@ export const AppStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={initialRoute}
+      initialRouteName="Dashboard"
     >
       <Stack.Screen name="Dashboard" component={TabRoutes} />
       <Stack.Screen name="Business" component={BusinessScreen} />
@@ -309,6 +277,7 @@ export const AppStack = () => {
       />
       <Stack.Screen name="News" component={NewsScreen} />
       <Stack.Screen name="NewsDetails" component={NewsDetailsScreen} />
+      <Stack.Screen name="SOS" component={SosScreen} />
       <Stack.Screen name="Tender" component={TendersScreen} />
       <Stack.Screen name="TenderDetails" component={TendersDetailScreen} />
       <Stack.Screen name="Job" component={JobsScreen} />

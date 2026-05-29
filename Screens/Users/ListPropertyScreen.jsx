@@ -59,13 +59,13 @@ const ListPropertyScreen = ({ navigation }) => {
       setRefreshing(false);
     };
   }, [currantPage, refreshing, userKey, PROPERTYLIST]);
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardAutoImmobilier
         item={item}
@@ -207,13 +207,13 @@ const ListPropertyScreen = ({ navigation }) => {
         <FlatList
           showsVerticalScrollIndicator={true}
           onEndReachedThreshold={0}
-          onEndReached={this.onEndReachedHandler}
+          onEndReached={onEndReachedHandler}
           onMomentumScrollBegin={() => {
             onEndReachedCalledDuringMomentum.current = false;
           }}
           ListFooterComponent={renderLoder}
           data={PROPERTYLIST.data}
-          renderItem={this._renderItem}
+          renderItem={_renderItem}
           keyExtractor={(item) => item.id}
           numColumns={1}
           style={{ flex: 1 }}
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(248, 248, 248, 1)",
   },
-  Content: {
+  content: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",

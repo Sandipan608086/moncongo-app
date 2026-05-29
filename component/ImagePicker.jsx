@@ -15,7 +15,7 @@ export default function ImagePickerLoad(props) {
   const selectImage = async (useLibrary) => {
     let result;
     const options = {
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ['images', 'videos'],
       allowsEditing: true,
       aspect: [props.w, props.h],
       quality: 1,

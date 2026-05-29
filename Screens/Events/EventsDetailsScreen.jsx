@@ -31,6 +31,18 @@ import Swiper from "react-native-swiper";
 import { WebView } from "react-native-webview";
 import RenderHtml, { defaultSystemFonts } from "react-native-render-html";
 import { useSelector, useDispatch } from "react-redux";
+
+const getYouTubeVideoId = (urlOrId) => {
+  if (!urlOrId) return '';
+  if (/^[a-zA-Z0-9_-]{11}$/.test(String(urlOrId).trim())) return String(urlOrId).trim();
+  const match = String(urlOrId).match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : String(urlOrId).trim();
+};
+
+const getYouTubeHTML = (videoIdOrUrl) => {
+  const id = getYouTubeVideoId(videoIdOrUrl);
+  return `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;width:100%;height:100%}html,body{height:100%}iframe{display:block;width:100%;height:100%;border:none}</style></head><body><iframe src="https://www.youtube-nocookie.com/embed/${id}?playsinline=1&rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></body></html>`;
+};
 import CardListCom from "../../component/CardListCom";
 import CardBusiness from "../../component/CardBusiness";
 import AppbarHeader from "../../component/Appbar";
@@ -96,7 +108,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
       Alert.alert(url);
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardListCom item={item} slug={"EventsDetails"} navigation={navigation} />
     </View>
@@ -377,7 +389,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                 showsVerticalScrollIndicator={true}
                 showsHorizontalScrollIndicator={false}
                 data={EOTHERLIST}
-                renderItem={this._renderItem}
+                renderItem={_renderItem}
                 keyExtractor={(item) => item.event_id}
                 style={{ flex: 1 }}
                 contentContainerStyle={{ padding: 10 }}
@@ -444,8 +456,14 @@ const EventsDetailsScreen = ({ navigation, route }) => {
         <View style={{ height: 280 }}>
           <WebView
             style={{ height: 280 }}
-            source={{ uri: `https://www.youtube.com/embed/${EVENTDATA.event_main_img}` }}
-            androidHardwareAccelerationDisabled={true}
+            source={{ html: getYouTubeHTML(EVENTDATA.event_main_img), baseUrl: 'https://www.youtube-nocookie.com' }}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            allowsInlineMediaPlayback={true}
+            allowsFullscreenVideo={true}
+            mediaPlaybackRequiresUserAction={false}
+            originWhitelist={['*']}
+            mixedContentMode="compatibility"
           />
         </View>
       </Modal>

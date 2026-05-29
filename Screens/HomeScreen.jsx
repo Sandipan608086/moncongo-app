@@ -128,13 +128,13 @@ const HomeScreen = ({ navigation, threshold = 100 }) => {
     // }
   }, [currantPage, refreshing]);
 
-  onEndReachedHandler = ({ distanceFromEnd }) => {
+  const onEndReachedHandler = ({ distanceFromEnd }) => {
     if (!onEndReachedCalledDuringMomentum.current) {
       setCurrantPage(currantPage + 1);
       onEndReachedCalledDuringMomentum.current = true;
     }
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <Card
         mode="elevation"
@@ -251,13 +251,13 @@ const HomeScreen = ({ navigation, threshold = 100 }) => {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={true}
         onEndReachedThreshold={0}
-        onEndReached={this.onEndReachedHandler}
+        onEndReached={onEndReachedHandler}
         onMomentumScrollBegin={() => {
           onEndReachedCalledDuringMomentum.current = false;
         }}
         ListFooterComponent={renderLoder}
         data={NOTELIST}
-        renderItem={this._renderItem}
+        renderItem={_renderItem}
         ListEmptyComponent={this.noItemDisplay}
         keyExtractor={(item) => item.notification_id}
         numColumns={1}

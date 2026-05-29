@@ -46,7 +46,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
       dispatch(tendersOther({ slug: routeData.slug }));
     });
   };
-  _renderItem = ({ item }) => (
+  const _renderItem = ({ item }) => (
     <View style={{ flex: 1, width: "100%" }}>
       <CardListCom item={item} slug={"TenderDetails"} navigation={navigation} />
     </View>
@@ -241,7 +241,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
                 showsVerticalScrollIndicator={true}
                 showsHorizontalScrollIndicator={false}
                 data={TOTHERLIST}
-                renderItem={this._renderItem}
+                renderItem={_renderItem}
                 keyExtractor={(item) => item.tender_id}
                 style={{ flex: 1 }}
                 contentContainerStyle={{ padding: 10 }}
