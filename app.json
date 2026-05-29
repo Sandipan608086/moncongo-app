@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MonCongo",
-    "slug": "moncongo",
+    "name": "WhizzTanzania",
+    "slug": "whizztanzania",
     "version": "5.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,18 +9,27 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0287BC"
+      "backgroundColor": "#CAEDFE"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.moncongo.app",
+      "bundleIdentifier": "com.whizztanzania",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "buildNumber": "3",
+      "buildNumber": "1",
       "config": {
         "googleMapsApiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
+      },
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
+        "NSPhotoLibraryAddUsageDescription": "Allow $(PRODUCT_NAME) to save photos.",
+        "NSCalendarsUsageDescription": "The app needs to access your calendar.",
+        "NSRemindersUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders",
+        "NSCalendarsFullAccessUsageDescription": "The app needs to access your calendar.",
+        "NSRemindersFullAccessUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "newArchEnabled": false,
@@ -29,7 +38,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.app.moncongo",
+      "package": "com.whizztanzania",
       "versionCode": 10,
       "config": {
         "googleMaps": {
@@ -51,14 +60,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
+        "projectId": "1a75b44d-353b-4717-9896-eeaef14f843d"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
+      "url": "https://u.expo.dev/1a75b44d-353b-4717-9896-eeaef14f843d"
     },
     "plugins": [
       "@react-native-firebase/app",
@@ -77,7 +86,7 @@
             "resizeMode": "contain"
           },
           "ios": {
-            "backgroundColor": "#0287BC",
+            "backgroundColor": "#CAEDFE",
             "image": "./assets/splash.png",
             "resizeMode": "contain"
           }
@@ -125,6 +134,7 @@
         }
       ]
     ],
-    "owner": "sandipan.rcciit"
+    "owner": "sandipan.rcciit",
+    "_comment": "WhizzTanzania branch - Phase 1 identity swap complete"
   }
 }

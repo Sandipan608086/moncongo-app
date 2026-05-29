@@ -1,22 +1,21 @@
 {
   "project_info": {
-    "project_number": "635632775818",
-    "firebase_url": "https://moncongo-86c6c-default-rtdb.firebaseio.com",
-    "project_id": "moncongo-86c6c",
-    "storage_bucket": "moncongo-86c6c.appspot.com"
+    "project_number": "642210152318",
+    "project_id": "whizztanzania-51e4e",
+    "storage_bucket": "whizztanzania-51e4e.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:635632775818:android:f6b6255e838fd8246d7373",
+        "mobilesdk_app_id": "1:642210152318:android:cd7effbc8cfb79ebf43d2f",
         "android_client_info": {
-          "package_name": "com.app.moncongo"
+          "package_name": "com.whizztanzania"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCGaeh0iEy1dq0ZNnCUwGeInyTkyzjfQ3s"
+          "current_key": "AIzaSyDlVESyRZ6ehtVxMgZnMtaonykbLtaw2ME"
         }
       ],
       "services": {
