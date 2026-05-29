@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MonCongo",
-    "slug": "moncongo",
+    "name": "WhizzKenya",
+    "slug": "whizzkenya",
     "version": "5.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.moncongo.app",
+      "bundleIdentifier": "com.whizz.kenya",
       "googleServicesFile": "./GoogleService-Info.plist",
       "buildNumber": "3",
       "config": {
@@ -29,7 +29,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.app.moncongo",
+      "package": "com.whizz.kenya",
       "versionCode": 10,
       "config": {
         "googleMaps": {
@@ -51,14 +51,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
+        "projectId": "36018212-798c-4642-9e18-665ce7fb4a95"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
+      "url": "https://u.expo.dev/36018212-798c-4642-9e18-665ce7fb4a95"
     },
     "plugins": [
       "@react-native-firebase/app",
