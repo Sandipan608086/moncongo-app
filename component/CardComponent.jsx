@@ -120,7 +120,7 @@ const CardComponent = (props) => {
             }}
             onPress={() => console.log("Details")}
           >
-            Plus
+            Read more
           </Button>
           <Button
             mode="text"
@@ -146,7 +146,7 @@ const CardComponent = (props) => {
             }}
             onPress={() => onShare()}
           >
-            Partager
+            Share
           </Button>
         </Card.Actions>
       ) : (
@@ -164,7 +164,7 @@ const CardComponent = (props) => {
               }}
               onPress={() => MyWebComponent(props.item.link)}
             >
-              Lien
+              Link
             </Button>
           ) : (
             <Button
@@ -184,7 +184,7 @@ const CardComponent = (props) => {
                 )
               }
             >
-              En savoir plus
+              Read More
             </Button>
           )}
           <Button
@@ -198,7 +198,7 @@ const CardComponent = (props) => {
             }}
             onPress={() => onShare()}
           >
-            Partager
+            Share
           </Button>
         </Card.Actions>
       )}

@@ -67,7 +67,7 @@ const AnnouncementScreen = ({ navigation, threshold = 100 }) => {
     }
     return (
         <SafeAreaView style={styles.container}>
-            <AppbarHeader title="Annonces" back={true} home={true} navigation={navigation} />
+            <AppbarHeader title="Announcements" back={true} home={true} navigation={navigation} />
             <FlatList
                 ref={flatListRef}
                 onScroll={handleScroll}

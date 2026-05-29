@@ -27,7 +27,7 @@ const SosScreen = ({ navigation }) => {
     const handleCall = (number) => {
         const cleaned = number.replace(/\s+/g, "");
         Linking.openURL(`tel:${cleaned}`).catch(() =>
-            Alert.alert("Erreur", "Impossible de passer l'appel.")
+            Alert.alert("Error", "Unable to make the call.")
         );
     };
 
@@ -61,7 +61,7 @@ const SosScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <AppbarHeader title="Urgences" back={true} home={true} navigation={navigation} />
+            <AppbarHeader title="SOS" back={true} home={true} navigation={navigation} />
             {LOADING && SOSLIST.length === 0 ? (
                 <ActivityIndicator
                     animating={true}

@@ -82,7 +82,7 @@ const BusinessDetailsScreen = ({ navigation, route }) => {
   }, [])
   return (
     <SafeAreaView style={stylesList.container}>
-      <AppbarHeader title="Détails de l'entreprise" back={true} home={true} navigation={navigation} />
+      <AppbarHeader title="Company Details" back={true} home={true} navigation={navigation} />
       {loding && <ActivityIndicator animating={true} color={MD2Colors.blue100} size={40} style={{ marginTop: 30 }} />}
       {
         BUSINESSHOME &&
@@ -170,7 +170,7 @@ const BusinessDetailsScreen = ({ navigation, route }) => {
           },
           {
             icon: 'phone',
-            label: 'Appel',
+            label: 'Call',
             color: '#ffffff',
             style: { backgroundColor: '#0298d3' },
             onPress: () => BUSINESSHOME.directory_contact.length > 0 ? Linking.openURL(`tel:${BUSINESSHOME.directory_contact[0].contact}`) : Alert.alert('Désolé! Aucun numéro de contact trouvé'),

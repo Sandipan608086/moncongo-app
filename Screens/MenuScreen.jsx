@@ -107,7 +107,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Directory />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Répértoire</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Directory</Text>
           </Pressable>
           <Pressable
             style={styles.surface}
@@ -115,7 +115,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Announcements />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Annonces</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Announcements</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -133,7 +133,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Events />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Événements</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Events</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -144,7 +144,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Tenders />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Appels d’offres</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Tenders</Text>
           </Pressable>
           <Pressable
             style={styles.surface}
@@ -152,7 +152,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Cars />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Auto</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Cars</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -163,7 +163,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Property />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Immobilier</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Properties</Text>
           </Pressable>
           <Pressable
             style={styles.surface}
@@ -171,7 +171,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <Jobs />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Offres d’emploi</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>Jobs</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -190,7 +190,7 @@ const MenuScreen = ({ navigation }) => {
             elevation={5}
           >
             <News />
-            <Text style={{ marginTop: 25, fontSize: 14 }}>Urgences</Text>
+            <Text style={{ marginTop: 25, fontSize: 14 }}>SOS</Text>
           </Pressable>
         </View>
         <View>

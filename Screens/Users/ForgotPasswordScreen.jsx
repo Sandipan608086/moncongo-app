@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
@@ -51,7 +52,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
           <Image alt="image" style={g.logo} source={require("./../../assets/logo.png")} />
-          <Text style={g.Subtitle}>Mot de passe oublié?</Text>
+          <Text style={g.Subtitle}>Forgot password?</Text>
           <View style={g.Form}>
             {/* <FormBuilder
               control={control}
@@ -83,12 +84,12 @@ const ForgotPasswordScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "L'e-mail est requis",
+                  message: "Email is required",
                 },
                 pattern: {
                     value:
                         /[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/,
-                    message: "Le courriel est invalide",
+                    message: "The email is invalid",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -122,7 +123,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
                 });
               })}
             >
-              Envoyer
+              Continue
             </Button>
           </View>
         </View>

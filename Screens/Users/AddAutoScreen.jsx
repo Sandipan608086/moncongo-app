@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
@@ -157,13 +158,13 @@ const AddAutoScreen = ({ navigation, route }) => {
       steering: routeData.type == "editAuto" ? routeData.data.car_steering : "",
       fuel: routeData.type == "editAuto" ? routeData.data.car_fuel : "",
       address: routeData.type == "editAuto" ? routeData.data.car_address : "",
-      country: routeData.type == "editAuto" ? routeData.data.car_country : 50,
-      city: routeData.type == "editAuto" ? routeData.data.car_citys : 26,
+      country: routeData.type == "editAuto" ? routeData.data.car_country : 216,
+      city: routeData.type == "editAuto" ? routeData.data.car_citys : 3,
       phoneCode:
-        routeData.type == "editAuto" ? routeData.data.code_mobile : 243,
+        routeData.type == "editAuto" ? routeData.data.code_mobile : 255,
       phone: routeData.type == "editAuto" ? routeData.data.car_mobile : "",
       whatsappCode:
-        routeData.type == "editAuto" ? routeData.data.code_whatsapp : 243,
+        routeData.type == "editAuto" ? routeData.data.code_whatsapp : 255,
       whatsapp: routeData.type == "editAuto" ? routeData.data.car_whatsapp : "",
       description:
         routeData.type == "editAuto" ? routeData.data.car_long_text : "",
@@ -174,7 +175,7 @@ const AddAutoScreen = ({ navigation, route }) => {
       countryClick();
       routeData.data != undefined
         ? cityClick(routeData.data.car_country)
-        : cityClick(50);
+        : cityClick(3);
       typeClick();
       routeData.data && brandClick(JSON.parse(routeData.data.type_id));
     }
@@ -182,7 +183,7 @@ const AddAutoScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={g.Container}>
       <AppbarHeader
-        title={routeData.type === "addAuto" ? "Ajouter Auto" : "Modifier Auto"}
+        title={routeData.type === "addAuto" ? "Add Vehicle" : "Edit Vehicle"}
         back={true}
         home={false}
         navigation={navigation}
@@ -201,13 +202,13 @@ const AddAutoScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ce champ est obligatoire",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Nom *"
+                  placeholder="Name *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -228,7 +229,7 @@ const AddAutoScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ce champ est obligatoire",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -243,7 +244,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Taper *"
+                  placeholder="Type *"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -275,7 +276,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Marque"
+                  placeholder="Brand"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -300,7 +301,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Modèle"
+                  placeholder="Model"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -315,13 +316,13 @@ const AddAutoScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "champ de saisie vide",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Prix $ *"
+                  placeholder="Price TSH *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -347,14 +348,14 @@ const AddAutoScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "1" },
-                    { label: "Non", value: "0" },
+                    { label: "Yes", value: "1" },
+                    { label: "No", value: "0" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Négociable"
+                  placeholder="Negotiable Price"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -369,7 +370,7 @@ const AddAutoScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Année"
+                  placeholder="Year"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -384,7 +385,7 @@ const AddAutoScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Kilométrage"
+                  placeholder="Milage"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -399,7 +400,7 @@ const AddAutoScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Couleur"
+                  placeholder="Color"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -419,17 +420,17 @@ const AddAutoScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Portes 2", value: "2" },
-                    { label: "Portes 4", value: "4" },
-                    { label: "Portes 6", value: "6" },
-                    { label: "Portes 8", value: "8" },
-                    { label: "Portes 10", value: "10" },
+                    { label: "2 Doors", value: "2" },
+                    { label: "4 Doors", value: "4" },
+                    { label: "6 Doors", value: "6" },
+                    { label: "8 Doors", value: "8" },
+                    { label: "10 Doors", value: "10" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Nombre de portes"
+                  placeholder="Number of Doors"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -449,9 +450,9 @@ const AddAutoScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Auto", value: "automatic" },
-                    { label: "Manuelle", value: "manual" },
-                    { label: "Double embrayage", value: "dual_clutch" },
+                    { label: "Automatic", value: "automatic" },
+                    { label: "Manual", value: "manual" },
+                    { label: "Dual Clutch", value: "dual_clutch" },
                     {
                       label: "Variation continue",
                       value: "continuously_variable",
@@ -461,7 +462,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Boîte de vitesse"
+                  placeholder="Transmission"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -481,16 +482,16 @@ const AddAutoScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Tout", value: "all" },
-                    { label: "Quatre", value: "four" },
-                    { label: "Avant", value: "front" },
-                    { label: "Arrière", value: "rear" },
+                    { label: "All", value: "all" },
+                    { label: "Four", value: "four" },
+                    { label: "Front", value: "front" },
+                    { label: "Rear", value: "rear" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Roue motrice"
+                  placeholder="Wheel Drive"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -510,14 +511,14 @@ const AddAutoScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "1" },
-                    { label: "Non", value: "0" },
+                    { label: "Yes", value: "1" },
+                    { label: "No", value: "0" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Climatisation"
+                  placeholder="Air Conditioning"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -537,14 +538,14 @@ const AddAutoScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Gauche", value: "left" },
-                    { label: "Droite", value: "right" },
+                    { label: "Left", value: "left" },
+                    { label: "Right", value: "right" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Volant"
+                  placeholder="Steering"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -569,13 +570,13 @@ const AddAutoScreen = ({ navigation, route }) => {
                     { label: "Battery", value: "battery" },
                     { label: "Gasoline", value: "gasoline" },
                     { label: "Petrol", value: "petrol" },
-                    { label: "Autres", value: "others" },
+                    { label: "Others", value: "others" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Carburant"
+                  placeholder="Fuel"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -590,13 +591,13 @@ const AddAutoScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ce champ est obligatoire",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Adresse *"
+                  placeholder="Address *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -617,7 +618,7 @@ const AddAutoScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Pays is required",
+                  message: "Country is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -632,7 +633,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Pays"
+                  placeholder="Country"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -656,7 +657,7 @@ const AddAutoScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ville is required",
+                  message: "City is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -671,7 +672,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Ville"
+                  placeholder="City *"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -695,7 +696,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "Phone Code",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -721,7 +722,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Telephone Numéro *"
+                      placeholder="Contact number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -746,7 +747,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "WhatsApp Code",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -766,7 +767,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Numéro Whatsapp"
+                      placeholder="WhatsApp Number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -833,7 +834,7 @@ const AddAutoScreen = ({ navigation, route }) => {
                 });
               })}
             >
-              Envoyer
+              Submit
             </Button>
           </View>
         </View>

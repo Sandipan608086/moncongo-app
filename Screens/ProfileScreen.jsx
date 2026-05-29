@@ -44,7 +44,7 @@ const ProfileScreen = ({ navigation }) => {
   function logout() {
     if (userKey) {
       dispatch(userRemoveKey()).then(() => {
-        Alert.alert("Déconnexion réussie");
+        Alert.alert("You have been logged out successfully.");
       });
     }
   }
@@ -103,7 +103,7 @@ const ProfileScreen = ({ navigation }) => {
             <List.Item
               style={styles.profileList}
               titleStyle={{ color: "#ffffff" }}
-              title="Editer le profil"
+              title="Edit Profile"
               onPress={() =>
                 navigation.navigate("AddProfile", JSON.stringify(PROFILE))
               }
@@ -114,7 +114,7 @@ const ProfileScreen = ({ navigation }) => {
             <List.Item
               style={styles.profileList}
               titleStyle={{ color: "#ffffff" }}
-              title="Liste Auto"
+              title="List Cars"
               onPress={() => navigation.navigate("ListAuto")}
               right={() => (
                 <List.Icon color={"#ffffff"} icon="arrow-right-thin" />
@@ -123,7 +123,7 @@ const ProfileScreen = ({ navigation }) => {
             <List.Item
               style={styles.profileList}
               titleStyle={{ color: "#ffffff" }}
-              title="Liste Immobilier"
+              title="List Properties"
               onPress={() => navigation.navigate("ListProperty")}
               right={() => (
                 <List.Icon color={"#ffffff"} icon="arrow-right-thin" />
@@ -132,7 +132,7 @@ const ProfileScreen = ({ navigation }) => {
             <List.Item
               style={styles.profileList}
               titleStyle={{ color: "#ffffff" }}
-              title="Changer mon mot de passe"
+              title="Change Password"
               onPress={() =>
                 navigation.navigate(
                   "ChangeMyPassword",
@@ -146,7 +146,7 @@ const ProfileScreen = ({ navigation }) => {
             <List.Item
               style={styles.profileList}
               titleStyle={{ color: "#ffffff" }}
-              title="Se déconnecter"
+              title="Logout"
               onPress={() => logout()}
               right={() => (
                 <List.Icon color={"#ffffff"} icon="arrow-right-thin" />

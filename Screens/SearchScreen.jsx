@@ -151,16 +151,14 @@ const SearchScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <Text style={{ textAlign: "center", paddingHorizontal: 10 }}>
-          Plus de 3 000 entreprises sont présentes sur MonCongo. Si vous ne
-          savez pas quoi chercher, n'hésitez pas à explorer notre annuaire
-          d'entreprises
+          More than 3000 businesses are present on WhizzTanzania. If you don’t know what to look for, don’t hesitate to explore our directory of businesses
         </Text>
         <Button
           style={[g.Btn, { marginBottom: 100 }]}
           mode="contained"
           onPress={() => navigation.navigate("Business")}
         >
-          RÉPÉRTOIRE
+          DIRECTORY
         </Button>
       </View>
     );
@@ -177,7 +175,7 @@ const SearchScreen = ({ navigation }) => {
       >
         <Appbar.Header statusBarHeight={Platform.OS === "ios" ? 80 : 0}>
           <Appbar.Content
-            title="Ville"
+            title="City"
             titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }}
           />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
@@ -223,7 +221,7 @@ const SearchScreen = ({ navigation }) => {
             disabled={LODING}
             loading={LODING}
           >
-            Rechercher
+            Filter
           </Button>
           {/* <Button
             style={[
@@ -246,7 +244,7 @@ const SearchScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Recherche"
+        title="Search"
         back={false}
         home={false}
         logo={true}

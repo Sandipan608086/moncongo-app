@@ -128,9 +128,9 @@ const CardAutoImmobilier = (props) => {
             )}
             {props.payment === true && (
               <List.Item
-                title={`$${props.item.price}${
-                  props.item.type == "rent" ? "/mois" : ""
-                }${props.item.negotiable == "yes" ? "/Négotiable" : ""}`}
+                title={`THS${props.item.price}${
+                  props.item.type == "rent" ? "/month" : ""
+                }${props.item.negotiable == "yes" ? "/Negotiable" : ""}`}
                 titleStyle={{ fontSize: 16 }}
                 style={{ padding: 0, marginTop: -20 }}
               />
@@ -152,7 +152,7 @@ const CardAutoImmobilier = (props) => {
               )
             }
           >
-            En savoir plus
+            Read More
           </Button>
           <Button
             mode="text"
@@ -164,7 +164,7 @@ const CardAutoImmobilier = (props) => {
             onPress={() =>
               props.item.whatsapp !== ""
                 ? Linking.openURL(`https://wa.me/${props.item.whatsapp}`)
-                : Alert.alert("Désolé! Aucun contact WhatsApp trouvé")
+                : Alert.alert("Sorry! No WhatsApp contact found")
             }
           >
             WhatsApp
@@ -177,10 +177,10 @@ const CardAutoImmobilier = (props) => {
             onPress={() =>
               props.item.contact !== ""
                 ? Linking.openURL(`tel:${props.item.contact}`)
-                : Alert.alert("Désolé! Aucun numéro de contact trouvé")
+                : Alert.alert("Sorry! No contact number found.")
             }
           >
-            Appel
+            Call
           </Button>
         </Card.Actions>
       )}
@@ -189,29 +189,29 @@ const CardAutoImmobilier = (props) => {
           {props.item.premium && (
             <View style={{ flex: 2 }}>
               <Text Style={{ fontFamily: "Poppins_700Bold", marginRight: 10 }}>
-                Référencement:
+                Reference:
               </Text>
               <Text>
                 {props.item.premium == "1"
-                  ? "En Vedette"
+                  ? "Featured"
                   : props.item.premium == "0"
-                  ? "Parrainer"
-                  : "Général"}
+                  ? "Sponsored"
+                  : "GGeneral"}
               </Text>
             </View>
           )}
           <View style={{ flex: 1 }}>
             <Text Style={{ fontFamily: "Poppins_700Bold", marginRight: 10 }}>
-              Vendue:
+              Sold:
             </Text>
-            <Text>{props.item.is_sold == "0" ? "Non" : "Oui"}</Text>
+            <Text>{props.item.is_sold == "0" ? "No" : "Yes"}</Text>
           </View>
           {props.item.type != "" && (
             <View style={{ flex: 1 }}>
               <Text Style={{ fontFamily: "Poppins_700Bold", marginRight: 10 }}>
-                Taper:
+                Type:
               </Text>
-              <Text>{props.item.type == "rent" ? "Louer" : "Vendre"}</Text>
+              <Text>{props.item.type == "rent" ? "Rent" : "Sell"}</Text>
             </View>
           )}
         </Card.Actions>

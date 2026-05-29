@@ -133,7 +133,7 @@ const ListPropertyScreen = ({ navigation }) => {
             size={"small"}
             color={"#ffffff"}
             onPress={() => {
-              Alert.alert('', 'Souhaitez-vous marquer cette propriété comme vendue?', [
+              Alert.alert('', 'Would you like to mark this property as sold ?', [
                 {
                   text: 'Cancel',
                   // onPress: () => console.log('Cancel Pressed'),
@@ -159,7 +159,7 @@ const ListPropertyScreen = ({ navigation }) => {
             size={"small"}
             color={"#ffffff"}
             onPress={() => {
-              Alert.alert('', 'Souhaitez-vous marquer cette propriété comme non vendue?', [
+              Alert.alert('', 'Would you like to mark this property as unsold ?', [
                 {
                   text: 'Cancel',
                   // onPress: () => console.log('Cancel Pressed'),
@@ -198,7 +198,7 @@ const ListPropertyScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Immobilier List"
+        title="Property List"
         back={true}
         home={false}
         navigation={navigation}

@@ -110,7 +110,7 @@ const BusinessScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Répértoire"
+        title="Directory"
         back={true}
         home={true}
         navigation={navigation}

@@ -56,7 +56,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
     //     :
     <SafeAreaView style={g.Container}>
       <AppbarHeader
-        title="Immobilier Image"
+        title="Property images"
         back={true}
         home={false}
         navigation={navigation}
@@ -79,7 +79,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               color: "#fff",
             }}
           >
-            l'image dans la liste et la galerie est requise
+            Image in list and gallery is required
           </Text>
         )}
         <View style={{ flex: 1, padding: 20 }}>
@@ -90,7 +90,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               marginBottom: 10,
             }}
           >
-            liste Image
+            List image
           </Text>
           {PROPERTYDATA.list_image !== "" ? (
             <Card
@@ -148,7 +148,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               marginBottom: 10,
             }}
           >
-            Image du dépliant
+            Gallery image
           </Text>
           {PROPERTYDATA.flierImage &&
             PROPERTYDATA.flierImage.map((value, i) => {

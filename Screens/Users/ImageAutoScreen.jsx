@@ -54,7 +54,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={g.Container}>
       <AppbarHeader
-        title="Auto Image"
+        title="Vehicle Images"
         back={true}
         home={false}
         navigation={navigation}
@@ -77,7 +77,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
               color: "#fff",
             }}
           >
-            l'image dans la liste et la galerie est requise
+            Image in list and gallery is required
           </Text>
         )}
 
@@ -89,7 +89,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
               marginBottom: 10,
             }}
           >
-            liste Image
+            List image
           </Text>
           {AUTODETAILDATA.list_image !== "" ? (
             <Card
@@ -147,7 +147,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
               marginBottom: 10,
             }}
           >
-            Image du dépliant
+            Gallery image
           </Text>
           {AUTODETAILDATA.flierImage &&
             AUTODETAILDATA.flierImage.map((value, i) => {

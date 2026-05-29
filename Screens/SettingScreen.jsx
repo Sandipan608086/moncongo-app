@@ -103,7 +103,7 @@ const SettingScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Paramètres"
+        title="Settings"
         back={false}
         home={false}
         logo={true}
@@ -157,7 +157,7 @@ const SettingScreen = ({ navigation }) => {
                   marginTop: Platform.OS === "ios" ? 6 : 0,
                 }}
               >
-                Annonces{" "}
+                Announcements{" "}
               </Text>
               <Switch
                 color="#0298d3"
@@ -195,7 +195,7 @@ const SettingScreen = ({ navigation }) => {
                   marginTop: Platform.OS === "ios" ? 6 : 0,
                 }}
               >
-                Événements
+                Events
               </Text>
               <Switch
                 color="#0298d3"
@@ -212,7 +212,7 @@ const SettingScreen = ({ navigation }) => {
                   marginTop: Platform.OS === "ios" ? 6 : 0,
                 }}
               >
-                Appels d’offres
+                Tenders
               </Text>
               <Switch
                 color="#0298d3"
@@ -231,7 +231,7 @@ const SettingScreen = ({ navigation }) => {
                   marginTop: Platform.OS === "ios" ? 6 : 0,
                 }}
               >
-                Auto
+                Vehicles
               </Text>
               <Switch
                 color="#0298d3"
@@ -248,7 +248,7 @@ const SettingScreen = ({ navigation }) => {
                   marginTop: Platform.OS === "ios" ? 6 : 0,
                 }}
               >
-                Immobilier
+                Properties
               </Text>
               <Switch
                 color="#0298d3"
@@ -269,7 +269,7 @@ const SettingScreen = ({ navigation }) => {
                   marginTop: Platform.OS === "ios" ? 6 : 0,
                 }}
               >
-                Offres d’emploi
+                Jobs
               </Text>
               <Switch
                 color="#0298d3"

@@ -79,24 +79,24 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Mot de passe requis",
+                  message: "This field is required",
                 },
                 minLength: {
                   value: 6,
                   message:
-                    "Le mot de passe doit contenir au moins 6 caractères",
+                    "Password must contain at least 6 characters",
                 },
                 maxLength: {
                   value: 30,
                   message:
-                    "Le mot de passe doit contenir entre 6 et 30 caractères",
+                    "Password must contain between 6 and 30 characters",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   secureTextEntry={true}
                   mode="outlined"
-                  placeholder="Mot de passe"
+                  placeholder="Password"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -117,7 +117,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Vous devez spécifier un mot de passe",
+                  message: "You must specify a password",
                 },
                 validate: (value) => value === watch('passwordname') || "Les mots de passe ne correspondent pas",
               }}
@@ -125,7 +125,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
                 <TextInput
                   secureTextEntry={true}
                   mode="outlined"
-                  placeholder="Retaper le mot de passe"
+                  placeholder="Retype password"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -159,7 +159,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
                 });
               })}
             >
-              Envoyer
+              Submit
             </Button>
           </View>
         </View>

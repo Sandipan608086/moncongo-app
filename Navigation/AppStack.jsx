@@ -73,11 +73,11 @@ const Tab = createBottomTabNavigator();
 export const TabRoutes = () => {
   const userKey = useSelector((state) => state.user.userKey);
 
-  const homeName = "Accueil";
+  const homeName = "Home";
   const menuName = "Menu";
-  const searchName = "Recherche";
-  const profileName = "Profil";
-  const settingName = "Paramètres";
+  const searchName = "Search";
+  const profileName = "Profile";
+  const settingName = "Settings";
   return (
     <Tab.Navigator
       initialRouteName={homeName}

@@ -120,7 +120,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Appels d’Offre"
+        title="Tender"
         back={true}
         home={true}
         navigation={navigation}
@@ -147,13 +147,13 @@ const TendersDetailScreen = ({ navigation, route }) => {
                 }
               />
               <Text style={styles.date}>
-                Date de clôture: {TENDERDATA.tender_closing_date}
+                Closing date: {TENDERDATA.tender_closing_date}
               </Text>
             </Card>
             <View style={{ backgroundColor: "#ebf8ff", marginTop: 20 }}>
               {TENDERDATA.tender_company && (
                 <List.Item
-                  title="Entreprise:"
+                  title="Company:"
                   titleStyle={{ fontFamily: "Poppins_700Bold" }}
                   description={TENDERDATA.tender_company}
                 />
@@ -161,7 +161,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
               {TENDERDATA.tender_reference && (
                 <List.Item
                   style={{ marginTop: -20 }}
-                  title="Référence:"
+                  title="Reference:"
                   titleStyle={{ fontFamily: "Poppins_700Bold" }}
                   description={TENDERDATA.tender_reference}
                 />
@@ -169,7 +169,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
               {TENDERDATA.tender_citie_title && (
                 <List.Item
                   style={{ marginTop: -20 }}
-                  title="Lieu:"
+                  title="Place:"
                   titleStyle={{ fontFamily: "Poppins_700Bold" }}
                   description={TENDERDATA.tender_address}
                 />
@@ -182,7 +182,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
                 marginTop: 20,
               }}
             >
-              L’appel d’offre
+              Tender
             </Text>
             <View style={{ backgroundColor: "#ebf8ff" }}>
               {TENDERDATA.clean_description != "" && (
@@ -207,7 +207,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
                 }}
               >
                 <Text style={styles.Text}>
-                  Téléchargez les documents de l’appel d’offre
+                  Download the tender documents
                 </Text>
                 <View>
                   {TENDERDATA.tender_doc &&
@@ -219,7 +219,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
                           mode="contained"
                           style={[g.Btn, { width: "100%" }]}
                         >
-                          Télécharger
+                          Download
                         </Button>
                       );
                     })}
@@ -233,7 +233,7 @@ const TendersDetailScreen = ({ navigation, route }) => {
                 marginTop: 20,
               }}
             >
-              VOUS SEREZ ÉGALEMENT INTÉRESSÉ PAR
+              YOU MIGHT BE ALSO INTERESTED IN
             </Text>
             <View>
               <FlatList

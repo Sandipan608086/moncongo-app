@@ -195,7 +195,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
         setEventIdInCalendar(eventIdInCalendar);
       }
       Alert.alert(
-        "La date de l'événement est enregistrée dans votre calendrier."
+        "The event date is saved in your calendar."
       );
       setLoading(false);
     } else {
@@ -218,7 +218,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
       setEventIdInCalendar(eventIdInCalendar);
       Platform.OS === "ios" &&
         Alert.alert(
-          "La date de l'événement est enregistrée dans votre calendrier."
+          "The event date is saved in your calendar."
         );
       setLoading(false);
     }
@@ -234,7 +234,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Événement"
+        title="Event"
         back={true}
         home={true}
         navigation={navigation}
@@ -302,13 +302,13 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                   )
                 )}
                 <Text style={styles.date}>
-                  Date de l’événement: {EVENTDATA.event_start_date_new}{" "}
+                  Event date: {EVENTDATA.event_start_date_new}{" "}
                   {EVENTDATA.event_end_date_new &&
                     `to ${EVENTDATA.event_end_date_new}`}
                 </Text>
                 {EVENTDATA.event_date && (
                   <Text style={[styles.date, { paddingTop: 0 }]}>
-                    Jours de la semaine: {EVENTDATA.event_date}
+                    Days: {EVENTDATA.event_date}
                   </Text>
                 )}
               </Card>
@@ -320,7 +320,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                   marginTop: 20,
                 }}
               >
-                Événement
+                Event
               </Text>
               <View
                 style={{ backgroundColor: "white", backgroundColor: "#ebf8ff" }}
@@ -360,14 +360,14 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                   loading={loading}
                   disabled={loading}
                 >
-                  Enregistrer dans mon calendrier
+                  Save to my calendar
                 </Button>
               </View>
 
               {EVENTDATA.event_company > 0 && (
                 <CardBusiness
                   BUSINESS={BUSINESS}
-                  title={"Organisateur"}
+                  title={"Organizer"}
                   navigation={navigation}
                 />
               )}
@@ -382,7 +382,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                   marginTop: 20,
                 }}
               >
-                VOUS SEREZ ÉGALEMENT INTÉRESSÉ PAR
+                YOU MAY ALSO BE INTERESTED IN
               </Text>
               <FlatList
                 horizontal={true}
@@ -419,7 +419,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
           },
           {
             icon: "phone",
-            label: "Appel",
+            label: "Call",
             color: "#ffffff",
             style: { backgroundColor: "#0298d3" },
             onPress: () =>
@@ -427,7 +427,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                 ? Linking.openURL(
                   `tel:${BUSINESS.directory_contact[0].contact}`
                 )
-                : Alert.alert("Désolé! Aucun numéro de contact trouvé"),
+                : Alert.alert("Sorry! No contact number found"),
             labelStyle: styles.fabLabelStyle,
           },
           {
@@ -438,7 +438,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
                 ? Linking.openURL(
                   `https://wa.me/${BUSINESS.directory_whatsapp}`
                 )
-                : Alert.alert("Désolé! Aucun contact WhatsApp trouvé"),
+                : Alert.alert("Sorry! No WhatsApp contact found"),
             color: "#ffffff",
             style: { backgroundColor: "#64B161" },
             labelStyle: styles.fabLabelStyle,

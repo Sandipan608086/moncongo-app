@@ -175,7 +175,7 @@ const BusinessListCom = (props) => {
               )
             }
           >
-            Infos
+            Info
           </Button>
           <Button
             mode="text"
@@ -187,10 +187,10 @@ const BusinessListCom = (props) => {
                 ? Linking.openURL(
                     `tel:${props.data.directory_contact[0].contact}`
                   )
-                : Alert.alert("Désolé! Aucun numéro de contact trouvé")
+                : Alert.alert("Sorry! No contact number found.")
             }
           >
-            Appel
+            Call
           </Button>
           {/* (Platform.OS === 'ios')  */}
           <Button
@@ -200,7 +200,7 @@ const BusinessListCom = (props) => {
             style={{ width: "35%", alignItems: "flex-end" }}
             onPress={() => onShare()}
           >
-            Partager
+            Share
           </Button>
         </Card.Actions>
       </Card>

@@ -119,7 +119,7 @@ const BusinessListScreen = ({ navigation, route, threshold = 100 }) => {
       >
         <Appbar.Header statusBarHeight={Platform.OS === "ios" ? 80 : 0}>
           <Appbar.Content
-            title="Ville"
+            title="City"
             titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }}
           />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
@@ -164,7 +164,7 @@ const BusinessListScreen = ({ navigation, route, threshold = 100 }) => {
             disabled={loadList}
             loading={loadList}
           >
-            Rechercher
+            Filter
           </Button>
           {/* <Button
             style={[

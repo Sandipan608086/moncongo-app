@@ -52,7 +52,7 @@ const LoginScreen = ({ navigation }) => {
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
           <Image alt="image" style={g.logo} source={require("./../../assets/logo.png")} />
-          <Text style={g.Subtitle}>SE CONNECTER</Text>
+          <Text style={g.Subtitle}>LOG IN</Text>
           <View style={g.Form}>
             {/* <FormBuilder
                             control={control}
@@ -104,12 +104,12 @@ const LoginScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ce champ est obligatoire",
+                  message: "This field is required",
                 },
                 pattern: {
                   value:
                     /[A-Za-z0-9._%+-]{1,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/,
-                  message: "Ce champ doit être un email valide",
+                  message: "This field must be a valid email",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -136,24 +136,24 @@ const LoginScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: " Ce champ est obligatoire",
+                  message: "This field is required",
                 },
                 minLength: {
                   value: 6,
                   message:
-                    "Le mot de passe doit contenir au moins 6 caractères",
+                    "The password must be at least 6 characters long",
                 },
                 maxLength: {
                   value: 30,
                   message:
-                    "Le mot de passe doit contenir entre 6 et 30 caractères",
+                    "The password must be between 6 and 30 characters long",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   secureTextEntry={true}
                   mode="outlined"
-                  placeholder="Mot de passe *"
+                  placeholder="Password *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -172,7 +172,7 @@ const LoginScreen = ({ navigation }) => {
               labelStyle={g.fBtn}
               onPress={() => navigation.navigate("ForgotPassword")}
             >
-              Mot de passe oublié ?
+              Forgot Password ?
             </Button>
             <Button
               style={[g.Btn, { marginBottom: 100 }]}
@@ -200,7 +200,7 @@ const LoginScreen = ({ navigation }) => {
                 });
               })}
             >
-              Envoyer
+              Connect
             </Button>
           </View>
         </View>
@@ -208,14 +208,14 @@ const LoginScreen = ({ navigation }) => {
       <View style={g.bottom}>
         <View>
           <List.Item
-            title="Vous n'avez pas de compte?"
+            title="Don't have an account?"
             titleStyle={[g.list, { fontSize: 12 }]}
             right={() => (
               <Button
                 labelStyle={g.lBtn}
                 onPress={() => navigation.navigate("Register")}
               >
-                Inscrivez-vous
+                Register
               </Button>
             )}
           />
