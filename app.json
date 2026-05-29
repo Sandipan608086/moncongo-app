@@ -58,16 +58,8 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "1a75b44d-353b-4717-9896-eeaef14f843d"
-      }
-    },
     "runtimeVersion": {
       "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/1a75b44d-353b-4717-9896-eeaef14f843d"
     },
     "plugins": [
       "@react-native-firebase/app",
@@ -135,6 +127,11 @@
       ]
     ],
     "owner": "sandipan.rcciit",
-    "_comment": "WhizzTanzania branch - Phase 1 identity swap complete"
+    "_comment": "WhizzTanzania branch - Phase 1 identity swap complete",
+    "extra": {
+      "eas": {
+        "projectId": "11b543d5-20a3-41a5-96e2-518be2b11e7d"
+      }
+    }
   }
 }
