@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
@@ -330,7 +331,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   if (req.payload.statusMobile === true) {
                     dispatch(profileUpdateApi({ update: "eUpdate" }));
                     dispatch(profileShowApi(JSON.parse(userKey)));
-                    navigation.navigate("Profil");
+                    navigation.navigate("Profile");
                     Alert.alert(req.payload.message);
                     setLoading(false);
                   } else if (req.payload.statusMobile === false) {

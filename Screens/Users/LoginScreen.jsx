@@ -5,7 +5,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import {
@@ -183,7 +184,7 @@ const LoginScreen = ({ navigation }) => {
                 dispatch(loginApi({ data: values })).then((req) => {
                   if (req.payload.status === true) {
                     dispatch(userSetKey(req.payload.authorization));
-                    navigation.navigate("Profil");
+                    navigation.navigate("Profile");
                     setLoading(false);
                   } else if (req.payload.appEmail === true) {
                     navigation.navigate(

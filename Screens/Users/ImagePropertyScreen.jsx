@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
   TouchableOpacity,
 } from "react-native";
@@ -128,7 +129,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
             //     icon="camera"
             //     onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('list_image') }}
             // >Camera</Button>
-            <Image alt="image"PickerLoad
+            <ImagePickerLoad
               imgApi={propertyImgApi}
               imgType={"list_image"}
               id={PROPERTYDATA.property_id}
@@ -190,7 +191,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               icon="camera"
               onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('flier_image') }}
           >Camera</Button> */}
-          <Image alt="image"PickerLoad
+          <ImagePickerLoad
             imgApi={propertyImgApi}
             imgType={"flier_image"}
             id={PROPERTYDATA.property_id}

@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
@@ -148,7 +149,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
                 setLoading(true);
                 dispatch(changePasswordApi(data)).then((req) => {
                   if (req.payload.status === true) {
-                    navigation.navigate("Profil");
+                    navigation.navigate("Profile");
                     Alert.alert(req.payload.message);
                     setLoading(false);
                   } else {

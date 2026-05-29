@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
   TouchableOpacity,
 } from "react-native";
@@ -127,7 +128,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
             //     icon="camera"
             //     onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('list_image') }}
             // >Camera</Button>
-            <Image alt="image"PickerLoad
+            <ImagePickerLoad
               imgApi={autoImgApi}
               imgType={"list_image"}
               id={AUTODETAILDATA.car_id}
@@ -189,7 +190,7 @@ const ImageAutoScreen = ({ navigation, route }) => {
                             icon="camera"
                             onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('flier_image') }}
                         >Camera</Button> */}
-          <Image alt="image"PickerLoad
+          <ImagePickerLoad
             imgApi={autoImgApi}
             imgType={"flier_image"}
             id={AUTODETAILDATA.car_id}
