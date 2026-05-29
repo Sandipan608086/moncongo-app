@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
   TouchableOpacity,
 } from "react-native";
@@ -55,7 +56,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
     //     :
     <SafeAreaView style={g.Container}>
       <AppbarHeader
-        title="Immobilier Image"
+        title="Property images"
         back={true}
         home={false}
         navigation={navigation}
@@ -78,7 +79,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               color: "#fff",
             }}
           >
-            l'image dans la liste et la galerie est requise
+            Image in list and gallery is required
           </Text>
         )}
         <View style={{ flex: 1, padding: 20 }}>
@@ -89,7 +90,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               marginBottom: 10,
             }}
           >
-            liste Image
+            List image
           </Text>
           {PROPERTYDATA.list_image !== "" ? (
             <Card
@@ -128,7 +129,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
             //     icon="camera"
             //     onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('list_image') }}
             // >Camera</Button>
-            <Image alt="image"PickerLoad
+            <ImagePickerLoad
               imgApi={propertyImgApi}
               imgType={"list_image"}
               id={PROPERTYDATA.property_id}
@@ -147,7 +148,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               marginBottom: 10,
             }}
           >
-            Image du dépliant
+            Gallery image
           </Text>
           {PROPERTYDATA.flierImage &&
             PROPERTYDATA.flierImage.map((value, i) => {
@@ -190,7 +191,7 @@ const ImagePropertyScreen = ({ navigation, route }) => {
               icon="camera"
               onPress={() => { setCameraVisible(true), setListImage(undefined), setImgType('flier_image') }}
           >Camera</Button> */}
-          <Image alt="image"PickerLoad
+          <ImagePickerLoad
             imgApi={propertyImgApi}
             imgType={"flier_image"}
             id={PROPERTYDATA.property_id}

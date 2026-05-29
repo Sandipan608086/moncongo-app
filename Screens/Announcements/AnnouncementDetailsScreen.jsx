@@ -103,7 +103,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Annonce"
+        title="Announcement"
         back={true}
         home={true}
         navigation={navigation}
@@ -170,7 +170,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                 )
               )}
               <Text style={styles.date}>
-                Date de l’annonce: {ANNOUNCDATA.ann_start_date}{" "}
+                Announcement date: {ANNOUNCDATA.ann_start_date}{" "}
                 {ANNOUNCDATA.ann_end_date && `to ${ANNOUNCDATA.ann_end_date}`}
               </Text>
             </Card>
@@ -182,7 +182,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                 fontFamily: "Poppins_700Bold",
               }}
             >
-              Annonce
+              Announcement
             </Text>
             <View style={{ marginTop: 20, backgroundColor: "#ebf8ff" }}>
               {ANNOUNCDATA.clean_description != "" && (
@@ -196,7 +196,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
             </View>
             <CardBusiness
               BUSINESS={BUSINESS}
-              title={"Société"}
+              title={"Company"}
               navigation={navigation}
             />
             <Text
@@ -206,7 +206,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                 marginTop: 20,
               }}
             >
-              VOUS SEREZ ÉGALEMENT INTÉRESSÉ PAR
+              YOU MAY ALSO BE INTERESTED IN
             </Text>
             <View>
               <FlatList
@@ -239,12 +239,12 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
             onPress: () =>
               BUSINESS.directory_email[0].email !== ""
                 ? Linking.openURL(`mailto:${BUSINESS.directory_email[0].email}`)
-                : Alert.alert("Désolé! Aucune adresse e-mail trouvée"),
+                : Alert.alert("Email Address Not Found"),
             labelStyle: styles.fabLabelStyle,
           },
           {
             icon: "phone",
-            label: "Appel",
+            label: "Call",
             color: "#ffffff",
             style: { backgroundColor: "#0298d3" },
             onPress: () =>
@@ -252,7 +252,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                 ? Linking.openURL(
                   `tel:${BUSINESS.directory_contact[0].contact}`
                 )
-                : Alert.alert("Désolé! Aucun numéro de contact trouvé"),
+                : Alert.alert("Sorry! No contact number found"),
             labelStyle: styles.fabLabelStyle,
           },
           {
@@ -263,7 +263,7 @@ const AnnouncementDetailsScreen = ({ navigation, route }, props) => {
                 ? Linking.openURL(
                   `https://wa.me/${BUSINESS.directory_whatsapp}`
                 )
-                : Alert.alert("Désolé! Aucun contact WhatsApp trouvé"),
+                : Alert.alert("Sorry! No WhatsApp contact found"),
             color: "#ffffff",
             style: { backgroundColor: "#64B161" },
             labelStyle: styles.fabLabelStyle,

@@ -47,19 +47,19 @@ const PropertyDetails = ({ navigation, route }) => {
       {
         id: 9,
         icon: "home",
-        name: "Taper",
+        name: "Type",
         value: PROPERTYDATA.property_category_name,
       },
       {
         id: 1,
         icon: "bed-king-outline",
-        name: "Chambres",
+        name: "Rooms",
         value: PROPERTYDATA.property_bedrooms,
       },
       {
         id: 2,
         icon: "bathtub-outline",
-        name: "S. de Bain",
+        name: "Bathrooms",
         value: PROPERTYDATA.property_bathrooms,
       },
       {
@@ -71,37 +71,37 @@ const PropertyDetails = ({ navigation, route }) => {
       {
         id: 4,
         icon: "chair-rolling",
-        name: "Meublé",
-        value: `${PROPERTYDATA.property_furnished === "yes" ? "Oui" : "Non"}`,
+        name: "Furnished",
+        value: `${PROPERTYDATA.property_furnished === "yes" ? "Yes" : "No"}`,
       },
       {
         id: 5,
         icon: "elevator-passenger-outline",
-        name: "Ascenseur",
-        value: `${PROPERTYDATA.property_lift === "yes" ? "Oui" : "Non"}`,
+        name: "Lift",
+        value: `${PROPERTYDATA.property_lift === "yes" ? "Yes" : "No"}`,
       },
       {
         id: 6,
         icon: "boom-gate-outline",
         name: "Parking",
-        value: `${PROPERTYDATA.property_parking === "yes" ? "Oui" : "Non"}`,
+        value: `${PROPERTYDATA.property_parking === "yes" ? "Yes" : "No"}`,
       },
       {
         id: 7,
         icon: "car-battery",
-        name: "Groupe électrogène",
-        value: `${PROPERTYDATA.property_generator === "yes" ? "Oui" : "Non"}`,
+        name: "Generator",
+        value: `${PROPERTYDATA.property_generator === "yes" ? "Yes" : "No"}`,
       },
       {
         id: 8,
         icon: "security",
-        name: "Sécurité",
-        value: `${PROPERTYDATA.property_security === "yes" ? "Oui" : "Non"}`,
+        name: "Security",
+        value: `${PROPERTYDATA.property_security === "yes" ? "Yes" : "No"}`,
       },
       {
         id: 9,
         icon: "shield-home-outline",
-        name: "Publié par",
+        name: "Published by",
         value: PROPERTYDATA.property_listed,
       },
     ]
@@ -110,7 +110,7 @@ const PropertyDetails = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Immobilier"
+        title="Property"
         back={true}
         home={true}
         navigation={navigation}
@@ -158,12 +158,12 @@ const PropertyDetails = ({ navigation, route }) => {
             </Text>
             {PROPERTYDATA.property_price !== '--' ? <View style={{ flexDirection: "row" }}>
               <Text style={[styles.Title, { marginVertical: 10 }]}>
-                ${PROPERTYDATA.property_price}
+                TSH {PROPERTYDATA.property_price}
               </Text>
               <Text style={{ marginTop: 18 }}>
-                {PROPERTYDATA.property_type == "rent" && "/mois"}
+                {PROPERTYDATA.property_type == "rent" && "/month"}
               </Text>
-            </View> : <View style={{ flexDirection: 'row' }}><Text style={[{ marginVertical: 10 }]}>Contactez le vendeur pour le prix</Text></View>}
+            </View> : <View style={{ flexDirection: 'row' }}><Text style={[{ marginVertical: 10 }]}>Contact seller for price</Text></View>}
             {PROPERTYDATA.property_address && (
               <View
                 style={{
@@ -247,13 +247,13 @@ const PropertyDetails = ({ navigation, route }) => {
         actions={[
           {
             icon: "phone",
-            label: "Appel",
+            label: "Call",
             color: "#ffffff",
             style: { backgroundColor: "#0298d3" },
             onPress: () =>
               PROPERTYDATA.property_mobile
                 ? Linking.openURL(`tel:${PROPERTYDATA.property_mobile}`)
-                : Alert.alert("Désolé! Aucun numéro de contact trouvé"),
+                : Alert.alert("Sorry! No contact number found"),
             labelStyle: styles.fabLabelStyle,
           },
           {
@@ -264,7 +264,7 @@ const PropertyDetails = ({ navigation, route }) => {
                 ? Linking.openURL(
                   `https://wa.me/${PROPERTYDATA.property_whatsapp}`
                 )
-                : Alert.alert("Désolé! Aucun contact WhatsApp trouvé"),
+                : Alert.alert("Sorry! No WhatsApp contact found"),
             color: "#ffffff",
             style: { backgroundColor: "#64B161" },
             labelStyle: styles.fabLabelStyle,

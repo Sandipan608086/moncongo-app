@@ -193,7 +193,7 @@ const HomeScreen = ({ navigation, threshold = 100 }) => {
               )
             }
           >
-            En savoir plus
+            Read more
           </Button>
           <Button
             mode="text"
@@ -202,7 +202,7 @@ const HomeScreen = ({ navigation, threshold = 100 }) => {
             style={{ width: "50%", alignItems: "flex-end" }}
             onPress={() => onShare(item.notification_url)}
           >
-            Partager
+            Share
           </Button>
         </Card.Actions>
       </Card>
@@ -239,7 +239,7 @@ const HomeScreen = ({ navigation, threshold = 100 }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Accueil"
+        title="Home"
         logo={true}
         back={false}
         home={false}

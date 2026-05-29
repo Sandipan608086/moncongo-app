@@ -171,7 +171,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
       >
         <Appbar.Header statusBarHeight={Platform.OS === "ios" ? 80 : 0}>
           <Appbar.Content
-            title="Auto Filtre"
+            title="Vehicles Filter"
             titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }}
           />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
@@ -192,7 +192,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Ville"
+            placeholder="City"
             searchPlaceholder="Search..."
             value={city}
             onChange={(item) => {
@@ -210,7 +210,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Marque"
+            placeholder="Brand"
             searchPlaceholder="Search..."
             value={brand}
             onChange={(item) => {
@@ -229,7 +229,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Modèle"
+            placeholder="Model"
             searchPlaceholder="Search..."
             value={model}
             onChange={(item) => {
@@ -247,7 +247,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Boîte de Vitesse"
+            placeholder="Gearbox"
             searchPlaceholder="Search..."
             value={gearbox}
             onChange={(item) => {
@@ -265,7 +265,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Carburant"
+            placeholder="Fuel type"
             searchPlaceholder="Search..."
             value={fule}
             onChange={(item) => {
@@ -283,7 +283,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Année"
+            placeholder="Year"
             searchPlaceholder="Search..."
             value={year}
             onChange={(item) => {
@@ -301,7 +301,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Prix min"
+            placeholder="Min price"
             searchPlaceholder="Search..."
             value={min}
             onChange={(item) => {
@@ -319,7 +319,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Prix max"
+            placeholder="Max price"
             searchPlaceholder="Search..."
             value={max}
             onChange={(item) => {
@@ -361,7 +361,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => filter()}
           >
-            Rechercher
+            Filter
           </Button>
           <Button
             style={[
@@ -375,7 +375,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => clearForm()}
           >
-            Claire
+            Clear
           </Button>
         </View>
       </View>
@@ -384,7 +384,7 @@ const AutoScreen = ({ navigation, threshold = 100 }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Auto"
+        title="Vehicles"
         back={true}
         home={true}
         navigation={navigation}

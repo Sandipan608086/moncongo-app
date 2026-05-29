@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
   Platform
 } from "react-native";
@@ -56,11 +57,11 @@ const RegisterScreen = ({ navigation }) => {
       name: "",
       email: "",
       conpassword: "",
-      country: 50,
-      city: 26,
+      country: 216,
+      city: 3,
       phone: "",
-      phoneCode: "243",
-      whatsappCode: "243",
+      phoneCode: "255",
+      whatsappCode: "255",
       whatsapp: "",
       company: "",
     },
@@ -118,7 +119,7 @@ const RegisterScreen = ({ navigation }) => {
             style={[g.logo, { marginTop: 20 }]}
             source={require("./../../assets/logo.png")}
           />
-          <Text style={g.Subtitle}>Inscrivez-vous</Text>
+          <Text style={g.Subtitle}>Register</Text>
           <View style={g.Form}>
             <Controller
               control={control}
@@ -126,13 +127,13 @@ const RegisterScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Nom is required",
+                  message: "Name is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Nom *"
+                  placeholder="Name *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -153,12 +154,12 @@ const RegisterScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "L'e-mail est requis",
+                  message: "Email is required",
                 },
                 pattern: {
                   value:
                     /[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/,
-                  message: "Le courriel est invalide",
+                  message: "Email is invalid",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -185,24 +186,24 @@ const RegisterScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Mot de passe requis",
+                  message: "Password is required",
                 },
                 minLength: {
                   value: 8,
                   message:
-                    "Le mot de passe doit contenir au moins 8 caractères",
+                    "Password must be at least 8 characters long",
                 },
                 maxLength: {
                   value: 30,
                   message:
-                    "Le mot de passe doit contenir entre 8 et 30 caractères",
+                    "Password must be between 8 and 30 characters long",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   secureTextEntry={true}
                   mode="outlined"
-                  placeholder="Mot de passe *"
+                  placeholder="Password *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -223,13 +224,13 @@ const RegisterScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Pays is required",
+                  message: "Country is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <RNPickerSelect
                   placeholder={{
-                    label: "Pays *",
+                    label: "Country *",
                     value: null,
                     color: "#9EA0A4",
                   }}
@@ -258,13 +259,13 @@ const RegisterScreen = ({ navigation }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ville is required",
+                  message: "City is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <RNPickerSelect
                   placeholder={{
-                    label: "Ville *",
+                    label: "City *",
                     value: null,
                     color: "#9EA0A4",
                   }}
@@ -291,7 +292,7 @@ const RegisterScreen = ({ navigation }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "Phone Code *",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -310,14 +311,14 @@ const RegisterScreen = ({ navigation }) => {
                 rules={{
                   required: {
                     value: true,
-                    message: "Telephone Numéro is required",
+                    message: "Phone Number is required",
                   },
                 }}
                 render={({ field: { onChange, value, onBlur } }) => (
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Numéro de téléphone *"
+                      placeholder="Phone Number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -350,14 +351,14 @@ const RegisterScreen = ({ navigation }) => {
                 rules={{
                   required: {
                     value: true,
-                    message: "Numéro de code required",
+                    message: "Code is required",
                   },
                 }}
                 render={({ field: { onChange, value, onBlur } }) => (
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "Phone Code *",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -376,14 +377,14 @@ const RegisterScreen = ({ navigation }) => {
                 rules={{
                   required: {
                     value: true,
-                    message: "Numéro Whatsapp is required",
+                    message: "WhatsApp Number is required",
                   },
                 }}
                 render={({ field: { onChange, value, onBlur } }) => (
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Numéro Whatsapp *"
+                      placeholder="WhatsApp Number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -415,7 +416,7 @@ const RegisterScreen = ({ navigation }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Nom de l’entreprise (optionnel)"
+                  placeholder="Company Name (optional)"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -430,7 +431,7 @@ const RegisterScreen = ({ navigation }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Adresse (optionnel)"
+                  placeholder="Address (optional)"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -463,7 +464,7 @@ const RegisterScreen = ({ navigation }) => {
                   )
                 }
               >
-                J’accepte les termes et conditions.
+                I accept the terms and conditions.
               </Text>
             </View>
             <Button
@@ -499,14 +500,14 @@ const RegisterScreen = ({ navigation }) => {
       <View style={g.bottom}>
         <View>
           <List.Item
-            title="J’ai déjà un compte?"
+            title="Already have an account?"
             titleStyle={[g.list, { fontSize: 12 }]}
             right={() => (
               <Button
                 labelStyle={g.lBtn}
                 onPress={() => navigation.navigate("Login")}
               >
-                Se connecter
+                Log in
               </Button>
             )}
           />

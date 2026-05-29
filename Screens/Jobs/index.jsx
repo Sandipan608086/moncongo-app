@@ -73,7 +73,7 @@ const JobsScreen = ({ navigation, threshold = 100 }) => {
       setToggleOpen(false);
       // setModalVisible(!modalVisible)
     } else {
-      Alert.alert("Champ de filtre Vide");
+      Alert.alert("Please select a category to filter");
     }
   };
   const onEndReachedHandler = ({ distanceFromEnd }) => {
@@ -139,7 +139,7 @@ const JobsScreen = ({ navigation, threshold = 100 }) => {
         <Appbar.Header statusBarHeight={Platform.OS === "ios" ? 80 : 0}>
           <Appbar.Content
             category="h1"
-            title="Offres d’emploi Filtre"
+            title="Jobs Filter"
             titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }}
           />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
@@ -187,7 +187,7 @@ const JobsScreen = ({ navigation, threshold = 100 }) => {
               mode="contained"
               onPress={() => filter()}
             >
-              Rechercher
+              Filter
             </Button>
             <Button
               style={[
@@ -201,7 +201,7 @@ const JobsScreen = ({ navigation, threshold = 100 }) => {
               mode="contained"
               onPress={() => clearForm()}
             >
-              Claire
+              Clear
             </Button>
           </View>
         </View>
@@ -211,7 +211,7 @@ const JobsScreen = ({ navigation, threshold = 100 }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Offres d’emploi"
+        title="Jobs"
         back={true}
         home={true}
         navigation={navigation}

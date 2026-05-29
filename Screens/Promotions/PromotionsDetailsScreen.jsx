@@ -99,7 +99,7 @@ const PromotionsDetailsScreen = ({ navigation, route }) => {
                                     }
                                 </Swiper>
                         }
-                        <Text style={styles.date}>Date de la promotion: {PROMOTIONDATA.prom_start_date} {PROMOTIONDATA.prom_end_date && `to ${PROMOTIONDATA.prom_end_date}`}</Text>
+                        <Text style={styles.date}>Promotion date: {PROMOTIONDATA.prom_start_date} {PROMOTIONDATA.prom_end_date && `to ${PROMOTIONDATA.prom_end_date}`}</Text>
                     </Card>
 
                     <Text style={{ fontSize: 20, fontFamily: 'Poppins_700Bold', marginTop: 20 }}>Promotion</Text>
@@ -116,7 +116,7 @@ const PromotionsDetailsScreen = ({ navigation, route }) => {
                             )
                         }
                     </View>
-                    <CardBusiness BUSINESS={BUSINESS} title={'Société'} navigation={navigation} />
+                    <CardBusiness BUSINESS={BUSINESS} title={'Company'} navigation={navigation} />
                     <Text style={{ fontSize: 16, fontFamily: 'Poppins_700Bold', marginTop: 20 }}>VOUS SEREZ ÉGALEMENT INTÉRESSÉ PAR</Text>
                     <View>
                         <FlatList
@@ -150,7 +150,7 @@ const PromotionsDetailsScreen = ({ navigation, route }) => {
                     },
                     {
                         icon: 'phone',
-                        label: 'Appel',
+                        label: 'Call',
                         color: '#ffffff',
                         style: { backgroundColor: '#0298d3' },
                         onPress: () => BUSINESS.directory_contact.length > 0 ? Linking.openURL(`tel:${BUSINESS.directory_contact[0].contact}`) : Alert.alert('Désolé! Aucun numéro de contact trouvé'),

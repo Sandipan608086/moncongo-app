@@ -51,7 +51,7 @@ const AppbarHeader = (props) => {
       {props.home == true ? (
         <Appbar.Action
           icon="home-outline"
-          onPress={() => props.navigation.navigate("Accueil", "Dashboard")}
+          onPress={() => props.navigation.navigate("Home", "Dashboard")}
         />
       ) : (
         ""

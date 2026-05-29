@@ -57,7 +57,7 @@ const JobsForm = ({ navigation, route }) => {
         })
         
       } else {
-        Alert.alert("Tous les champs sont requis!");
+        Alert.alert("All fields are required!");
         setLoading(false);
       }
     } else {
@@ -90,7 +90,7 @@ const JobsForm = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Appliquer"
+        title="Job Apply"
         back={true}
         home={true}
         navigation={navigation}
@@ -102,7 +102,7 @@ const JobsForm = ({ navigation, route }) => {
         <View style={styles.form}>
           <TextInput
             mode="outlined"
-            label="Nom *"
+            label="Name *"
             value={name}
             onChangeText={(name) => setName(name)}
             style={{ marginTop: 10, backgroundColor: "#ffffff" }}
@@ -127,7 +127,7 @@ const JobsForm = ({ navigation, route }) => {
             }}
             activeOutlineColor={"#0298d3"}
             underlineColorAndroid="transparent"
-            label="Lettre de motivation"
+            label="Cover letter *"
             numberOfLines={8}
             multiline={true}
             value={textarea}
@@ -139,9 +139,9 @@ const JobsForm = ({ navigation, route }) => {
             onPress={() => pickDocument()}
           >
             {" "}
-            {namecv ? namecv : "Télécharger CV *"}{" "}
+            {namecv ? namecv : "Upload CV *"}{" "}
           </Button>
-          <Text style={{padding: 5}}>Télécharger les fichiers en format PDF et DOC seulement</Text>
+          <Text style={{padding: 5}}>Uploaded files in PDF or DOC format only</Text>
           <Button
             mode="contained"
             onPress={() => formData()}
@@ -149,7 +149,7 @@ const JobsForm = ({ navigation, route }) => {
             loading={isloading}
             style={g.Btn}
           >
-            Postulez
+            Apply
           </Button>
         </View>
       </ScrollView>

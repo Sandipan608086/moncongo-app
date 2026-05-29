@@ -38,7 +38,7 @@ const OtpScreen = ({ navigation, route }) => {
                 }
             })
         } else {
-            Alert.alert('OTP a été incomplet')
+            Alert.alert('OTP was incomplete')
         }
     };
     return (
@@ -52,8 +52,8 @@ const OtpScreen = ({ navigation, route }) => {
             >
                 <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
                     <Image alt="image" style={g.logo} source={require('./../../assets/logo.png')} />
-                    <Text style={g.Subtitle}>Entrez OTP</Text>
-                    <Text>Votre code unique a été envoyé sur l'adresse email que vous aviez insérez lors de l'inscription</Text>
+                    <Text style={g.Subtitle}>Enter your unique code OTP</Text>
+                    <Text>Your unique code has been sent to the email address you entered during registration</Text>
                     <View style={g.Form}>
                         <OTPTextView
                             ref={input}
@@ -68,9 +68,9 @@ const OtpScreen = ({ navigation, route }) => {
                             disabled={isloading}
                             loading={isloading}
                         > 
-                            Envoyer 
+                            Send 
                         </Button>
-                        <Button style={g.BtnClear} mode="outlined" onPress={clear}> Éffacer </Button>
+                        <Button style={g.BtnClear} mode="outlined" onPress={clear}> Clear </Button>
                     </View>
                 </View>
             </ScrollView>

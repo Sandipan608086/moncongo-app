@@ -17,14 +17,14 @@ const ConfirmationScreen = ({ navigation }) => {
             >
                 <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
                     <Image alt="image" style={{width: '35%', height: '20%'}} source={require('./../../assets/emailImg.png')} />
-                    <Text style={g.Subtitle}>Confirmation de l'émail</Text>
-                    <Text style={{textAlign: 'center', paddingHorizontal: 10}}>Merci. Vous pouvez maintenant vous connecter avec votre e-mail et le mot de passe choisi</Text>
+                    <Text style={g.Subtitle}>Email confirmation</Text>
+                    <Text style={{textAlign: 'center', paddingHorizontal: 10}}>Thanks. You can now log in with your email and chosen password</Text>
                     <Button
                         style={[g.Btn, { marginBottom: 100 }]}
                         mode="contained"
                         onPress={() => navigation.navigate('Login')}
                     >
-                        Envoyer
+                        Continue
                     </Button>
                 </View>
             </ScrollView>

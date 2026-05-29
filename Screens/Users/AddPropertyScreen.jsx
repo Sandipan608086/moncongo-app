@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
@@ -150,17 +151,17 @@ const AddPropertyScreen = ({ navigation, route }) => {
       address:
         routeData.type == "editProperty" ? routeData.data.property_address : "",
       country:
-        routeData.type == "editProperty" ? routeData.data.property_country : 50,
+        routeData.type == "editProperty" ? routeData.data.property_country : 216,
       city:
-        routeData.type == "editProperty" ? routeData.data.property_citys : 26,
+        routeData.type == "editProperty" ? routeData.data.property_citys : 3,
       phoneCode:
-        routeData.type == "editProperty" ? routeData.data.code_mobile : 243,
+        routeData.type == "editProperty" ? routeData.data.code_mobile : 255,
       phone:
         routeData.type == "editProperty" ? routeData.data.property_mobile : "",
       whatsappCode:
         routeData.type == "editProperty"
           ? routeData.data.code_whatsapp
-          : 243,
+          : 255,
       whatsapp:
         routeData.type == "editProperty"
           ? routeData.data.property_whatsapp
@@ -173,7 +174,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
     if (isFocused === true) {
       reset(defaults);
       countryClick();
-      routeData.data != undefined ? cityClick(routeData.data.property_country) : cityClick(50)
+      routeData.data != undefined ? cityClick(routeData.data.property_country) : cityClick(216)
     }
   }, [reset, isFocused]);
   return (
@@ -181,8 +182,8 @@ const AddPropertyScreen = ({ navigation, route }) => {
       <AppbarHeader
         title={
           routeData.type === "addProperty"
-            ? "Ajouter Immobilier"
-            : "Modifier Immobilier"
+            ? "Add Property"
+            : "Edit Property"
         }
         back={true}
         home={false}
@@ -202,13 +203,13 @@ const AddPropertyScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ce champ est obligatoire",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Nom *"
+                  placeholder="Name *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -230,7 +231,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "champ de saisie vide",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -245,7 +246,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Catégorie *"
+                  placeholder="Category *"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -272,14 +273,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Vendre", value: "sell" },
-                    { label: "Louer", value: "rent" },
+                    { label: "Sell", value: "sell" },
+                    { label: "Rent", value: "rent" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Taper"
+                  placeholder="Type"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -301,14 +302,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Propriétaire", value: "owner" },
-                    { label: "Agente", value: "agent" },
+                    { label: "Owner", value: "owner" },
+                    { label: "Agent", value: "agent" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Répertorié par"
+                  placeholder="Listed by"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -324,7 +325,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "champ de saisie vide",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -356,14 +357,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "yes" },
-                    { label: "Non", value: "no" },
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Négociable"
+                  placeholder="Negotiable"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -379,7 +380,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Chambres"
+                  placeholder="Bedrooms *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -395,7 +396,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="S. de Bain"
+                  placeholder="Bathrooms *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -411,7 +412,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Dimensions (&#13217;)"
+                  placeholder="Dimensions (㎡)"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -432,14 +433,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "yes" },
-                    { label: "Non", value: "no" },
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Meublé"
+                  placeholder="Furnished"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -460,14 +461,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "yes" },
-                    { label: "Non", value: "no" },
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Ascenseur"
+                  placeholder="Lift"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -488,8 +489,8 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "yes" },
-                    { label: "Non", value: "no" },
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
                   ]}
                   search
                   maxHeight={300}
@@ -516,14 +517,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "yes" },
-                    { label: "Non", value: "no" },
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Groupe électrogène"
+                  placeholder="Generator"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -544,14 +545,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   inputSearchStyle={pickerSelectStyles.inputSearchStyle}
                   iconStyle={pickerSelectStyles.iconStyle}
                   data={[
-                    { label: "Oui", value: "yes" },
-                    { label: "Non", value: "no" },
+                    { label: "Yes", value: "yes" },
+                    { label: "No", value: "no" },
                   ]}
                   search
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Sécurité"
+                  placeholder="Security"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -567,7 +568,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ce champ est obligatoire",
+                  message: "This field is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -595,7 +596,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Pays is required",
+                  message: "Country is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -610,7 +611,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Pays"
+                  placeholder="Country"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -634,7 +635,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Ville is required",
+                  message: "City is required",
                 },
               }}
               render={({ field: { onChange, value, onBlur } }) => (
@@ -649,7 +650,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Ville"
+                  placeholder="City"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -673,7 +674,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "Phone Code",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -692,14 +693,14 @@ const AddPropertyScreen = ({ navigation, route }) => {
                 rules={{
                   required: {
                     value: true,
-                    message: "Ce champ est obligatoire",
+                    message: "This field is required",
                   },
                 }}
                 render={({ field: { onChange, value, onBlur } }) => (
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Numéro de téléphone *"
+                      placeholder="Phone Number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -724,7 +725,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "WhatsApp Code",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -744,7 +745,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Numéro Whatsapp"
+                      placeholder="WhatsApp Number"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -812,7 +813,7 @@ const AddPropertyScreen = ({ navigation, route }) => {
                 });
               })}
             >
-              Envoyer
+              Submit
             </Button>
           </View>
         </View>

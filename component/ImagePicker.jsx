@@ -61,8 +61,8 @@ export default function ImagePickerLoad(props) {
         }}
       >
 
-        <Button style={[g.Btn, { marginRight: 10 }]} textColor={'#ffffff'} onPress={() => selectImage(true)}>Parcourir l'image</Button>
-        <Button style={g.Btn} textColor={'#ffffff'} onPress={() => selectImage(false)}>Cliquez sur l'image</Button>
+        <Button style={[g.Btn, { marginRight: 10 }]} textColor={'#ffffff'} onPress={() => selectImage(true)}>Browse</Button>
+        <Button style={g.Btn} textColor={'#ffffff'} onPress={() => selectImage(false)}>Camera</Button>
       </View>
     </View>
   );

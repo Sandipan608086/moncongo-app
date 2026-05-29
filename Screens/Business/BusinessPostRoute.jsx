@@ -71,7 +71,7 @@ const BusinessPostRoute = (props) => {
         buttons={[
           {
             value: 'announcement',
-            label: 'Annonces',
+            label: 'Announcements',
             onPress: () => setSlug('AnnouncementDetails')
           },
           {
@@ -81,7 +81,7 @@ const BusinessPostRoute = (props) => {
           },
           {
             value: 'events',
-            label: 'Événements',
+            label: 'Events',
             onPress: () => setSlug('EventsDetails')
           }
         ]}

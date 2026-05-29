@@ -138,7 +138,7 @@ const ListAutoScreen = ({ navigation }) => {
           onPress={() => {
             Alert.alert(
               "",
-              "Souhaitez-vous marquer cette voiture comme vendue ?",
+              "Would you like to mark this car as sold ?",
               [
                 {
                   text: "Cancel",
@@ -171,7 +171,7 @@ const ListAutoScreen = ({ navigation }) => {
           onPress={() => {
             Alert.alert(
               "",
-              "Souhaitez-vous marquer cette voiture comme non vendue ?",
+              "Would you like to mark this car as unsold ?",
               [
                 {
                   text: "Cancel",
@@ -215,7 +215,7 @@ const ListAutoScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Liste Auto"
+        title="Vehicle list"
         back={true}
         home={false}
         navigation={navigation}

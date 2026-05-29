@@ -71,7 +71,7 @@ const JobsDetailScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Offre d’emploi"
+        title="Job"
         back={true}
         home={true}
         navigation={navigation}
@@ -98,7 +98,7 @@ const JobsDetailScreen = ({ navigation, route }) => {
                 }
               />
               <Text style={styles.date}>
-              Date de Clôture: {JOBSDATA.job_application_deadline}
+              Closing Date: {JOBSDATA.job_application_deadline}
               </Text>
             </Card>
             <View
@@ -107,14 +107,14 @@ const JobsDetailScreen = ({ navigation, route }) => {
               {JOBSDATA.job_business_name && (
                 <View>
                   <Text style={[styles.Text]}>
-                    Recruteur:
+                    Recruiter:
                   </Text>
                   <Text style={{ fontSize: 14 }}>{JOBSDATA.job_business_name}</Text>
                 </View>
               )}
               {JOBSDATA.job_citie_title && (
                 <View>
-                  <Text style={styles.Text}>Lieu:</Text>
+                  <Text style={styles.Text}>Place:</Text>
                   <Text style={{ display: 'flex' }}>
                     {JOBSDATA.job_citie_title}
                   </Text>
@@ -138,7 +138,7 @@ const JobsDetailScreen = ({ navigation, route }) => {
                   paddingLeft: 15,
                 }}
               >
-                Poste à pourvoir
+                Position
               </Text>
               {JOBSDATA.clean_description != "" && (
                 <RenderHtml
@@ -160,7 +160,7 @@ const JobsDetailScreen = ({ navigation, route }) => {
                 marginTop: 20,
               }}
             >
-              VOUS SEREZ ÉGALEMENT INTÉRESSÉ PAR
+              YOU MIGHT BE ALSO INTERESTED IN
             </Text>
             <View>
               <FlatList

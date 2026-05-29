@@ -69,7 +69,7 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
       toggleOpenFuc(false);
       setLoadList(false)
     } else {
-      Alert.alert("Champ de filtre Vide");
+      Alert.alert("Please select a category to filter");
       setLoadList(false)
     }
   };
@@ -133,7 +133,7 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
       >
         <Appbar.Header statusBarHeight={Platform.OS === 'ios' ? 80 : 0}>
           <Appbar.Content
-            title="Événements Filtre"
+            title="Events Filter"
             titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }}
           />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
@@ -182,7 +182,7 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
             disabled={loadList}
             loading={loadList}
           >
-            Rechercher
+            Filter
           </Button>
           <Button
             style={[
@@ -196,7 +196,7 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => clearForm()}
           >
-            Claire
+            Clear
           </Button>
         </View>
       </View>
@@ -205,7 +205,7 @@ const EventsScreen = ({ navigation, threshold = 100 }) => {
   return (
     <SafeAreaView style={styles.container}>
         <AppbarHeader
-          title="Événements"
+          title="Events"
           back={true}
           home={true}
           navigation={navigation}

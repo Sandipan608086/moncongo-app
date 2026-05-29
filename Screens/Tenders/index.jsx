@@ -69,7 +69,7 @@ const TendersScreen = ({ navigation, threshold = 100 }) => {
       setTypePage("searchTenders");
       setToggleOpen(false);
     } else {
-      Alert.alert("Champ de filtre Vide");
+      Alert.alert("Please select a category to filter");
     }
     // setModalVisible(!modalVisible)
   };
@@ -127,7 +127,7 @@ const TendersScreen = ({ navigation, threshold = 100 }) => {
     return (
       <View style={{ flex: 1, backgroundColor: "rgba(248, 248, 248, 1)" }} elevation={6}>
         <Appbar.Header statusBarHeight={Platform.OS === "ios" ? 80 : 0}>
-          <Appbar.Content title="D’offres Filtre" titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }} />
+          <Appbar.Content title="Tender Filter" titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }} />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
         </Appbar.Header>
         <ScrollView
@@ -172,7 +172,7 @@ const TendersScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => filter()}
           >
-            Filtre
+            Filter
           </Button>
           <Button
             style={[
@@ -186,7 +186,7 @@ const TendersScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => clearForm()}
           >
-            Claire
+            Clear
           </Button>
         </View>
       </View>
@@ -195,7 +195,7 @@ const TendersScreen = ({ navigation, threshold = 100 }) => {
   return (
     <SafeAreaView style={styles.container}>
         <AppbarHeader
-          title="Appels d’offres"
+          title="Tenders"
           back={true}
           home={true}
           navigation={navigation}

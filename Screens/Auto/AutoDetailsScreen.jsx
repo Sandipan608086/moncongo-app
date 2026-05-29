@@ -33,68 +33,68 @@ const AutoDetail = ({ navigation, route }) => {
         {
             id: 1,
             icon: 'calendar',
-            name: "Année",
+            name: "Year",
             value: AUTODETAILDATA.car_year
         },
         {
             id: 2,
             icon: 'speedometer',
-            name: "Kilométrage",
+            name: "Mileage",
             value: AUTODETAILDATA.car_kilometers
         },
         {
             id: 3,
             icon: 'format-color-fill',
-            name: "Couleur",
+            name: "Color",
             value: AUTODETAILDATA.car_color
         },
         {
             id: 4,
             icon: 'car-door',
-            name: "Nombre de portes",
-            value: `${AUTODETAILDATA.car_doors} Portes`
+            name: "Number of Doors",
+            value: `${AUTODETAILDATA.car_doors} Doors`
         },
         {
             id: 5,
             icon: 'car-shift-pattern',
-            name: "Boîte de vitesse",
+            name: "Gearbox",
             value: AUTODETAILDATA.car_transmission_type
         },
         {
             id: 6,
             icon: 'tire',
-            name: "Roue motrice",
+            name: "Driving wheel",
             value: AUTODETAILDATA.car_wheel_drive
         },
         {
             id: 7,
             icon: 'car-defrost-front',
-            name: "Climatisation",
+            name: "Air conditioning",
             value: AUTODETAILDATA.car_air_conditioner > 0 ? 'Oui' : 'Non'
         },
         {
             id: 8,
             icon: 'steering',
-            name: "Volant",
+            name: "Steering wheel",
             value: AUTODETAILDATA.car_steering
         },
         {
             id: 9,
             icon: 'fuel',
-            name: "Carburant",
+            name: "Fuel type",
             value: AUTODETAILDATA.car_fuel
         },
         {
             id: 10,
             icon: 'alpha-b-circle-outline',
-            name: "Marque",
+            name: "Brand",
             value: AUTODETAILDATA.brand_title
         }
     ] : []
     const { width } = useWindowDimensions();
     return (
         <SafeAreaView style={styles.container}>
-            <AppbarHeader title="Auto" back={true} home={true} navigation={navigation} />
+            <AppbarHeader title="Vehicle" back={true} home={true} navigation={navigation} />
             <ScrollView
                 style={styles.ScrollView}
                 showsVerticalScrollIndicator={true}
@@ -117,7 +117,7 @@ const AutoDetail = ({ navigation, route }) => {
                     }
                     {AUTODETAILDATA.car_name && <Text style={[styles.Title, { marginTop: 10 }]}>{AUTODETAILDATA.car_name}</Text>}
 
-                    {AUTODETAILDATA.car_price !== '--' ? <View style={{flexDirection: 'row'}}><Text style={[styles.Title, { marginVertical: 10 }]}>${AUTODETAILDATA.car_price}</Text><Text style={{marginTop: 18}}>{AUTODETAILDATA.car_negotiable == 1 && '/Négotiable'}</Text></View> : <View style={{flexDirection: 'row'}}><Text style={[{ marginVertical: 10 }]}>Contactez le vendeur pour le prix</Text></View>}
+                    {AUTODETAILDATA.car_price !== '--' ? <View style={{flexDirection: 'row'}}><Text style={[styles.Title, { marginVertical: 10 }]}>TSH {AUTODETAILDATA.car_price}</Text><Text style={{marginTop: 18}}>{AUTODETAILDATA.car_negotiable == 1 && '/Négotiable'}</Text></View> : <View style={{flexDirection: 'row'}}><Text style={[{ marginVertical: 10 }]}>Contactez le vendeur pour le prix</Text></View>}
 
                     {AUTODETAILDATA.car_address && <View style={{ paddingVertical: 5, flexDirection: 'row', marginBottom: 10 }}><Location size={24} color='black' /><Text style={{ paddingHorizontal: 11, fontSize: 16 }}>{AUTODETAILDATA.car_address}</Text></View>}
 
@@ -164,7 +164,7 @@ const AutoDetail = ({ navigation, route }) => {
                 actions={[
                     {
                         icon: 'phone',
-                        label: 'Appel',
+                        label: 'Call',
                         color: '#ffffff',
                         style: {backgroundColor: '#0298d3'},
                         onPress: () => AUTODETAILDATA.car_mobile ? Linking.openURL(`tel:${AUTODETAILDATA.car_mobile}`) : Alert.alert('Désolé! Aucun numéro de contact trouvé'),

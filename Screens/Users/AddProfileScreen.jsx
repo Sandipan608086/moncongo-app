@@ -4,7 +4,8 @@ import {
   ScrollView,
   StyleSheet,
   Image,
-  Pressable,
+  Pressable,
+
   Alert,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
@@ -110,7 +111,7 @@ const AddProfileScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={g.Container}>
       <AppbarHeader
-        title="Editer le profil"
+        title="Edit Profile"
         back={true}
         home={true}
         navigation={navigation}
@@ -168,7 +169,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Pays"
+                  placeholder="Country"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -195,7 +196,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   maxHeight={300}
                   labelField="label"
                   valueField="value"
-                  placeholder="Ville"
+                  placeholder="City"
                   searchPlaceholder="Search..."
                   value={value}
                   onChange={(e) => {
@@ -212,7 +213,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "Phone Code *",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -232,7 +233,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Telephone Numéro"
+                      placeholder="Telephone Number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -251,7 +252,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   <View style={{ flex: 0.5, marginRight: 10 }}>
                     <RNPickerSelect
                       placeholder={{
-                        label: "Numéro de code",
+                        label: "WhatsApp Code *",
                         value: null,
                         color: "#9EA0A4",
                       }}
@@ -271,7 +272,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   <View style={{ flex: 1.5, marginTop: 10 }}>
                     <TextInput
                       mode="outlined"
-                      placeholder="Numéro Whatsapp"
+                      placeholder="WhatsApp Number *"
                       value={value}
                       onBlur={onBlur}
                       onChangeText={onChange}
@@ -288,7 +289,7 @@ const AddProfileScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Nom de l’entreprise"
+                  placeholder="Company Name *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -303,7 +304,7 @@ const AddProfileScreen = ({ navigation, route }) => {
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
                   mode="outlined"
-                  placeholder="Adresse"
+                  placeholder="Address *"
                   value={value}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -330,7 +331,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                   if (req.payload.statusMobile === true) {
                     dispatch(profileUpdateApi({ update: "eUpdate" }));
                     dispatch(profileShowApi(JSON.parse(userKey)));
-                    navigation.navigate("Profil");
+                    navigation.navigate("Profile");
                     Alert.alert(req.payload.message);
                     setLoading(false);
                   } else if (req.payload.statusMobile === false) {
@@ -340,7 +341,7 @@ const AddProfileScreen = ({ navigation, route }) => {
                 });
               })}
             >
-              Envoyer
+              Submit
             </Button>
           </View>
         </View>

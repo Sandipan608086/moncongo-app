@@ -95,7 +95,7 @@ export default function CameraApp(props) {
               buttonColor={'#ffffff'}
               textColor={'#000000'}
             >
-              Jeter
+              Cancel
             </Button>
           </View>
           <View style={{ padding: 5 }}>
@@ -106,7 +106,7 @@ export default function CameraApp(props) {
               buttonColor={'#ffffff'}
               textColor={'#000000'}
               >
-                Ajouter
+                Add
                 </Button>
             ) : undefined}
           </View>
@@ -118,7 +118,7 @@ export default function CameraApp(props) {
   return (
     <CameraView style={styles.container} ref={cameraRef}>
       <View style={styles.buttonContainer}>
-        <Button style={{paddingTop: 10, paddingBottom: 10, margin: 0, borderRadius: 0}} buttonColor={'#0298d3'} textColor={'#ffffff'} onPress={takePic}>Prendre une photo</Button>
+        <Button style={{paddingTop: 10, paddingBottom: 10, margin: 0, borderRadius: 0}} buttonColor={'#0298d3'} textColor={'#ffffff'} onPress={takePic}>Take a Photo</Button>
       </View>
       <StatusBar style="auto" />
     </CameraView>

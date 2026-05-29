@@ -170,7 +170,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
       >
         <Appbar.Header statusBarHeight={Platform.OS === "ios" ? 80 : 0}>
           <Appbar.Content
-            title="Immobilier Filtre"
+            title="Properties Filter"
             titleStyle={{ fontSize: 18, fontFamily: "Poppins_700Bold" }}
           />
           <Appbar.Action icon="close" onPress={() => toggleOpenFuc(false)} />
@@ -192,7 +192,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Louer/Vendre"
+              placeholder="Rent/Sell"
               searchPlaceholder="Search..."
               value={listtype}
               onChange={(item) => {
@@ -210,7 +210,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Personne"
+              placeholder="People"
               searchPlaceholder="Search..."
               value={person}
               onChange={(item) => {
@@ -228,7 +228,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Ville"
+              placeholder="City"
               searchPlaceholder="Search..."
               value={city}
               onChange={(item) => {
@@ -246,7 +246,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Prix min"
+              placeholder="Min price"
               searchPlaceholder="Search..."
               value={min}
               onChange={(item) => {
@@ -264,7 +264,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Prix max"
+              placeholder="max price"
               searchPlaceholder="Search..."
               value={max}
               onChange={(item) => {
@@ -282,7 +282,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
               maxHeight={300}
               labelField="label"
               valueField="value"
-              placeholder="Chambres"
+              placeholder="Rooms"
               searchPlaceholder="Search..."
               value={bedrooms}
               onChange={(item) => {
@@ -326,7 +326,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => filter()}
           >
-            Rechercher
+            Filter
           </Button>
           <Button
             style={[
@@ -340,7 +340,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
             mode="contained"
             onPress={() => clearForm()}
           >
-            Claire
+            Clear
           </Button>
         </View>
       </View>
@@ -349,7 +349,7 @@ const PropertyScreen = ({ navigation, threshold = 100 }) => {
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Immobilier"
+        title="Properties"
         back={true}
         home={true}
         navigation={navigation}
