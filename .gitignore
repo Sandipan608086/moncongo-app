@@ -101,3 +101,8 @@ yarn-error.*
 *.tsbuildinfo
 
 # @end expo-cli
+
+# Sensitive credentials & Firebase config
+key/
+google-services.json
+GoogleService-Info.plist
