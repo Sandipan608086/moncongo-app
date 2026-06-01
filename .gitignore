@@ -102,7 +102,5 @@ yarn-error.*
 
 # @end expo-cli
 
-# Sensitive credentials & Firebase config
+# Sensitive credentials & keystores
 key/
-google-services.json
-GoogleService-Info.plist
