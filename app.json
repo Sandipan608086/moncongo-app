@@ -51,14 +51,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "36018212-798c-4642-9e18-665ce7fb4a95"
+        "projectId": "b3e0f05d-3687-44b3-83be-3b2372d5f288"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/36018212-798c-4642-9e18-665ce7fb4a95"
+      "url": "https://u.expo.dev/b3e0f05d-3687-44b3-83be-3b2372d5f288"
     },
     "plugins": [
       "@react-native-firebase/app",
