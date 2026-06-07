@@ -81,9 +81,10 @@
             "resizeMode": "contain"
           },
           "ios": {
-            "backgroundColor": "#0287BC",
-            "image": "./assets/splash.png",
-            "resizeMode": "cover"
+            "backgroundColor": "#94cafc",
+            "image": "./assets/adaptive-icon.png",
+             "imageWidth": 100,
+            "resizeMode": "contain"
           }
         }
       ],
