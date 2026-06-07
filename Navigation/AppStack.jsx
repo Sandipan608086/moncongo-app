@@ -13,7 +13,7 @@ import {
   notificationTestApi,
 } from "./../store/NotificationSlices";
 import { tokenApi } from "./../store/UserSlices";
-import { getMessaging, getToken, requestPermission, onNotificationOpenedApp, onMessage, AuthorizationStatus } from "@react-native-firebase/messaging";
+import { getMessaging, getToken, setAPNSToken, requestPermission, onNotificationOpenedApp, onMessage, AuthorizationStatus } from "@react-native-firebase/messaging";
 
 import HomeScreen from "../Screens/HomeScreen";
 import MenuScreen from "../Screens/MenuScreen";
@@ -133,30 +133,37 @@ export const TabRoutes = () => {
 
 export const AppStack = () => {
   const dispatch = useDispatch();
-  const tokenLoad = () => {
-    // getToken() works on both Android and iOS.
-    // On iOS, Firebase internally handles APNs registration and waits for it
-    // to complete before resolving — no null/timing issues unlike getAPNSToken().
-    const platform = Platform.OS;
-    if (platform === "android" || platform === "ios") {
-      getToken(getMessaging())
-        .then((token) => {
-          if (token) {
-            dispatch(tokenApi({ key: token, type: 'android' }));
-            dispatch(notificatioToken(token));
-          }
-        })
-        .catch((e) => console.log("FCM getToken error:", e));
+
+  const tokenLoad = async () => {
+    try {
+      const platform = Platform.OS;
+      const messagingInstance = getMessaging();
+
+      // On iOS, expo-notifications gives us the raw APNs token.
+      // We hand it to Firebase via setAPNSToken() so that getToken()
+      // can succeed without waiting for Firebase's own APNs registration.
+      if (platform === "ios") {
+        const apnsTokenObj = await Notifications.getDevicePushTokenAsync();
+        const rawApnsToken = apnsTokenObj?.data;
+        if (rawApnsToken) {
+          await setAPNSToken(messagingInstance, rawApnsToken);
+          console.log("APNs token registered with Firebase.");
+        } else {
+          console.log("APNs token data was empty.");
+        }
+      }
+
+      const token = await getToken(messagingInstance);
+      if (token) {
+        dispatch(tokenApi({ key: token, type: platform }));
+        dispatch(notificatioToken(token));
+        console.log(`FCM token [${platform}]:`, token);
+      }
+    } catch (e) {
+      console.log("FCM token generation error:", e);
     }
   };
 
-  // async function requestUserPermission() {
-  //   const authorizationStatus = await messaging().requestPermission();
-
-  //   if (authorizationStatus) {
-  //     console.log("Permission status:", authorizationStatus);
-  //   }
-  // }
   async function requestUserPermission() {
     if (Platform.OS === "android") {
       const { status } = await Notifications.requestPermissionsAsync();
@@ -165,15 +172,15 @@ export const AppStack = () => {
       }
       return;
     }
-    // iOS — Firebase handles APNs registration + shows the system dialog
+    // iOS — Firebase handles the system permission dialog
     const authStatus = await requestPermission(getMessaging());
     const enabled =
-    authStatus === AuthorizationStatus.AUTHORIZED ||
-    authStatus === AuthorizationStatus.PROVISIONAL;
+      authStatus === AuthorizationStatus.AUTHORIZED ||
+      authStatus === AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log("Authorization status:", authStatus);
-      tokenLoad();
+      console.log("iOS Authorization status:", authStatus);
+      await tokenLoad();
     }
   }
   useEffect(() => {
