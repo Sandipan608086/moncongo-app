@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#0287BC"
     },
     "assetBundlePatterns": [
@@ -83,7 +83,7 @@
           "ios": {
             "backgroundColor": "#0287BC",
             "image": "./assets/splash.png",
-            "resizeMode": "contain"
+            "resizeMode": "cover"
           }
         }
       ],

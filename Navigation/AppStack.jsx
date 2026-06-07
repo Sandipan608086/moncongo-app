@@ -134,21 +134,26 @@ export const TabRoutes = () => {
 export const AppStack = () => {
   const dispatch = useDispatch();
   const tokenLoad = () => {
-    // Get the device token
-    if (Platform.OS == "android") {
-      getToken(getMessaging()).then((token) => {
-          dispatch(tokenApi({ key: token, type: "android" }));
-          dispatch(notificatioToken(token));
-        });
+    if (Platform.OS === "android") {
+      getToken(getMessaging())
+        .then((token) => {
+          if (token) {
+            dispatch(tokenApi({ key: token, type: "android" }));
+            dispatch(notificatioToken(token));
+          }
+        })
+        .catch((e) => console.log("FCM getToken error:", e));
     }
-    // If using other push notification providers (ie Amazon SNS, etc)
-    // you may need to get the APNs token instead for iOS: getAPNSToken()
-    if (Platform.OS == "ios") {
+    // iOS: get the raw APNs token — your server converts it to FCM
+    if (Platform.OS === "ios") {
       getAPNSToken(getMessaging())
         .then((token) => {
-          dispatch(tokenApi({ key: token, type: "ios" }));
-          dispatch(notificatioToken(token));
-        });
+          if (token) {
+            dispatch(tokenApi({ key: token, type: "ios" }));
+            dispatch(notificatioToken(token));
+          }
+        })
+        .catch((e) => console.log("APNs getToken error:", e));
     }
   };
 
@@ -179,7 +184,11 @@ export const AppStack = () => {
     }
   }
   useEffect(() => {
-    tokenLoad();
+    // On Android we can get the token immediately (no permission dialog needed pre-Android 13)
+    // On iOS, getToken() requires permission first — tokenLoad() is called inside requestUserPermission()
+    if (Platform.OS === "android") {
+      tokenLoad();
+    }
     requestUserPermission();
     // Set up the notification handler for the app
     Notifications.setNotificationHandler({
