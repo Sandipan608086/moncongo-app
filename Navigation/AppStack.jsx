@@ -147,20 +147,24 @@ export const AppStack = () => {
         const rawApnsToken = apnsTokenObj?.data;
         if (rawApnsToken) {
           await setAPNSToken(messagingInstance, rawApnsToken);
-          console.log("APNs token registered with Firebase.");
+          Alert.alert("APNs token registered with Firebase.");
         } else {
-          console.log("APNs token data was empty.");
+          Alert.alert("APNs Fail", "APNs token object returned empty data.");
         }
       }
 
       const token = await getToken(messagingInstance);
       if (token) {
+        Alert.alert("FCM Generated Successfully", `Token: ${token.substring(0, 15)}... Platform: ${platform}`);
         dispatch(tokenApi({ key: token, type: platform }));
         dispatch(notificatioToken(token));
-        console.log(`FCM token [${platform}]:`, token);
+      }
+      else
+      {
+        Alert.alert("FCM Token Generation Failed", "No token returned from getToken().");
       }
     } catch (e) {
-      console.log("FCM token generation error:", e);
+      Alert.alert("Native Token Error", e.message || String(e));
     }
   };
 

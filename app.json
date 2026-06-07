@@ -2,7 +2,7 @@
   "expo": {
     "name": "WhizzKenya",
     "slug": "whizzkenya",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -24,7 +24,11 @@
       },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSLocationWhenInUseUsageDescription": "This app displays interactive maps to show the coordinates and layout of registered business listings."
+        "NSLocationWhenInUseUsageDescription": "This app displays interactive maps to show the coordinates and layout of registered business listings.",
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "production"
       }
     },
     "newArchEnabled": false,
