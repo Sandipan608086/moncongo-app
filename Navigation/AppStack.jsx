@@ -13,7 +13,7 @@ import {
   notificationTestApi,
 } from "./../store/NotificationSlices";
 import { tokenApi } from "./../store/UserSlices";
-import { getMessaging, getToken, getAPNSToken, requestPermission, onNotificationOpenedApp, onMessage, AuthorizationStatus } from "@react-native-firebase/messaging";
+import { getMessaging, getToken, requestPermission, onNotificationOpenedApp, onMessage, AuthorizationStatus } from "@react-native-firebase/messaging";
 
 import HomeScreen from "../Screens/HomeScreen";
 import MenuScreen from "../Screens/MenuScreen";
@@ -134,26 +134,19 @@ export const TabRoutes = () => {
 export const AppStack = () => {
   const dispatch = useDispatch();
   const tokenLoad = () => {
-    if (Platform.OS === "android") {
+    // getToken() works on both Android and iOS.
+    // On iOS, Firebase internally handles APNs registration and waits for it
+    // to complete before resolving — no null/timing issues unlike getAPNSToken().
+    const platform = Platform.OS;
+    if (platform === "android" || platform === "ios") {
       getToken(getMessaging())
         .then((token) => {
           if (token) {
-            dispatch(tokenApi({ key: token, type: "android" }));
+            dispatch(tokenApi({ key: token, type: 'android' }));
             dispatch(notificatioToken(token));
           }
         })
         .catch((e) => console.log("FCM getToken error:", e));
-    }
-    // iOS: get the raw APNs token — your server converts it to FCM
-    if (Platform.OS === "ios") {
-      getAPNSToken(getMessaging())
-        .then((token) => {
-          if (token) {
-            dispatch(tokenApi({ key: token, type: "ios" }));
-            dispatch(notificatioToken(token));
-          }
-        })
-        .catch((e) => console.log("APNs getToken error:", e));
     }
   };
 
