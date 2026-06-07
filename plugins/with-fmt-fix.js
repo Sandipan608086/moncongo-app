@@ -14,23 +14,22 @@ module.exports = function withFmtFix(config) {
       }
 
       const fmtFix = `
+# Fix for fmt consteval errors with Xcode 26
+post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |cfg|
-      cfg.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-      unless cfg.build_settings['GCC_PREPROCESSOR_DEFINITIONS'].include?('FMT_USE_CONSTEVAL=0')
-        cfg.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'FMT_USE_CONSTEVAL=0'
+      defs = cfg.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] || ['$(inherited)']
+      defs = [defs] if defs.is_a?(String)
+      unless defs.include?('FMT_USE_CONSTEVAL=0')
+        defs << 'FMT_USE_CONSTEVAL=0'
       end
+      cfg.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = defs
     end
   end
+end
 `;
 
-      // Simple string replacement — insert right after opening of post_install block
-      podfile = podfile.replace(
-        'post_install do |installer|',
-        `post_install do |installer|${fmtFix}`
-      );
-
-      fs.writeFileSync(podfilePath, podfile);
+      fs.writeFileSync(podfilePath, podfile + '\n' + fmtFix);
       return config;
     },
   ]);
