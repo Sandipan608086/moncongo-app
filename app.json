@@ -64,7 +64,6 @@
       "url": "https://u.expo.dev/b3e0f05d-3687-44b3-83be-3b2372d5f288"
     },
     "plugins": [
-      "./plugins/with-fmt-fix",
       "@react-native-firebase/app",
       "@react-native-firebase/messaging",
       [
