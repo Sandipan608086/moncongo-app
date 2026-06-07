@@ -147,9 +147,9 @@ export const AppStack = () => {
         const rawApnsToken = apnsTokenObj?.data;
         if (rawApnsToken) {
           await setAPNSToken(messagingInstance, rawApnsToken);
-          console.log("APNs token registered with Firebase.");
+          //console.log("APNs token registered with Firebase.");
         } else {
-          console.log("APNs token object returned empty data.");
+          //console.log("APNs token object returned empty data.");
         }
       }
 
@@ -161,10 +161,10 @@ export const AppStack = () => {
       }
       else
       {
-        console.log("FCM Token Generation Failed", "No token returned from getToken().");
+        //console.log("FCM Token Generation Failed", "No token returned from getToken().");
       }
     } catch (e) {
-      console.log("Native Token Error", e.message || String(e));
+      //console.log("Native Token Error", e.message || String(e));
     }
   };
 
@@ -183,7 +183,7 @@ export const AppStack = () => {
       authStatus === AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log("iOS Authorization status:", authStatus);
+      //console.log("iOS Authorization status:", authStatus);
       await tokenLoad();
     }
   }
