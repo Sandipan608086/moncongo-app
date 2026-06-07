@@ -1,6 +1,6 @@
 import { registerRootComponent } from 'expo';
 import App from './App';
-import messaging from '@react-native-firebase/messaging';
+import { getMessaging, setBackgroundMessageHandler } from '@react-native-firebase/messaging';
 import { Alert } from 'react-native';
 import { setJSExceptionHandler } from 'react-native-exception-handler';
 
@@ -24,7 +24,7 @@ setJSExceptionHandler((error, isFatal) => {
 
 // Background message handler must be registered at the top level,
 // outside any React component tree.
-messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+setBackgroundMessageHandler(getMessaging(), async (remoteMessage) => {
   console.log('Background FCM message received:', remoteMessage);
   // Navigation is not possible here (app is backgrounded/killed).
   // Firebase will automatically show the notification if it contains

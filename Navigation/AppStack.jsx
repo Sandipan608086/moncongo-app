@@ -13,7 +13,7 @@ import {
   notificationTestApi,
 } from "./../store/NotificationSlices";
 import { tokenApi } from "./../store/UserSlices";
-import messaging from "@react-native-firebase/messaging";
+import { getMessaging, getToken, getAPNSToken, requestPermission, onNotificationOpenedApp, onMessage, AuthorizationStatus } from "@react-native-firebase/messaging";
 
 import HomeScreen from "../Screens/HomeScreen";
 import MenuScreen from "../Screens/MenuScreen";
@@ -136,9 +136,7 @@ export const AppStack = () => {
   const tokenLoad = () => {
     // Get the device token
     if (Platform.OS == "android") {
-      messaging()
-        .getToken()
-        .then((token) => {
+      getToken(getMessaging()).then((token) => {
           dispatch(tokenApi({ key: token, type: "android" }));
           dispatch(notificatioToken(token));
         });
@@ -146,8 +144,7 @@ export const AppStack = () => {
     // If using other push notification providers (ie Amazon SNS, etc)
     // you may need to get the APNs token instead for iOS: getAPNSToken()
     if (Platform.OS == "ios") {
-      messaging()
-        .getAPNSToken()
+      getAPNSToken(getMessaging())
         .then((token) => {
           dispatch(tokenApi({ key: token, type: "ios" }));
           dispatch(notificatioToken(token));
@@ -171,10 +168,10 @@ export const AppStack = () => {
       return;
     }
     // iOS — Firebase handles APNs registration + shows the system dialog
-    const authStatus = await messaging().requestPermission();
+    const authStatus = await requestPermission(getMessaging());
     const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    authStatus === AuthorizationStatus.AUTHORIZED ||
+    authStatus === AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
       console.log("Authorization status:", authStatus);
@@ -209,7 +206,7 @@ export const AppStack = () => {
         handleNotificationClick
       );
     // Handle user opening the app from a notification (background state)
-    messaging().onNotificationOpenedApp((remoteMessage) => {
+    onNotificationOpenedApp(getMessaging(), (remoteMessage) => {
       try {
         if (remoteMessage?.data?.type) {
           setTimeout(() => {
@@ -241,7 +238,7 @@ export const AppStack = () => {
       } catch (e) {}
     };
     // Listen for push notifications when the app is in the foreground
-    const unsubscribe = messaging().onMessage(handlePushNotification);
+    const unsubscribe = onMessage(getMessaging(), handlePushNotification);
     // Clean up the event listeners
     return () => {
       unsubscribe();
