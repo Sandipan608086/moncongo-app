@@ -9,6 +9,10 @@ module.exports = function withFmtFix(config) {
       const podfilePath = path.join(config.modRequest.platformProjectRoot, 'Podfile');
       let podfile = fs.readFileSync(podfilePath, 'utf8');
 
+      if (podfile.includes('FMT_USE_CONSTEVAL=0')) {
+        return config;
+      }
+
       const fmtFix = `
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |cfg|
@@ -17,11 +21,13 @@ module.exports = function withFmtFix(config) {
         cfg.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'FMT_USE_CONSTEVAL=0'
       end
     end
-  end`;
+  end
+`;
 
+      // Simple string replacement — insert right after opening of post_install block
       podfile = podfile.replace(
-        /(post_install do \|installer\|)([\s\S]*?)(^end)/m,
-        `$1$2${fmtFix}\n$3`
+        'post_install do |installer|',
+        `post_install do |installer|${fmtFix}`
       );
 
       fs.writeFileSync(podfilePath, podfile);
