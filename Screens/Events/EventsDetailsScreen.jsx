@@ -32,6 +32,14 @@ import { WebView } from "react-native-webview";
 import RenderHtml, { defaultSystemFonts } from "react-native-render-html";
 import { useSelector, useDispatch } from "react-redux";
 
+
+import CardListCom from "../../component/CardListCom";
+import CardBusiness from "../../component/CardBusiness";
+import AppbarHeader from "../../component/Appbar";
+import { eventsDetailApi, eventsOther } from "../../store/EventsSlices";
+import { useIsFocused } from "@react-navigation/native";
+import { mixedStyle } from "./../../Navigation/htmlStyle";
+
 const getYouTubeVideoId = (urlOrId) => {
   if (!urlOrId) return '';
   if (/^[a-zA-Z0-9_-]{11}$/.test(String(urlOrId).trim())) return String(urlOrId).trim();
@@ -43,12 +51,7 @@ const getYouTubeHTML = (videoIdOrUrl) => {
   const id = getYouTubeVideoId(videoIdOrUrl);
   return `<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;width:100%;height:100%}html,body{height:100%}iframe{display:block;width:100%;height:100%;border:none}</style></head><body><iframe src="https://www.youtube-nocookie.com/embed/${id}?playsinline=1&rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></body></html>`;
 };
-import CardListCom from "../../component/CardListCom";
-import CardBusiness from "../../component/CardBusiness";
-import AppbarHeader from "../../component/Appbar";
-import { eventsDetailApi, eventsOther } from "../../store/EventsSlices";
-import { useIsFocused } from "@react-navigation/native";
-import { mixedStyle } from "./../../Navigation/htmlStyle";
+
 const EventsDetailsScreen = ({ navigation, route }) => {
   const systemFonts = [
     ...defaultSystemFonts,
@@ -78,7 +81,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
     dispatch(eventsDetailApi({ slug: routeData.slug })).then((req) => {
       setEVENTDATA(req.payload);
       dispatch(eventsOther({ slug: routeData.slug }));
-    }, []);
+    }).catch((err) => console.log("API Refresh Error handled silently: ", err));
   };
   useEffect(() => {
     if (isFocused === true) {
@@ -115,11 +118,13 @@ const EventsDetailsScreen = ({ navigation, route }) => {
   );
   const { width } = useWindowDimensions();
 
-  // async function getDefaultCalendarSource() {
-  //   const defaultCalendar = await Calendar.getDefaultCalendarAsync();
-  //   return defaultCalendar.source;
-  // }
+
   async function getDefaultCalendarSource() {
+    if (Platform.OS === "ios") {
+    // Use Expo's dedicated native calendar lookup for Apple devices
+    const defaultCalendar = await Calendar.getDefaultCalendarAsync();
+    return defaultCalendar.source;
+  } else {
     const calendars = await Calendar.getCalendarsAsync(
       Calendar.EntityTypes.EVENT
     );
@@ -129,106 +134,148 @@ const EventsDetailsScreen = ({ navigation, route }) => {
     return defaultCalendars.length
       ? defaultCalendars[0].source
       : calendars[0].source;
+    }
   }
   const [CALENDARID, setCALENDARID] = useState("");
   useEffect(() => {
-    (async function () {
-      try {
-        const { status } = await Calendar.requestCalendarPermissionsAsync();
-        if (status === "granted") {
-          const calenderName = "MoncongoCalendar";
+  (async function initializeCalendar() {
+    try {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === "granted") {
+        const calenderName = "WhizzKenyaCalendar";
+        const calendars = await Calendar.getCalendarsAsync(Calendar.EntityTypes.EVENT);
+        
+        const moncongoCalendar = calendars.find(
+          (calendar) => calendar.title == calenderName
+        );
+
+        if (moncongoCalendar != undefined) {
+          setCALENDARID(moncongoCalendar.id);
+        } else {
           function r() {
             return Math.floor(Math.random() * 256);
           }
           const color = "rgb(" + r() + "," + r() + "," + r() + ")";
-          const defaultCalendarSource =
-            Platform.OS === "ios"
-              ? await getDefaultCalendarSource()
-              : { isLocalAccount: true, name: calenderName };
-          const calendars = await Calendar.getCalendarsAsync();
-          // console.log(calendars);
-          const moncongoCalendar = calendars.find(
-            (calendar) => calendar.title == calenderName
-          );
-          if (moncongoCalendar != undefined) {
-            setCALENDARID(moncongoCalendar.id);
-          } else {
-            const newCalendarID = await Calendar.createCalendarAsync({
-              title: calenderName,
-              color: color,
-              entityType: Calendar.EntityTypes.EVENT,
-              sourceId: defaultCalendarSource.id,
-              source: defaultCalendarSource,
-              name: "internalCalendarName",
-              ownerAccount: "personal",
-              accessLevel: Calendar.CalendarAccessLevel.OWNER,
-            });
-            setCALENDARID(newCalendarID);
-          }
+          const defaultCalendarSource = await getDefaultCalendarSource();
+
+          const newCalendarID = await Calendar.createCalendarAsync({
+            title: calenderName,
+            color: color,
+            entityType: Calendar.EntityTypes.EVENT,
+            sourceId: defaultCalendarSource ? defaultCalendarSource.id : undefined,
+            source: defaultCalendarSource,
+            name: "internalCalendarName",
+            ownerAccount: "personal",
+            accessLevel: Calendar.CalendarAccessLevel.OWNER,
+          });
+          setCALENDARID(newCalendarID);
         }
-      } catch (e) {
-        console.log(e);
       }
-    })();
-  }, [CALENDARID]);
+    } catch (e) {
+      console.log("Calendar initialization failed: ", e);
+    }
+  })();
+}, []);
   const addEventToCalendar = async (event) => {
-    // const calenderName = "MoncongoCalendar";
-    // function r() {
-    //   return Math.floor(Math.random() * 256);
-    // }
-    if (EVENTDATA.event_date) {
-      setLoading(true);
-      const ed = EVENTDATA.event_date_ori;
-      const events = [];
+    if (!EVENTDATA) return;
+    setLoading(true);
+    try 
+    {
+      let targetCalendarId = CALENDARID;
+      if (!targetCalendarId) {
+        const defaultNativeCal = await Calendar.getDefaultCalendarAsync();
+        targetCalendarId = defaultNativeCal.id;
+      }
+
+      if (EVENTDATA.event_date) {
+        
+       const ed = EVENTDATA.event_date_ori;
+      
       for (let i = 0; i < ed.length; i++) {
+        
+        // Safe string parsing isolates dates from UTC midnight shifting
+        const [year, month, day] = ed[i].split("-").map(Number); 
+        
+        const startOfDay = new Date(year, month - 1, day, 0, 0, 0, 0);
+        const endOfDay = new Date(year, month - 1, day, 23, 59, 59, 999);
+        
+        // Scan the target calendar for existing events in this window
+        const existingEvents = await Calendar.getEventsAsync(
+          [targetCalendarId],
+          startOfDay,
+          endOfDay
+        );
+
+        // Optional chaining (?.) prevents crashes on untitled calendar slots
+        const isDuplicate = existingEvents.some(
+          (e) => e.title?.toLowerCase() === event.event_title?.toLowerCase()
+        );
+
+        if (isDuplicate) {
+          continue; // Skip creation and jump to the next date in the loop
+        }
+
         const eventDetails = {
           title: event.event_title,
-          startDate: new Date(ed[i]),
-          endDate: new Date(ed[i]),
+          startDate: new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0)),
+          endDate: new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0)),
           location: event.event_location,
+          allDay: true, // Safeguards iOS timeline drawing
+        }; 
+        const eventIdInCalendar = await Calendar.createEventAsync(targetCalendarId, eventDetails); 
+        setEventIdInCalendar(eventIdInCalendar);
+       }
+        Alert.alert("Success", "The event date is saved in your calendar.");
+      }
+      else
+      {
+       const [sYear, sMonth, sDay] = event.event_start_date.split("-").map(Number);
+       const searchStart = new Date(sYear, sMonth - 1, sDay, 0, 0, 0, 0);
+
+       let eYear = sYear, eMonth = sMonth, eDay = sDay;
+       if (event.event_end_date) {
+        [eYear, eMonth, eDay] = event.event_end_date.split("-").map(Number);
+       }
+       const searchEnd = new Date(eYear, eMonth - 1, eDay, 23, 59, 59, 999);
+
+       const existingEvents = await Calendar.getEventsAsync(
+        [targetCalendarId],
+        searchStart,
+        searchEnd
+      );
+
+      const isDuplicate = existingEvents.some(
+        (e) => e.title?.toLowerCase() === event.event_title?.toLowerCase()
+      );
+
+      if (!isDuplicate) {
+        const eventDetails = {
+          title: event.event_title,
+          startDate: new Date(Date.UTC(sYear, sMonth - 1, sDay, 0, 0, 0, 0)),
+          endDate: new Date(Date.UTC(eYear, eMonth - 1, eDay, 0, 0, 0, 0)),
+          location: event.event_location,
+          allDay: true,
         };
+
         const eventIdInCalendar = await Calendar.createEventAsync(
-          CALENDARID,
+          targetCalendarId,
           eventDetails
         );
-        // Calendar.openEventInCalendar();
         setEventIdInCalendar(eventIdInCalendar);
+        if (Platform.OS === "ios") {
+          Calendar.openEventInCalendar(eventIdInCalendar);
+        } else {
+          Alert.alert("Success", "The event date is saved in your calendar.");
+        }
       }
-      Alert.alert(
-        "The event date is saved in your calendar."
-      );
-      setLoading(false);
-    } else {
-      // const color = "rgb(" + r() + "," + r() + "," + r() + ")";
-      setLoading(true);
-      const eventDetails = {
-        title: event.event_title,
-        startDate: new Date(event.event_start_date),
-        endDate: event.event_end_date
-          ? new Date(event.event_end_date)
-          : new Date(event.event_start_date),
-        location: event.event_location,
-      };
-      // console.log(`Your new calendar ID is: ${CALENDARID}`);
-      const eventIdInCalendar = await Calendar.createEventAsync(
-        CALENDARID,
-        eventDetails
-      );
-      Calendar.openEventInCalendar(eventIdInCalendar); // that will give the user the ability to access the event in phone calendar
-      setEventIdInCalendar(eventIdInCalendar);
-      Platform.OS === "ios" &&
-        Alert.alert(
-          "The event date is saved in your calendar."
-        );
-      setLoading(false);
+     } 
     }
-
-    // const calendars = await Calendar.getCalendarsAsync();
-    // // console.log(calendars);
-    // const moncongoCalendar = calendars.find(
-    //   (calendar) => calendar.title == calenderName
-    // );
-    // console.log(moncongoCalendar);
+    catch (error) {
+    console.log("Error writing event to native calendar app: ", error);
+    Alert.alert("Calendar Error", "Unable to save this event directly to your system calendar configuration.");
+  } finally {
+    setLoading(false);
+  } 
   };
 
   return (
