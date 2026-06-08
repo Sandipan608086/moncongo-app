@@ -13,7 +13,7 @@ import {
   notificationTestApi,
 } from "./../store/NotificationSlices";
 import { tokenApi } from "./../store/UserSlices";
-import messaging from "@react-native-firebase/messaging";
+import { getMessaging, getToken, setAPNSToken, requestPermission, onNotificationOpenedApp, onMessage, AuthorizationStatus } from "@react-native-firebase/messaging";
 
 import HomeScreen from "../Screens/HomeScreen";
 import MenuScreen from "../Screens/MenuScreen";
@@ -133,27 +133,39 @@ export const TabRoutes = () => {
 
 export const AppStack = () => {
   const dispatch = useDispatch();
-  const tokenLoad = () => {
-    // Get the device token
-    if (Platform.OS == "android") {
-      messaging()
-        .getToken()
-        .then((token) => {
-          dispatch(tokenApi({ key: token, type: "android" }));
-          dispatch(notificatioToken(token));
-        });
+  const tokenLoad = async () => {
+    try {
+      const platform = Platform.OS;
+      const messagingInstance = getMessaging();
+
+      // On iOS, expo-notifications gives us the raw APNs token.
+      // We hand it to Firebase via setAPNSToken() so that getToken()
+      // can succeed without waiting for Firebase's own APNs registration.
+      if (platform === "ios") {
+        const apnsTokenObj = await Notifications.getDevicePushTokenAsync();
+        const rawApnsToken = apnsTokenObj?.data;
+        if (rawApnsToken) {
+          await setAPNSToken(messagingInstance, rawApnsToken);
+          //console.log("APNs token registered with Firebase.");
+        } else {
+          //console.log("APNs token object returned empty data.");
+        }
+      }
+
+      const token = await getToken(messagingInstance);
+      if (token) {
+        console.log("FCM Generated Successfully", `Token: ${token.substring(0, 15)}... Platform: ${platform}`);
+        dispatch(tokenApi({ key: token, type: platform }));
+        dispatch(notificatioToken(token));
+      }
+      else
+      {
+        //console.log("FCM Token Generation Failed", "No token returned from getToken().");
+      }
+    } catch (e) {
+      //console.log("Native Token Error", e.message || String(e));
     }
-    // If using other push notification providers (ie Amazon SNS, etc)
-    // you may need to get the APNs token instead for iOS: getAPNSToken()
-    if (Platform.OS == "ios") {
-      messaging()
-        .getAPNSToken()
-        .then((token) => {
-          dispatch(tokenApi({ key: token, type: "ios" }));
-          dispatch(notificatioToken(token));
-        });
-    }
-  };
+  }
 
   // async function requestUserPermission() {
   //   const authorizationStatus = await messaging().requestPermission();
@@ -170,19 +182,23 @@ export const AppStack = () => {
       }
       return;
     }
-    // iOS — Firebase handles APNs registration + shows the system dialog
-    const authStatus = await messaging().requestPermission();
+    // iOS — Firebase handles the system permission dialog
+    const authStatus = await requestPermission(getMessaging());
     const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      authStatus === AuthorizationStatus.AUTHORIZED ||
+      authStatus === AuthorizationStatus.PROVISIONAL;
 
     if (enabled) {
-      console.log("Authorization status:", authStatus);
-      tokenLoad();
+      //console.log("iOS Authorization status:", authStatus);
+      await tokenLoad();
     }
   }
   useEffect(() => {
-    tokenLoad();
+    // On Android we can get the token immediately (no permission dialog needed pre-Android 13)
+    // On iOS, getToken() requires permission first — tokenLoad() is called inside requestUserPermission()
+    if (Platform.OS === "android") {
+      tokenLoad();
+    }
     requestUserPermission();
     // Set up the notification handler for the app
     Notifications.setNotificationHandler({
@@ -204,12 +220,12 @@ export const AppStack = () => {
       }
     };
     // Listen for user clicking on a notification
-    const notificationClickSubscription =
+   const notificationClickSubscription =
       Notifications.addNotificationResponseReceivedListener(
         handleNotificationClick
       );
     // Handle user opening the app from a notification (background state)
-    messaging().onNotificationOpenedApp((remoteMessage) => {
+    onNotificationOpenedApp(getMessaging(), (remoteMessage) => {
       try {
         if (remoteMessage?.data?.type) {
           setTimeout(() => {
@@ -241,7 +257,7 @@ export const AppStack = () => {
       } catch (e) {}
     };
     // Listen for push notifications when the app is in the foreground
-    const unsubscribe = messaging().onMessage(handlePushNotification);
+     const unsubscribe = onMessage(getMessaging(), handlePushNotification);
     // Clean up the event listeners
     return () => {
       unsubscribe();

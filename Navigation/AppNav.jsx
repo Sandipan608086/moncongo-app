@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { AppStack } from "./AppStack";
 import { navigationRef, navigate } from "./RootNavigation";
-import messaging from "@react-native-firebase/messaging";
+import { getMessaging, getInitialNotification } from "@react-native-firebase/messaging";
 import * as SplashScreen from "expo-splash-screen";
 
 import {
@@ -54,7 +54,7 @@ const AppNav = () => {
         ref={navigationRef}
         onReady={async () => {
           try {
-            const remoteMessage = await messaging().getInitialNotification();
+            const remoteMessage = await getInitialNotification(getMessaging());
             if (remoteMessage?.data?.type) {
               navigate(
                 remoteMessage.data.type,

@@ -21,6 +21,14 @@
       "buildNumber": "3",
       "config": {
         "googleMapsApiKey": "AIzaSyDY-9GqKWZKl-Z7Hy8eVizmH22GBC8VIYQ"
+      },
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationWhenInUseUsageDescription": "This app displays interactive maps to show the coordinates and layout of registered business listings.",
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "production"
       }
     },
     "newArchEnabled": false,
@@ -61,6 +69,7 @@
       "url": "https://u.expo.dev/0add98ee-fa7e-4f63-b0bf-452c4bd112dc"
     },
     "plugins": [
+      "./plugins/with-fmt-fix",
       "@react-native-firebase/app",
       "@react-native-firebase/messaging",
       [
@@ -77,8 +86,9 @@
             "resizeMode": "contain"
           },
           "ios": {
-            "backgroundColor": "#0287BC",
-            "image": "./assets/splash.png",
+            "backgroundColor": "#94cafc",
+            "image": "./assets/adaptive-icon.png",
+            "imageWidth": 100,
             "resizeMode": "contain"
           }
         }
@@ -100,7 +110,12 @@
             "minSdkVersion": 24
           },
           "ios": {
-            "useFrameworks": "static"
+            "useFrameworks": "static",
+            "deploymentTarget": "15.1",
+            "extraPodsProperties": {
+              "CLANG_CXX_LANGUAGE_STANDARD": "c++20",
+              "GCC_PREPROCESSOR_DEFINITIONS": "$(inherited) FMT_USE_CONSTEVAL=0"
+            }
           }
         }
       ],
