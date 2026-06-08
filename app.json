@@ -29,7 +29,12 @@
         "NSRemindersUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders",
         "NSCalendarsFullAccessUsageDescription": "The app needs to access your calendar.",
         "NSRemindersFullAccessUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders",
-        "ITSAppUsesNonExemptEncryption": false
+        "NSLocationWhenInUseUsageDescription": "This app displays interactive maps to show the coordinates and layout of registered business listings.",
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIBackgroundModes": ["remote-notification"]
+      },
+      "entitlements": {
+        "aps-environment": "production"
       }
     },
     "newArchEnabled": false,
@@ -62,6 +67,7 @@
       "policy": "appVersion"
     },
     "plugins": [
+      "./plugins/with-fmt-fix",
       "@react-native-firebase/app",
       "@react-native-firebase/messaging",
       [
@@ -78,8 +84,9 @@
             "resizeMode": "contain"
           },
           "ios": {
-            "backgroundColor": "#CAEDFE",
-            "image": "./assets/splash.png",
+            "backgroundColor": "#94cafc",
+            "image": "./assets/adaptive-icon.png",
+            "imageWidth": 100,
             "resizeMode": "contain"
           }
         }
@@ -101,7 +108,12 @@
             "minSdkVersion": 24
           },
           "ios": {
-            "useFrameworks": "static"
+            "useFrameworks": "static",
+            "deploymentTarget": "15.1",
+            "extraPodsProperties": {
+              "CLANG_CXX_LANGUAGE_STANDARD": "c++20",
+              "GCC_PREPROCESSOR_DEFINITIONS": "$(inherited) FMT_USE_CONSTEVAL=0"
+            }
           }
         }
       ],
