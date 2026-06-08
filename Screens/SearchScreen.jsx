@@ -151,7 +151,7 @@ const SearchScreen = ({ navigation }) => {
         contentContainerStyle={{ flexGrow: 1 }}
       >
         <Text style={{ textAlign: "center", paddingHorizontal: 10 }}>
-          More than 3000 businesses are present on WhizzTanzania. If you don’t know what to look for, don’t hesitate to explore our directory of businesses
+          More than 3000 businesses are present on WhizzKenya. If you don’t know what to look for, don’t hesitate to explore our directory of businesses
         </Text>
         <Button
           style={[g.Btn, { marginBottom: 100 }]}
@@ -252,7 +252,7 @@ const SearchScreen = ({ navigation }) => {
       />
 
       <Searchbar
-        placeholder="Rechercher des entreprises"
+        placeholder="Search businesses"
         onChangeText={onChangeSearch}
         onClearIconPress={onClearIconPress}
         value={searchQuery}
