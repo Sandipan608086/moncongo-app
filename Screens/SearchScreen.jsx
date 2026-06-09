@@ -252,7 +252,7 @@ const SearchScreen = ({ navigation }) => {
       />
 
       <Searchbar
-        placeholder="Rechercher des entreprises"
+        placeholder="Search Businesses"
         onChangeText={onChangeSearch}
         onClearIconPress={onClearIconPress}
         value={searchQuery}
