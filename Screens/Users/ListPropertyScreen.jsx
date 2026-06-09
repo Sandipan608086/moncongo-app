@@ -39,6 +39,7 @@ const ListPropertyScreen = ({ navigation }) => {
   const userKey = useSelector((state) => state.user.userKey);
   const PROPERTYLIST = useSelector((state) => state.user.propertyList);
   const propartyCall = () => {
+    if (!userKey) return;
     dispatch(
       propertyListApi({ key: JSON.parse(userKey), type: "propertyList" })
     ).then((req) => {

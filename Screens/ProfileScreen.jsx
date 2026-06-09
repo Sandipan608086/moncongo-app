@@ -45,6 +45,7 @@ const ProfileScreen = ({ navigation }) => {
     if (userKey) {
       dispatch(userRemoveKey()).then(() => {
         Alert.alert("Déconnexion réussie");
+        navigation.navigate("Login");
       });
     }
   }

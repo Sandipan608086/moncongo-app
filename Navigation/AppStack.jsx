@@ -309,6 +309,7 @@ export const AppStack = () => {
       <Stack.Screen name="PropertyDetails" component={PropertyDetails} />
       <Stack.Screen name="Other" component={OtherList} />
       <Stack.Screen name="OtherDetails" component={OtherDetails} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Otp" component={OtpScreen} />
