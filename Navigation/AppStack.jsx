@@ -133,7 +133,7 @@ export const TabRoutes = () => {
 
 export const AppStack = () => {
   const dispatch = useDispatch();
-  const tokenLoad = () => {
+  const tokenLoad = async () => {
     try {
       const platform = Platform.OS;
       const messagingInstance = getMessaging();
