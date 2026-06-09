@@ -67,6 +67,12 @@ const JobsForm = ({ navigation, route }) => {
   };
   const pickDocument = async () => {
     let result = await DocumentPicker.getDocumentAsync({type: ["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"]});
+    
+    // FIX: Guard clause to handle user cancellation gracefully
+    if (result.canceled || !result.assets || result.assets.length === 0) {
+      return;
+    }
+
     let base64Img = await FileSystem.readAsStringAsync(result.assets[0].uri, {
       encoding: FileSystem.EncodingType.Base64,
     });
