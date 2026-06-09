@@ -104,5 +104,3 @@ yarn-error.*
 
 # Sensitive credentials & Firebase config
 key/
-google-services.json
-GoogleService-Info.plist
