@@ -128,10 +128,9 @@ const EventsDetailsScreen = ({ navigation, route }) => {
     const defaultCalendars = calendars.filter(
       (each) => each.source.name === "Default"
     );
-    return defaultCalendars.length
-      ? defaultCalendars[0].source
-      : calendars[0].source;
-    }
+    //return defaultCalendars.length ? defaultCalendars[0].source : calendars[0].source;
+    return { isLocalAccount: true, name: "WhizzTanzania Local", type: "LOCAL" };   
+  }
   }
   const [CALENDARID, setCALENDARID] = useState("");
   useEffect(() => {
@@ -161,7 +160,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
             entityType: Calendar.EntityTypes.EVENT,
             sourceId: defaultCalendarSource ? defaultCalendarSource.id : undefined,
             source: defaultCalendarSource,
-            name: "internalCalendarName",
+            name: "WhizzTanzaniaInternal",
             ownerAccount: "personal",
             accessLevel: Calendar.CalendarAccessLevel.OWNER,
           });

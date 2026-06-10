@@ -55,7 +55,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
       >
         <View style={g.Content} contentContainerStyle={{ flexGrow: 1 }}>
           <Image alt="image" style={g.logo} source={require("./../../assets/logo.png")} />
-          <Text style={g.Subtitle}>Changer le mot de passe?</Text>
+          <Text style={g.Subtitle}>Want to change password?</Text>
           <View style={g.Form}>
             <Controller
               control={control}
@@ -119,7 +119,7 @@ const ChangeMyPasswordScreen = ({ navigation, route }) => {
                   value: true,
                   message: "You must specify a password",
                 },
-                validate: (value) => value === watch('passwordname') || "Les mots de passe ne correspondent pas",
+                validate: (value) => value === watch('passwordname') || "The passwords do not match.",
               }}
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextInput
