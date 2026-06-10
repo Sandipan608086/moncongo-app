@@ -45,13 +45,14 @@ const ProfileScreen = ({ navigation }) => {
     if (userKey) {
       dispatch(userRemoveKey()).then(() => {
         Alert.alert("You have been logged out successfully.");
+        navigation.navigate("Login");
       });
     }
   }
   return (
     <SafeAreaView style={styles.container}>
       <AppbarHeader
-        title="Profil"
+        title="Profile"
         back={false}
         home={false}
         logo={true}

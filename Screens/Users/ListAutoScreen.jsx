@@ -41,6 +41,7 @@ const ListAutoScreen = ({ navigation }) => {
   const userKey = useSelector((state) => state.user.userKey);
   const AUTOLIST = useSelector((state) => state.user.autoList);
   const autoList = () => {
+    if (!userKey) return;
     dispatch(autoListApi({ key: JSON.parse(userKey), type: "autoList" })).then(
       (req) => {
         setIsAutoCount(req.payload.data);
