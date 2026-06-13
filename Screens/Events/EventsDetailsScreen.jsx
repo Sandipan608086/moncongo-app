@@ -222,7 +222,7 @@ const EventsDetailsScreen = ({ navigation, route }) => {
         const eventIdInCalendar = await Calendar.createEventAsync(targetCalendarId, eventDetails); 
         setEventIdInCalendar(eventIdInCalendar);
        }
-        Alert.alert("Success", "The event date is saved in your calendar.");
+        Alert.alert("Success", "La date de l'événement est enregistrée dans votre calendrier.");
       }
       else
       {
@@ -260,16 +260,18 @@ const EventsDetailsScreen = ({ navigation, route }) => {
         );
         setEventIdInCalendar(eventIdInCalendar);
         if (Platform.OS === "ios") {
-          Calendar.openEventInCalendar(eventIdInCalendar);
+          await Calendar.openEventInCalendarAsync({
+            eventId: eventIdInCalendar
+          });
         } else {
-          Alert.alert("Success", "The event date is saved in your calendar.");
+          Alert.alert("Success", "La date de l'événement est enregistrée dans votre calendrier.");
         }
       }
      } 
     }
     catch (error) {
     console.log("Error writing event to native calendar app: ", error);
-    Alert.alert("Calendar Error", "Unable to save this event directly to your system calendar configuration.");
+    Alert.alert("Erreur de calendrier : impossible d'enregistrer cet événement directement dans la configuration du calendrier de votre système.");
   } finally {
     setLoading(false);
   } 
